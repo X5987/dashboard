@@ -1,0 +1,18 @@
+// styles.scss
+@import '~@angular/material/theming';
+@import 'theme';
+
+// Include the common styles
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+// Define your theme
+$app-primary: mat-palette($mat-indigo);
+$app-accent: mat-palette($mat-pink, A200, A100, A400);
+$app-warn: mat-palette($mat-red);
+
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include the theme styles
+@include angular-material-theme($app-theme);
