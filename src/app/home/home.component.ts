@@ -1,12 +1,27 @@
 import { Component } from '@angular/core';
-import { DesignSystemModule } from '../../../design-system/src/design-system.module';
-import { RouterOutlet } from '@angular/router';
+import { SliderComponent } from './components/slider/slider.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import { FormulComponent } from './components/formul/formul.component';
+import { MessageComponent } from './components/message/message.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { GridCssComponent } from './components/grid/grid-css.component';
+import { CommonModule } from '@angular/common';
+import { DesignSystemModule } from 'design-system';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DesignSystemModule, RouterOutlet],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  imports: [
+    CommonModule,
+    DesignSystemModule,
+    SliderComponent,
+    ChartsComponent,
+    FormulComponent,
+    MessageComponent,
+    FooterComponent,
+    GridCssComponent,
+  ],
 })
 export class HomeComponent {}
