@@ -1,4 +1,5 @@
-
-.container {
-  flex-direction: column;
+:host {
+  .container {
+    flex-direction: column;
+  }
 }

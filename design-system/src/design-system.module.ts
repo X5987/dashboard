@@ -16,6 +16,13 @@ import {
   MatMenuTrigger,
 } from '@angular/material/menu';
 import { AgCharts } from 'ag-charts-angular';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { DialogComponent } from './utils/dialog/dialog.component';
 
 const materialElement = [
   MatButtonModule,
@@ -32,13 +39,18 @@ const materialElement = [
   MatGridList,
   MatGridTile,
   AgCharts,
+  MatButtonModule,
+  MatDialogModule,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
 ];
 
-const componentWeb = [HeaderComponent];
+const componentWeb = [HeaderComponent, DialogComponent];
 
 @NgModule({
   declarations: [componentWeb],
   imports: [CommonModule, materialElement],
-  exports: [materialElement, componentWeb],
+  exports: [componentWeb, materialElement],
 })
 export class DesignSystemModule {}

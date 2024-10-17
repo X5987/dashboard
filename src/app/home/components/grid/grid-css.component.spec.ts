@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GridCssComponent } from './grid-css.component';
 
-describe('GridComponent', () => {
-  let component: GridCssComponent;
+describe('GridCssComponent', () => {
+  // let component: GridCssComponent;
   let fixture: ComponentFixture<GridCssComponent>;
 
   beforeEach(async () => {
@@ -12,11 +12,13 @@ describe('GridComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(GridCssComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should gridCss contain libGrid ', () => {
+    const compiled = fixture.nativeElement;
+    const libGrid = compiled.querySelector('lib-grid');
+
+    expect(libGrid).toBeTruthy();
   });
 });

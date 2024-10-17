@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { GridComponent } from 'design-system';
 
-import { GridComponent } from './grid.component';
-
-describe('GridComponentComponent', () => {
-  let component: GridComponent;
+describe('GridComponent', () => {
   let fixture: ComponentFixture<GridComponent>;
 
   beforeEach(async () => {
@@ -12,11 +10,16 @@ describe('GridComponentComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(GridComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have a template Name or null on init', () => {
+    const compiled = fixture.nativeElement;
+    const ngContainer = compiled.querySelector('ng-container');
+    const ngTemplateOutlet = ngContainer.querySelector('*ngTemplateOutlet');
+
+    expect(ngContainer).toBeTruthy();
+    expect(ngTemplateOutlet).toBeDefined();
+    // expect(compiled.templates).toBeDefined();
   });
 });
