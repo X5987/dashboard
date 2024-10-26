@@ -1,0 +1,23 @@
+:host {
+  #navbar {
+    display: flex;
+    flex-direction: row;
+    background-color: aliceblue;
+    flex-wrap: wrap;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-logo {
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+  }
+
+  .navbar-item {
+    padding-right: 20px;
+  }
+
+}
+

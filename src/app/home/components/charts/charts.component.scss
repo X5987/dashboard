@@ -1,0 +1,21 @@
+:host {
+  .container {
+    overflow: hidden;
+    justify-content: space-evenly;
+    align-content: center;
+    margin: auto;
+
+    drag-scroll {
+      display: flex;
+      width: 100%;
+      cursor: grab;
+      align-items: center; /* Centrer les éléments verticalement */
+    }
+
+    .chart {
+      flex: 0 0 auto;
+      height: 300px;
+      width: 30%; /* Ajustez cette valeur selon vos besoins */
+    }
+  }
+}
