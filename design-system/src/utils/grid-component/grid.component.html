@@ -1,14 +1,35 @@
-<ng-container *ngTemplateOutlet="tileTemplate"></ng-container>
+@if (tileTypes) {
+  <ng-container *ngTemplateOutlet="tileTypes === TileTypeEnum.tileSimple ? tileSimple : tileForms"></ng-container>
 
-<ng-template #tileTemplate>
-  <mat-grid-list cols="4" rowHeight="100px">
-    @for (tile of tiles; track tile) {
-      <mat-grid-tile
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.border-radius.px]="tile.border_radius"
-        [style.background]="tile.color">{{ tile.text }}
-      </mat-grid-tile>
-    }
-  </mat-grid-list>
-</ng-template>
+  <ng-template #tileSimple>
+    <mat-grid-list [cols]="grid.grid.cols" rowHeight="100px">
+      @for (tile of grid.tile; track tile) {
+        <mat-grid-tile
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.border-radius.px]="tile.border_radius"
+          [style.background]="tile.color">{{ tile.text }}
+        </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </ng-template>
+
+  <ng-template #tileForms>
+    <!--    <div class="flex-container" >-->
+    <mat-grid-list [cols]="grid.grid.cols" rowHeight="100px">
+      <ng-container *ngFor="let tile of grid.tile">
+        <!--        <div class="flex-item"-->
+        <mat-grid-tile
+          [style.flex]="tile.cols + ' ' + tile.rows"
+          [style.border-radius.px]="tile.border_radius"
+          [style.border]="tile.border_color"
+          [style.background]="tile.color">
+          {{ tile.text }}
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
+  </ng-template>
+
+
+}
+

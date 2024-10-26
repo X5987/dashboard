@@ -20,6 +20,6 @@ describe('GridComponent', () => {
 
     expect(ngContainer).toBeTruthy();
     expect(ngTemplateOutlet).toBeDefined();
-    // expect(compiled.templates).toBeDefined();
+    expect(compiled.templates).toBeDefined();
   });
 });
