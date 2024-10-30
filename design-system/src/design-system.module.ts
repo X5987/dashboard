@@ -1,8 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  AsyncPipe,
+  CommonModule,
+  NgForOf,
+  NgIf,
+  NgOptimizedImage,
+  NgTemplateOutlet,
+} from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import {
+  MatAnchor,
+  MatButton,
+  MatButtonModule,
+} from '@angular/material/button';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { CdkMenuItem, CdkMenuModule } from '@angular/cdk/menu';
 import { MatCardContent, MatCardModule } from '@angular/material/card';
 import {
@@ -23,6 +34,20 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { DialogComponent } from './utils/dialog/dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MatError,
+  MatFormField,
+  MatHint,
+  MatLabel,
+} from '@angular/material/form-field';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
+import {
+  InputTextComponent,
+  SingleSelectComponent,
+} from './components/form-fields';
+import { Observable, of } from 'rxjs';
 
 const materialElement = [
   MatButtonModule,
@@ -44,13 +69,32 @@ const materialElement = [
   MatDialogContent,
   MatDialogActions,
   MatDialogClose,
+  MatFormField,
+  MatInput,
+  MatHint,
+  MatLabel,
+  MatError,
+  MatGridList,
+  MatButton,
+  MatGridTile,
+  MatSelect,
+  MatOption,
+  MatIcon,
 ];
-
+const commonList = [
+  NgIf,
+  NgForOf,
+  NgTemplateOutlet,
+  ReactiveFormsModule,
+  MatAnchor,
+  AsyncPipe,
+];
+const microComponents = [InputTextComponent, SingleSelectComponent];
 const componentWeb = [HeaderComponent, DialogComponent];
 
 @NgModule({
-  declarations: [componentWeb],
-  imports: [CommonModule, materialElement],
-  exports: [componentWeb, materialElement],
+  declarations: [microComponents],
+  imports: [CommonModule, commonList, materialElement, componentWeb],
+  exports: [componentWeb, commonList, materialElement, microComponents],
 })
 export class DesignSystemModule {}
