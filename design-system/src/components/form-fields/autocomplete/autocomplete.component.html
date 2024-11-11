@@ -1,43 +1,26 @@
-<div [ngClass]="{'label-inside': labelPosition === 'inside'}" class="form-field-common">
-  <mat-form-field [appearance]="appearance"
-                  (click)="beforeOpen()"
-                  class="select-custom-icon"
-                  autocapitalize="off"
-                  [class.icon-error]="control.errors && control.touched"
-                  bacErrorTooltip
-                  [control]="control">
-
-    <mat-label>{{ label }}</mat-label>
-
-    <mat-select [formControl]="control"
-                [placeholder]="placeholder"
-                [multiple]="isMultiSelect"
-                color="primary"
-                disableOptionCentering
-                #select>
-
-       <mat-form-field [appearance]="appearance" bacErrorTooltip>
-        <input matInput
-               [formControl]="filterControl"
-               [placeholder]="searchPlaceholder"
-               autocomplete="off"
-               autocorrect="off"
-               autocapitalize="none"
-               (change)="toggleSelectAll($event)"
-               spellcheck="false">
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="filterControl.reset()"
-                *ngIf="filterControl.value">
-          <mat-icon svgIcon="clear"></mat-icon>
-        </button>
-       </mat-form-field>
-
-      <mat-option *ngIf="emptySelectLabel"> {{emptySelectLabel}} </mat-option>
-
-      <mat-option *ngFor="let item of filter | async" [value]="item">
-        {{item.libelle}}
+<mat-form-field class="example-chip-list" [appearance]="appearance">
+  <mat-label>{{ label }}</mat-label>
+  <mat-chip-grid #chipGrid aria-label="Fruit selection">
+    @for (item of itemsSelected(); track $index) {
+      <mat-chip-row>
+        {{ item.libelle }}
+          <mat-icon (click)="remove($index)">cancel</mat-icon>
+      </mat-chip-row>
+    }
+  </mat-chip-grid>
+  <input
+    [placeholder]="placeholder"
+    [name]="name"
+    #autoCompleteInput
+    [(ngModel)]="currenItem"
+    [matChipInputFor]="chipGrid"
+    [matAutocomplete]="auto"
+    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+  />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    @for (item of filteredItem(); track item) {
+      <mat-option [value]="item">{{ item.libelle }}
       </mat-option>
-    </mat-select>
-
-    <mat-icon class="arrow" svgIcon="keyboard_arrow_down"></mat-icon>
-  </mat-form-field>
-</div>
+    }
+  </mat-autocomplete>
+</mat-form-field>

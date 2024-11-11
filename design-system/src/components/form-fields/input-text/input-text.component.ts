@@ -32,9 +32,7 @@ export class InputTextComponent {
   }
 
   registerOnChange(fn: (value: never) => void): void {
-    this.control.valueChanges.subscribe((fn) => {
-      console.log('registerOnChange', fn);
-    });
+    this.control.valueChanges.subscribe((fn) => {});
   }
 
   registerOnTouched(fn: any): void {}

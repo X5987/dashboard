@@ -34,12 +34,12 @@ describe('FormulComponent', () => {
     const required = Validators.required;
 
     expect(formGroupSource['name']).toBeDefined();
-    expect(formGroupSource['surname']).toBeDefined();
+    expect(formGroupSource['email']).toBeDefined();
     expect(formGroupSource['age']).toBeDefined();
     expect(formGroupSource['country']).toBeDefined();
 
     expect(formGroupSource['name']?.hasValidator(required)).toBeTruthy();
-    expect(formGroupSource['surname'].hasValidator(required)).not.toBeTruthy();
+    expect(formGroupSource['email'].hasValidator(required)).not.toBeTruthy();
     expect(formGroupSource['age'].hasValidator(required)).toBeDefined();
     expect(formGroupSource['country']?.hasValidator(required)).toBeDefined();
   });

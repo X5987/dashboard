@@ -9,11 +9,17 @@
                       [formControl]="formGroupSource.controls['name']"
                       [appearance]="'outline'"
                       [placeholder]="'Ex. Julie'"/>
-      <lib-input-text [type]="'text'" matInput
-                      [formControl]="formGroupSource.controls['surname']"
-                      [label]="'Nom'"
+      <lib-input-text [type]="'email'" matInput
+                      [formControl]="formGroupSource.controls['email']"
+                      [label]="'Email'"
                       [appearance]="'outline'"
-                      [placeholder]="'Ex. Dupont'"/>
+                      [placeholder]="'Ex. allowed@example.com'"/>
+
+      <!--      <lib-input-text [type]="'text'" matInput-->
+      <!--                      [formControl]="formGroupSource.controls['surname']"-->
+      <!--                      [label]="'Nom'"-->
+      <!--                      [appearance]="'outline'"-->
+      <!--                      [placeholder]="'Ex. Dupont'"/>-->
     </div>
 
     <div class="form-row">
@@ -24,7 +30,7 @@
                       [placeholder]="'Ex. Julie'"/>
 
       <lib-single-select matInput
-                         [list]="listCountry"
+                         [list$]="listCountry$"
                          [label]="'Pays'"
                          [formControl]="formGroupSource.controls['country']"
                          [appearance]="'outline'"
@@ -32,7 +38,27 @@
     </div>
 
     <div class="button-form">
-      <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentForm()">Envoyer</button>
+      <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentFirstForm()">Envoyer</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #formSecondTemplate let-tile="tile">
+  <form id="formSecond" [formGroup]="formSecondGroupSource">
+
+    <div class="form-row">
+      <lib-autocomplete
+        #autocompleteMarque
+        [label]="'Marque'"
+        [formControl]="formSecondGroupSource.controls['marques']"
+        [name]="'auto'"
+        [list]="list"
+        [appearance]="'outline'"
+        [placeholder]="'select'"/>
+    </div>
+
+    <div class="button-form">
+      <button [disabled]="formSecondGroupSource.invalid" mat-raised-button (click)="sentSecondForm()">Envoyer</button>
     </div>
   </form>
 </ng-template>

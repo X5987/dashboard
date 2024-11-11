@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DesignSystemModule } from '../../design-system.module';
 import { GridStructur, TileTypeEnum } from '../../interfaces';
-import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'lib-grid',

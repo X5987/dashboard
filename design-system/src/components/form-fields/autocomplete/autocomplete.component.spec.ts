@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AutocompleteComponent } from './autocomplete.component';
+import { AutocompleteComponent } from 'design-system';
 
 describe('AutocompleteComponent', () => {
   let component: AutocompleteComponent;
@@ -8,7 +7,7 @@ describe('AutocompleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AutocompleteComponent]
+      declarations: [AutocompleteComponent],
     }).compileComponents();
   });
 

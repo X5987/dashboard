@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { GridCssComponent } from './components/grid/grid-css.component';
 import { CommonModule } from '@angular/common';
 import { DesignSystemModule } from 'design-system';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ import { DesignSystemModule } from 'design-system';
   styleUrl: './home.component.scss',
   imports: [
     CommonModule,
+    HttpClientModule,
     DesignSystemModule,
     SliderComponent,
     ChartsComponent,
@@ -23,5 +25,6 @@ import { DesignSystemModule } from 'design-system';
     FooterComponent,
     GridCssComponent,
   ],
+  providers: [],
 })
 export class HomeComponent {}

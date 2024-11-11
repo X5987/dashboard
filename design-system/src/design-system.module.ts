@@ -34,7 +34,7 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { DialogComponent } from './utils/dialog/dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatError,
   MatFormField,
@@ -47,7 +47,12 @@ import {
   InputTextComponent,
   SingleSelectComponent,
 } from './components/form-fields';
-import { Observable, of } from 'rxjs';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatChipGrid, MatChipInput, MatChipRow } from '@angular/material/chips';
+import {
+  MatAutocomplete,
+  MatAutocompleteTrigger,
+} from '@angular/material/autocomplete';
 
 const materialElement = [
   MatButtonModule,
@@ -80,8 +85,16 @@ const materialElement = [
   MatSelect,
   MatOption,
   MatIcon,
+  MatChipGrid,
+  MatChipRow,
+  MatAutocomplete,
+  FormsModule,
+  MatChipInput,
+  MatAutocompleteTrigger,
 ];
 const commonList = [
+  RouterOutlet,
+  RouterLink,
   NgIf,
   NgForOf,
   NgTemplateOutlet,

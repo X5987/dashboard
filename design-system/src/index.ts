@@ -11,3 +11,4 @@ export * from './design-system.module';
 export * from './interfaces/index';
 
 export * from './components/form-fields/index';
+export * from './services/validators/dashboard-validators.service';

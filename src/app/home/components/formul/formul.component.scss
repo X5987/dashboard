@@ -10,6 +10,17 @@
     border-radius: 7px;
   }
 
+  #formSecond {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 7px;
+  }
+
   .form-row {
     display: flex;
     flex-direction: row;
