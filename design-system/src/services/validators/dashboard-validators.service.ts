@@ -5,7 +5,7 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { delay, Observable, of, switchMap } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({

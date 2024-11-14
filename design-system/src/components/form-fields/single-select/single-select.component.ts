@@ -3,7 +3,7 @@ import { FormControl, NgControl } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 
 export interface ListSelect {
-  value: string;
+  libelle: string;
   code: string;
 }
 
@@ -32,9 +32,7 @@ export class SingleSelectComponent implements OnDestroy {
   }
 
   registerOnChange(fn: (value: never) => void): void {
-    this.control.valueChanges.subscribe((fn) => {
-      console.log('registerOnChange', fn);
-    });
+    this.control.valueChanges.subscribe((fn) => {});
   }
 
   registerOnTouched(fn: any): void {}

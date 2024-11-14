@@ -5,9 +5,8 @@ import { FormulComponent } from './components/formul/formul.component';
 import { MessageComponent } from './components/message/message.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GridCssComponent } from './components/grid/grid-css.component';
-import { CommonModule } from '@angular/common';
 import { DesignSystemModule } from 'design-system';
-import { HttpClientModule } from '@angular/common/http';
+import { FormulService } from './services/formul.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   imports: [
-    CommonModule,
-    HttpClientModule,
     DesignSystemModule,
     SliderComponent,
     ChartsComponent,
@@ -25,6 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     GridCssComponent,
   ],
-  providers: [],
+  providers: [FormulService],
 })
 export class HomeComponent {}

@@ -1,5 +1,6 @@
 <lib-grid [grid]="tilesForms" [tileTypes]="TileTypeEnum.tileForms"></lib-grid>
 
+<!-- form zone -->
 <ng-template #formTemplate let-tile="tile">
   <form id="form" [formGroup]="formGroupSource">
 
@@ -14,12 +15,6 @@
                       [label]="'Email'"
                       [appearance]="'outline'"
                       [placeholder]="'Ex. allowed@example.com'"/>
-
-      <!--      <lib-input-text [type]="'text'" matInput-->
-      <!--                      [formControl]="formGroupSource.controls['surname']"-->
-      <!--                      [label]="'Nom'"-->
-      <!--                      [appearance]="'outline'"-->
-      <!--                      [placeholder]="'Ex. Dupont'"/>-->
     </div>
 
     <div class="form-row">
@@ -42,7 +37,6 @@
     </div>
   </form>
 </ng-template>
-
 <ng-template #formSecondTemplate let-tile="tile">
   <form id="formSecond" [formGroup]="formSecondGroupSource">
 
@@ -62,3 +56,32 @@
     </div>
   </form>
 </ng-template>
+<ng-template #formThirdTemplate let-tile="tile">
+</ng-template>
+
+<!-- retsult zone -->
+<ng-template #formFirstResultTemplate let-data="data">
+  <div><p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Age:</strong> {{ data.age }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>country:</strong> {{ data.country.libelle }}</p></div>
+</ng-template>
+<ng-template #formSecondResultTemplate let-data="data">
+  <mat-chip-set aria-label="Dog selection">
+    @for (marque of data.marques; track marque) {
+      <mat-chip>
+        <img
+          matChipAvatar
+          src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+
+        {{ marque.libelle }}
+      </mat-chip>
+    }</mat-chip-set>
+</ng-template>
+
+
+<!--@for (user of user$ | async; track user.id) {-->
+<!--  {{user.name.firstname}}-->
+<!--}-->

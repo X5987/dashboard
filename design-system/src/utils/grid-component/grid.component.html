@@ -25,9 +25,7 @@
           [style.background]="tile.color">
 
           @if (tile.context) {
-            <ng-container *ngTemplateOutlet="tile.context; context: { tile: tile }"></ng-container>
-          } @else if (!tile.context) {
-            {{ tile.text }}
+            <ng-container *ngTemplateOutlet="tile.context; context: { data: tile.data }"></ng-container>
           }
         </mat-grid-tile>
       }

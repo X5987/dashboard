@@ -3,7 +3,7 @@
 
   <mat-select [formControl]="control">
     @for (item of list$ | async; track item) {
-      <mat-option [value]="item.value">{{ item.value }}</mat-option>
+      <mat-option [value]="item">{{ item.libelle }}</mat-option>
     }
   </mat-select>
 

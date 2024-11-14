@@ -95,10 +95,7 @@ export class AutocompleteComponent implements OnInit {
     return this.controlDir.control as FormControl;
   }
 
-  writeValue(value: AutoCompleteList[]): void {
-    // this.itemsSelected.set(value);
-    // this.control?.setValue(value, { emitEvent: false });
-  }
+  writeValue(value: AutoCompleteList[]): void {}
 
   registerOnChange(fn: (value: AutoCompleteList[]) => void): void {}
 
@@ -114,7 +111,7 @@ export class AutocompleteComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.itemsSelected.update((items: AutoCompleteList[]) => {
-      this.control.setValue([event.option.value]);
+      this.control.setValue([...items, event.option.value]);
       return [...items, event.option.value];
     });
     this.currenItem.set('');

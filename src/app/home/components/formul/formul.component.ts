@@ -5,8 +5,6 @@ import {
   OnInit,
   inject,
   Signal,
-  signal,
-  ChangeDetectorRef,
 } from '@angular/core';
 import {
   AutocompleteComponent,
@@ -21,8 +19,21 @@ import {
   TileTypeEnum,
 } from 'design-system';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { FormulService } from './services/formul.service';
+import {
+  combineLatest,
+  delay,
+  fromEvent,
+  Observable,
+  of,
+  switchMap,
+} from 'rxjs';
+import { FormulService } from '../../services/formul.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  User,
+  UserWithoutAdress,
+} from '../../services/interfaces/user.interface';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-formul',
@@ -54,6 +65,7 @@ export class FormulComponent implements OnInit {
         color: '#ffffff',
         border_radius: 10,
         border_color: '2px solid #005ecb',
+        context: null,
       },
 
       {
@@ -71,6 +83,7 @@ export class FormulComponent implements OnInit {
         color: '#ffffff',
         border_radius: 10,
         border_color: '2px solid #005ecb',
+        context: null,
       },
 
       { text: 'form2', cols: 4, rows: 2, color: '#004da4', border_radius: 10 },
@@ -81,6 +94,7 @@ export class FormulComponent implements OnInit {
         color: '#ffffff',
         border_radius: 10,
         border_color: '2px solid #005ecb',
+        context: null,
       },
     ],
   };
@@ -91,79 +105,53 @@ export class FormulComponent implements OnInit {
   @ViewChild('formSecondTemplate', { static: true })
   formSecondTemplate!: TemplateRef<never>;
 
-  @ViewChild('autocompleteMarque')
+  @ViewChild('formSecondResultTemplate', { static: true })
+  formSecondResultTemplate!: TemplateRef<never>;
+
+  @ViewChild('formFirstResultTemplate', { static: true })
+  formFirstResultTemplate!: TemplateRef<never>;
+
+  @ViewChild('autocompleteMarque', { static: false })
   autocompleteMarque!: AutocompleteComponent;
 
+  serviceList: FormulService = inject(FormulService);
   formService: FormService = inject(FormService);
+
   formGroupSource: FormGroup<FormModel> = this.formService.createFormGroup();
   formSecondGroupSource: FormGroup<FormSecondModel> =
     this.formService.createSecondFormGroup();
-  serviceList: FormulService = inject(FormulService);
-  listCountry$: Observable<ListSelect[]> = this.serviceList.getListCountry();
-  list: Signal<AutoCompleteList[]> = signal([
-    { code: '001', libelle: 'Apple' },
-    { code: '002', libelle: 'Samsung' },
-    { code: '003', libelle: 'Nike' },
-    {
-      code: '004',
-      libelle: 'Adidas',
-    },
-    { code: '005', libelle: 'Sony' },
-    { code: '006', libelle: 'Microsoft' },
-    {
-      code: '007',
-      libelle: 'Google',
-    },
-    { code: '008', libelle: 'Amazon' },
-    { code: '009', libelle: 'Coca-Cola' },
-    {
-      code: '010',
-      libelle: 'Pepsi',
-    },
-    { code: '011', libelle: 'Toyota' },
-    { code: '012', libelle: 'BMW' },
-    {
-      code: '013',
-      libelle: 'Mercedes-Benz',
-    },
-    { code: '014', libelle: 'Intel' },
-    { code: '015', libelle: 'Facebook' },
-    {
-      code: '016',
-      libelle: 'Instagram',
-    },
-    { code: '017', libelle: 'Twitter' },
-    { code: '018', libelle: 'Snapchat' },
-    {
-      code: '019',
-      libelle: 'Netflix',
-    },
-    { code: '020', libelle: 'Spotify' },
-    { code: '021', libelle: 'Tesla' },
-    { code: '022', libelle: 'Uber' },
-    {
-      code: '023',
-      libelle: 'Airbnb',
-    },
-    { code: '024', libelle: 'LG' },
-    { code: '025', libelle: 'Panasonic' },
-  ]);
+  listCountry$: Observable<ListSelect[]> =
+    this.serviceList.getListCountry() as Observable<ListSelect[]>;
+  list: Signal<AutoCompleteList[]> = toSignal(this.serviceList.getListBrand(), {
+    initialValue: [],
+  });
 
-  changeDetec: ChangeDetectorRef = inject(ChangeDetectorRef);
+  // allUser: Observable<User[]> = this.serviceList.getAllUser();
+  user$: Observable<User[]> = new Observable<User[]>();
+  userWithoutAdress$: Observable<UserWithoutAdress[]> = new Observable<
+    UserWithoutAdress[]
+  >();
 
   ngOnInit(): void {
     if (this.formTemplate) {
       this.tilesForms.tile[0].context = this.formTemplate;
       this.tilesForms.tile[4].context = this.formSecondTemplate;
     }
+    this.userWithoutAdress$ = this.serviceList.getAllUser();
   }
 
   sentFirstForm() {
-    console.table(this.formGroupSource.value);
+    //  allowed@example.com | test@domain.com
+    this.tilesForms.tile[3].context = this.formFirstResultTemplate;
+    this.tilesForms.tile[3].data = this.formGroupSource.value;
+    this.formGroupSource.reset();
   }
 
   sentSecondForm() {
+    this.tilesForms.tile[1].context = this.formSecondResultTemplate;
+    this.tilesForms.tile[1].data = this.formSecondGroupSource.value;
     this.autocompleteMarque.itemsSelected.set([]);
     console.table(this.formSecondGroupSource.controls.marques.value);
+    this.formSecondGroupSource.reset();
   }
 }

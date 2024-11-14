@@ -17,6 +17,7 @@ export interface Tile {
   border_radius: number;
   border_color?: string;
   context?: TemplateRef<never> | null;
+  data?: object | null;
 }
 
 export enum TileTypeEnum {

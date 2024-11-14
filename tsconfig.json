@@ -10,6 +10,7 @@
     "esModuleInterop": true
   },
   "angularCompilerOptions": {
+    "extendedTemplateDiagnostics": true, // implémenté par la suite
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

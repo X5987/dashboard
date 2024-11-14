@@ -48,11 +48,19 @@ import {
   SingleSelectComponent,
 } from './components/form-fields';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { MatChipGrid, MatChipInput, MatChipRow } from '@angular/material/chips';
+import {
+  MatChip,
+  MatChipGrid,
+  MatChipInput,
+  MatChipRow,
+  MatChipSet,
+} from '@angular/material/chips';
 import {
   MatAutocomplete,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormulService } from '../../src/app/home/services/formul.service';
 
 const materialElement = [
   MatButtonModule,
@@ -91,8 +99,11 @@ const materialElement = [
   FormsModule,
   MatChipInput,
   MatAutocompleteTrigger,
+  MatChipSet,
+  MatChip,
 ];
 const commonList = [
+  CommonModule,
   RouterOutlet,
   RouterLink,
   NgIf,
@@ -107,7 +118,7 @@ const componentWeb = [HeaderComponent, DialogComponent];
 
 @NgModule({
   declarations: [microComponents],
-  imports: [CommonModule, commonList, materialElement, componentWeb],
+  imports: [commonList, materialElement, componentWeb],
   exports: [componentWeb, commonList, materialElement, microComponents],
 })
 export class DesignSystemModule {}
