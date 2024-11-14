@@ -20,6 +20,7 @@ export class GridCssComponent {
     grid: {
       cols: 4,
       rowHeight: 100,
+      gutterSize: 20,
     },
     tile: [
       { text: 'One', cols: 3, rows: 2, color: '#FFB6C1', border_radius: 10 }, // Light Pink

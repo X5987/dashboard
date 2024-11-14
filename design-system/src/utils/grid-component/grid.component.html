@@ -1,8 +1,8 @@
 @if (tileTypes) {
   <ng-container *ngTemplateOutlet="tileTypes === TileTypeEnum.tileSimple ? tileSimple : tileForms"></ng-container>
-
   <ng-template #tileSimple>
-    <mat-grid-list [cols]="grid.grid.cols" rowHeight="100px">
+    <mat-grid-list [cols]="grid.grid.cols" [rowHeight]="grid.grid.rowHeight + 'px'"
+                   [gutterSize]="grid.grid.gutterSize + 'px'">
       @for (tile of grid.tile; track tile) {
         <mat-grid-tile
           [colspan]="tile.cols"
@@ -13,23 +13,23 @@
       }
     </mat-grid-list>
   </ng-template>
-
   <ng-template #tileForms>
     <!--    <div class="flex-container" >-->
-    <mat-grid-list [cols]="grid.grid.cols" rowHeight="100px">
-      <ng-container *ngFor="let tile of grid.tile">
-        <!--        <div class="flex-item"-->
+    <mat-grid-list [cols]="grid.grid.cols" [rowHeight]="grid.grid.rowHeight + 'px'"
+                   [gutterSize]="grid.grid.gutterSize + 'px'">
+      @for (tile of grid.tile; track tile) {
         <mat-grid-tile
           [style.flex]="tile.cols + ' ' + tile.rows"
           [style.border-radius.px]="tile.border_radius"
           [style.border]="tile.border_color"
           [style.background]="tile.color">
-          {{ tile.text }}
+
+          @if (tile.context) {
+            <ng-container *ngTemplateOutlet="tile.context; context: { data: tile.data }"></ng-container>
+          }
         </mat-grid-tile>
-      </ng-container>
+      }
     </mat-grid-list>
   </ng-template>
-
-
 }
 

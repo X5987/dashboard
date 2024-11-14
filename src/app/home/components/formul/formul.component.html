@@ -1,1 +1,87 @@
 <lib-grid [grid]="tilesForms" [tileTypes]="TileTypeEnum.tileForms"></lib-grid>
+
+<!-- form zone -->
+<ng-template #formTemplate let-tile="tile">
+  <form id="form" [formGroup]="formGroupSource">
+
+    <div class="form-row">
+      <lib-input-text [type]="'text'" matInput
+                      [label]="'Prénom'"
+                      [formControl]="formGroupSource.controls['name']"
+                      [appearance]="'outline'"
+                      [placeholder]="'Ex. Julie'"/>
+      <lib-input-text [type]="'email'" matInput
+                      [formControl]="formGroupSource.controls['email']"
+                      [label]="'Email'"
+                      [appearance]="'outline'"
+                      [placeholder]="'Ex. allowed@example.com'"/>
+    </div>
+
+    <div class="form-row">
+      <lib-input-text [type]="'number'" matInput
+                      [label]="'Age'"
+                      [formControl]="formGroupSource.controls['age']"
+                      [appearance]="'outline'"
+                      [placeholder]="'Ex. Julie'"/>
+
+      <lib-single-select matInput
+                         [list$]="listCountry$"
+                         [label]="'Pays'"
+                         [formControl]="formGroupSource.controls['country']"
+                         [appearance]="'outline'"
+                         [placeholder]="'select'"/>
+    </div>
+
+    <div class="button-form">
+      <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentFirstForm()">Envoyer</button>
+    </div>
+  </form>
+</ng-template>
+<ng-template #formSecondTemplate let-tile="tile">
+  <form id="formSecond" [formGroup]="formSecondGroupSource">
+
+    <div class="form-row">
+      <lib-autocomplete
+        #autocompleteMarque
+        [label]="'Marque'"
+        [formControl]="formSecondGroupSource.controls['marques']"
+        [name]="'auto'"
+        [list]="list"
+        [appearance]="'outline'"
+        [placeholder]="'select'"/>
+    </div>
+
+    <div class="button-form">
+      <button [disabled]="formSecondGroupSource.invalid" mat-raised-button (click)="sentSecondForm()">Envoyer</button>
+    </div>
+  </form>
+</ng-template>
+<ng-template #formThirdTemplate let-tile="tile">
+</ng-template>
+
+<!-- retsult zone -->
+<ng-template #formFirstResultTemplate let-data="data">
+  <div><p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Age:</strong> {{ data.age }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>country:</strong> {{ data.country.libelle }}</p></div>
+</ng-template>
+<ng-template #formSecondResultTemplate let-data="data">
+  <mat-chip-set aria-label="Dog selection">
+    @for (marque of data.marques; track marque) {
+      <mat-chip>
+        <img
+          matChipAvatar
+          src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+
+        {{ marque.libelle }}
+      </mat-chip>
+    }</mat-chip-set>
+</ng-template>
+
+
+<!--@for (user of user$ | async; track user.id) {-->
+<!--  {{user.name.firstname}}-->
+<!--}-->
