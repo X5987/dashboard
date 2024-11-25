@@ -1,10 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import { FormComponent } from './form/form.component';
 
 export const routesPresentationProjet: Routes = [
-  { path: '', component: AppComponent },
-  // autres routes
+  { path: '', component: FormComponent },
 ];
 
 @NgModule({

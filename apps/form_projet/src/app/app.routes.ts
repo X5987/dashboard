@@ -1,10 +1,12 @@
 import { RouterModule, Routes } from '@angular/router';
-import { FormComponent } from './form/form.component';
 import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
 
 export const routesFormProjet: Routes = [
-  { path: '', component: FormComponent },
-  // autres routes
+  {
+    path: '',
+    component: AppComponent,
+  },
 ];
 
 @NgModule({

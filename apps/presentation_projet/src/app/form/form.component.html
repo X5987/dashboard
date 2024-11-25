@@ -1,0 +1,26 @@
+<div class="container">
+
+  <section class="item filter-table ">
+    <lib-filter-table
+      [appearance]="appearance"
+      [name]="name"
+      [placeholder]="placeholder"
+      [label]="label"
+      (textfilter)="filterText($event)"
+    >
+      <mat-slide-toggle
+        [(ngModel)]="checkbox"
+                        #toggle
+                        (click)="filterText(textSave)"
+                        matSuffix ></mat-slide-toggle>
+
+    </lib-filter-table>
+  </section>
+
+  <section class="item table">
+    <app-table-dynamic
+      [list]="listTable"
+      [displayedColumns]="listColumns"
+    ></app-table-dynamic>
+  </section>
+</div>

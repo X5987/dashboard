@@ -1,0 +1,15 @@
+:host {
+  .container {
+    flex-direction: column;
+
+    .item {
+      border-radius: 8px;
+      gap: 5px;
+      margin: 0 20px 0 20px;
+      padding: 10px;
+      border: 5px solid #fff;
+    }
+
+  }
+
+}

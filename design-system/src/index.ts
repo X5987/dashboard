@@ -1,4 +1,5 @@
 export * from './components/header/header.component';
+export * from './components/filter-table/filter-table.component';
 
 export * from './utils/grid-component/grid.component';
 export * from './utils/dialog/dialog.component';

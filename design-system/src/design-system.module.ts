@@ -59,8 +59,7 @@ import {
   MatAutocomplete,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormulService } from '../../src/app/home/services/formul.service';
+import { FilterTableComponent } from './components/filter-table/filter-table.component';
 
 const materialElement = [
   MatButtonModule,
@@ -114,7 +113,7 @@ const commonList = [
   AsyncPipe,
 ];
 const microComponents = [InputTextComponent, SingleSelectComponent];
-const componentWeb = [HeaderComponent, DialogComponent];
+const componentWeb = [HeaderComponent, DialogComponent, FilterTableComponent];
 
 @NgModule({
   declarations: [microComponents],
