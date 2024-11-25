@@ -8,9 +8,7 @@ import {
   distinctUntilChanged,
   map,
   Observable,
-  startWith,
   Subject,
-  switchMap,
   takeUntil,
 } from 'rxjs';
 import { FormService } from './services/form.service';
