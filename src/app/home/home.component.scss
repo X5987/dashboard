@@ -1,5 +1,35 @@
 :host {
   .container {
     flex-direction: column;
+    gap: 10px;
+    margin: 40px;
+
+    .item {
+      background-color: #f5f5ff;
+      border-radius: 8px;
+      width: auto;
+      padding: 10px;
+    }
+
+    .slide {
+    }
+
+    .charts {
+    }
+
+    .form {
+    }
+
+    .message {
+    }
+
+    .css {
+    }
+
+    .footer {
+    }
   }
+
+
 }
+

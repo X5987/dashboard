@@ -6,7 +6,6 @@ import { DesignSystemModule } from 'design-system';
   standalone: true,
   imports: [DesignSystemModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'dashboard_cv';

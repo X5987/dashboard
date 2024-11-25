@@ -19,21 +19,13 @@ import {
   TileTypeEnum,
 } from 'design-system';
 import { FormGroup } from '@angular/forms';
-import {
-  combineLatest,
-  delay,
-  fromEvent,
-  Observable,
-  of,
-  switchMap,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { FormulService } from '../../services/formul.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   User,
   UserWithoutAdress,
 } from '../../services/interfaces/user.interface';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-formul',
