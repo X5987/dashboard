@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GridComponent } from 'design-system';
+import { GridComponent } from '@design-system';
 
 describe('GridComponent', () => {
   let fixture: ComponentFixture<GridComponent>;

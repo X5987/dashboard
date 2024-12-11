@@ -72,28 +72,6 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n"
     },
-    "test": {
-      "executor": "@angular-devkit/build-angular:karma",
-      "options": {
-        "polyfills": [
-          "zone.js",
-          "zone.js/testing"
-        ],
-        "tsConfig": "tsconfig.spec.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "public"
-          }
-        ],
-        "styles": [
-          "@angular/material/prebuilt-themes/azure-blue.css",
-          "src/styles.scss"
-        ],
-        "scripts": []
-      }
-    },
     "lint": {
       "executor": "@angular-eslint/builder:lint",
       "options": {
@@ -105,6 +83,36 @@
       "outputs": [
         "{options.outputFile}"
       ]
+    }
+  },
+  "projects": {
+    "form_projet": {
+      "root": "apps/form_projet",
+      "sourceRoot": "apps/form_projet/src",
+      "projectType": "library",
+      "targets": {
+        "test": {
+          "executor": "@nx/jest:jest",
+          "options": {
+            "jestConfig": "apps/form_projet/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation_projet": {
+      "root": "apps/presentation_projet",
+      "sourceRoot": "apps/presentation_projet/src",
+      "projectType": "library",
+      "targets": {
+        "test": {
+          "executor": "@nx/jest:jest",
+          "options": {
+            "jestConfig": "apps/presentation_projet/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

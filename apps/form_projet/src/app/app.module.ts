@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app.routes';
-import { DesignSystemModule } from 'design-system';
+import { DesignSystemModule } from '@design-system';
 import { AppComponent } from './app.component';
 
 @NgModule({

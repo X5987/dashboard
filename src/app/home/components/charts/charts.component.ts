@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DesignSystemModule } from 'design-system';
+import { DesignSystemModule } from '@design-system';
 import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 
 @Component({

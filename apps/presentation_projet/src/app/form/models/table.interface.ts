@@ -5,6 +5,7 @@ export enum PeriodicElementEnum {
   symbol = 'symbol',
   active = 'active',
 }
+
 export interface PeriodicElement {
   [PeriodicElementEnum.position]: number;
   [PeriodicElementEnum.name]: string;
@@ -12,6 +13,7 @@ export interface PeriodicElement {
   [PeriodicElementEnum.symbol]: string;
   [PeriodicElementEnum.active]: boolean;
 }
+
 export const PeriodicElementHeadTab = [
   PeriodicElementEnum.position,
   PeriodicElementEnum.name,
@@ -19,3 +21,5 @@ export const PeriodicElementHeadTab = [
   PeriodicElementEnum.weight,
   PeriodicElementEnum.active,
 ];
+
+export type Direction = 'Up' | 'Down' | 'Left' | 'Right';

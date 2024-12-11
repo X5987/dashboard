@@ -5,7 +5,7 @@ import { FormulComponent } from './components/formul/formul.component';
 import { MessageComponent } from './components/message/message.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GridCssComponent } from './components/grid/grid-css.component';
-import { DesignSystemModule } from 'design-system';
+import { DesignSystemModule } from '@design-system';
 import { FormulService } from './services/formul.service';
 
 @Component({

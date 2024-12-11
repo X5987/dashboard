@@ -8,8 +8,9 @@ import { FormControl, NgControl } from '@angular/forms';
 })
 export class InputTextComponent {
   @Input() appearance: 'fill' | 'outline' = 'outline';
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
+  @Input({ required: true }) label: string = '';
+  @Input({ required: true }) placeholder: string = '';
+  @Input() id: string = '';
   @Input() type: 'email' | 'text' | 'number' = 'text';
   @Input() readonly: boolean = false;
   @Input() disabled: boolean = false;

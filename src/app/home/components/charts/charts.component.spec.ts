@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChartsComponent } from './charts.component';
-import { DesignSystemModule } from 'design-system';
+import { DesignSystemModule } from '@design-system';
 import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 
 describe('ChartsComponent', () => {

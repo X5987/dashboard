@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AutoCompleteList, ListSelect } from 'design-system';
+import { AutoCompleteList, ListSelect, User } from '@design-system';
 import { HttpClient } from '@angular/common/http';
-import { User } from './interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',

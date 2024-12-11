@@ -1,0 +1,89 @@
+<mat-card role="presentation" appearance="raised" class="todo-header">
+
+  <mat-card-header class="todo-header-container">
+    <mat-card-title>To Do List</mat-card-title>
+    <mat-card-subtitle class="mat-mdc-card-subtitle">Crée une liste de choses à faire</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-raised-button class="mat-badge-warn" (click)="createOrEdit()">Ajouter</button>
+    </mat-card-actions>
+  </mat-card-header>
+</mat-card>
+
+<mat-card appearance="raised">
+  <mat-card-header>
+    <mat-card-title> TodoList Table</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    @if (true) {
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+        @for (column of displayedColumns; track column) {
+          <ng-container [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by' + column">
+              {{ column }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              @if (element) {
+                @switch (column) {
+                  @case (ToDoEnumform.action) {
+                    <button mat-icon-button (click)="createOrEdit(element)">
+                      <mat-icon class="table-size-icon"
+                                aria-label="edit"
+                                title="edit"
+                                id="edit">edit
+                      </mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="showLine(element)">
+                      <mat-icon class="table-size-icon"
+                                aria-label="visibility"
+                                title="visibility"
+                                id="visibility">visibility
+                      </mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="removeLine(element)">
+                      <mat-icon class="table-size-icon"
+                                aria-label="delete"
+                                title="delete"
+                                id="delete">delete
+                      </mat-icon>
+                    </button>
+                  }
+                  @case (ToDoEnumform.date) {
+                    {{ element[column] | date: formatDate }}
+                  }
+                  @case (ToDoEnumform.status) {
+                      <button mat-icon-button (click)="deactiveTodo(element)">
+                        <mat-icon>
+                          @if (element[column]) {
+                            check_box
+                          } @else {
+                            check_box_outline_blank
+                          }</mat-icon>
+                      </button>
+                    }
+                    @case (ToDoEnumform.archiveMessage) {
+                      @if (element[column]) {
+                        <mat-icon>archive</mat-icon>
+                      }
+                    }
+                    @case (ToDoEnumform.message) {
+                      {{ element[column] | truncate:  15 }}
+                    }
+                    @default {
+                      {{ element[column] }}
+                    }
+                  }
+                }
+
+                </td>
+                </ng-container>
+              }
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              }
+        </mat-card-actions>
+
+        <mat-paginator [pageSizeOptions]="pageSize" aria-label="Select page of users"></mat-paginator>
+
+        </mat-card>
+

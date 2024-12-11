@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterTableComponent } from 'design-system';
+import { FilterTableComponent } from '@design-system';
 
 describe('FilterTableComponent', () => {
   let component: FilterTableComponent;

@@ -17,15 +17,13 @@ import {
   GridStructur,
   ListSelect,
   TileTypeEnum,
-} from 'design-system';
+  User,
+  UserWithoutAdress,
+} from '@design-system';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FormulService } from '../../services/formul.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import {
-  User,
-  UserWithoutAdress,
-} from '../../services/interfaces/user.interface';
 
 @Component({
   selector: 'app-formul',

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AutocompleteComponent } from 'design-system';
+import { AutocompleteComponent } from '@design-system';
 
 describe('AutocompleteComponent', () => {
   let component: AutocompleteComponent;

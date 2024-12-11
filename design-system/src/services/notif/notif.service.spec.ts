@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { NotifService } from 'design-system';
+import { NotifService } from '@design-system';
 
 describe('NotifService', () => {
   let service: NotifService;

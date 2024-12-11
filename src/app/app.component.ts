@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DesignSystemModule } from 'design-system';
+import { DesignSystemModule } from '@design-system';
 
 @Component({
   selector: 'app-root',

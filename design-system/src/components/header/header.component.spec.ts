@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeaderComponent } from 'design-system';
+import { HeaderComponent } from '@design-system';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

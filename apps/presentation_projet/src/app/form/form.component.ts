@@ -1,76 +1,81 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { TableDynamicComponent } from './components/table-dynamic.component';
-import { DesignSystemModule } from 'design-system';
-import {
-  BehaviorSubject,
-  combineLatest,
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  Observable,
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { DesignSystemModule, User, UserElementHeadTab } from '@design-system';
+import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 import { FormService } from './services/form.service';
 import {
   PeriodicElement,
-  PeriodicElementEnum,
   PeriodicElementHeadTab,
 } from './models/table.interface';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { PeriodicTableComponent } from './components/periodic-table/periodic-table.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { ActivatedRoute } from '@angular/router';
+import { FilterService } from './services/filter.service';
+import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   standalone: true,
-  imports: [DesignSystemModule, TableDynamicComponent, MatSlideToggle],
+  imports: [
+    DesignSystemModule,
+    MatSlideToggle,
+    PeriodicTableComponent,
+    UserTableComponent,
+    ToDoListComponent,
+  ],
 })
 export class FormComponent implements OnInit, OnDestroy {
-  appearance: 'fill' | 'outline' = 'outline';
-  name: string = 'filter';
-  placeholder: string = 'filtre ça pédale';
-  label: string = 'filtre table';
-  protected serviceForm: FormService = inject(FormService);
+  filterPeriodic_appearance: 'fill' | 'outline' = 'outline';
+  filterPeriodic_name: string = 'Filter';
+  filterPeriodic_placeholder: string = 'filtre ça pédale';
+  filterPeriodic_label: string = 'Filtre periodic';
+
+  filterUser_appearance: 'fill' | 'outline' = 'outline';
+  filterUser_name: string = 'Filter';
+  filterUser_placeholder: string = 'filtre ça pédale';
+  filterUser_label: string = 'Filtre user';
+
+  protected readonly router: ActivatedRoute = inject(ActivatedRoute);
+  protected readonly serviceForm: FormService = inject(FormService);
+  protected filterService: FilterService = inject(FilterService);
   protected listColumns: string[] = PeriodicElementHeadTab;
-  protected listTable: Observable<PeriodicElement[]> =
-    this.serviceForm.getElementPeriodic();
-  protected checkbox: boolean = false;
-  protected textSave: string = '';
+  protected listUser: string[] = UserElementHeadTab;
+
+  protected listTable$: Observable<PeriodicElement[]> = new Observable<
+    PeriodicElement[]
+  >();
+  protected listUser$: Observable<User[]> = new Observable<User[]>();
   private unsubscribe$ = new Subject<void>();
 
+  protected checkbox: boolean = false;
+
   private filterTextSubject = new BehaviorSubject<string>('');
+  private filterTextUserSubject = new BehaviorSubject<string>('');
   private toggleStatusSubject = new BehaviorSubject<boolean>(false);
 
   ngOnInit() {
-    this.listTable = combineLatest([
+    this.router.data.pipe(take(1)).subscribe((data) => {
+      this.listTable$ = data['data'].listPeriodic;
+      this.listUser$ = data['data'].listUsers;
+    });
+
+    this.listTable$ = this.filterService.filterList(
       this.serviceForm.getElementPeriodic(),
       this.filterTextSubject,
+      (item: PeriodicElement, text: string, toggle?: boolean) =>
+        (item.name.toLowerCase().includes(text.toLowerCase()) ||
+          item.position.toString().includes(text.toLowerCase()) ||
+          item.weight.toString().includes(text.toLowerCase()) ||
+          item.symbol.toLowerCase().includes(text.toLowerCase())) &&
+        (!item.active ? item.active === toggle : item.active),
       this.toggleStatusSubject,
-    ]).pipe(
-      takeUntil(this.unsubscribe$),
-      debounceTime(500),
-      distinctUntilChanged(),
-      map(([list, text, toggle]) => {
-        return list.filter(
-          (line: PeriodicElement) =>
-            (line[PeriodicElementEnum.name]
-              .toString()
-              .toLowerCase()
-              .includes(text.toLowerCase()) ||
-              line[PeriodicElementEnum.symbol]
-                .toString()
-                .toLowerCase()
-                .includes(text.toLowerCase()) ||
-              line[PeriodicElementEnum.weight]
-                .toString()
-                .includes(text.toLowerCase()) ||
-              line[PeriodicElementEnum.position]
-                .toString()
-                .includes(text.toLowerCase())) &&
-            line[PeriodicElementEnum.active] === toggle,
-        );
-      }),
+    );
+    this.listUser$ = this.filterService.filterList(
+      this.serviceForm.getAllUsers(),
+      this.filterTextSubject,
+      (item: User, text: string) => item.username.includes(text.toLowerCase()),
     );
   }
 
@@ -78,34 +83,13 @@ export class FormComponent implements OnInit, OnDestroy {
     this.filterTextSubject.next(filterText);
   }
 
+  filterTextUser(filterText: string) {
+    this.filterTextUserSubject.next(filterText);
+  }
+
   toggleStatus(statut: boolean) {
     this.toggleStatusSubject.next(statut);
   }
-
-  /**
-   * A corriger car le filtre active n'est pas conforme au resultat retourner **/
-  // filterText(filterText: string) {
-  //   this.textSave = filterText;
-  //   const text =
-  //     this.textSave !== '' ? this.textSave : filterText.toLowerCase();
-  //   const statut: boolean = this.checkbox;
-  //   this.listTable = this.serviceForm.getElementPeriodic().pipe(
-  //     takeUntil(this.unsubscribe$),
-  //     debounceTime(800),
-  //     distinctUntilChanged(),
-  //     map((list: PeriodicElement[]) => {
-  //       return list.filter(
-  //         (item: PeriodicElement) =>
-  //           (item[PeriodicElementEnum.name].toLowerCase().includes(text) ||
-  //             item[PeriodicElementEnum.symbol].toLowerCase().includes(text) ||
-  //             item[PeriodicElementEnum.weight].toString().includes(text) ||
-  //             item[PeriodicElementEnum.position].toString().includes(text)) &&
-  //           item[PeriodicElementEnum.active] === statut,
-  //       );
-  //     }),
-  //     tap((item) => console.log(item)),
-  //   );
-  // }
 
   ngOnDestroy() {
     this.unsubscribe$.next();

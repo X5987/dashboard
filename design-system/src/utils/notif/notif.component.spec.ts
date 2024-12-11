@@ -1,5 +1,5 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { NotifComponent } from 'design-system';
+// import { NotifComponent } from '@design-system';
 
 describe('NotifComponent', () => {
   // let component: NotifComponent;

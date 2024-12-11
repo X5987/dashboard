@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TableDynamicComponent } from './table-dynamic.component';
+import { ToDoListComponent } from './to-do-list.component';
 
-describe('TableDynamicComponent', () => {
-  let component: TableDynamicComponent;
-  let fixture: ComponentFixture<TableDynamicComponent>;
+describe('ToDoListComponent', () => {
+  let component: ToDoListComponent;
+  let fixture: ComponentFixture<ToDoListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableDynamicComponent],
+      imports: [ToDoListComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TableDynamicComponent);
+    fixture = TestBed.createComponent(ToDoListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

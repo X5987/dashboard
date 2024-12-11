@@ -4,7 +4,7 @@ import {
   GridComponent,
   GridStructur,
   TileTypeEnum,
-} from 'design-system';
+} from '@design-system';
 
 @Component({
   selector: 'app-grid-css',
