@@ -72,9 +72,10 @@ export class FormComponent implements OnInit, OnDestroy {
         (!item.active ? item.active === toggle : item.active),
       this.toggleStatusSubject,
     );
+
     this.listUser$ = this.filterService.filterList(
       this.serviceForm.getAllUsers(),
-      this.filterTextSubject,
+      this.filterTextUserSubject,
       (item: User, text: string) => item.username.includes(text.toLowerCase()),
     );
   }
