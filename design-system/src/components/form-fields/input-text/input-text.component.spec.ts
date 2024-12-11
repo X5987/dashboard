@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputTextComponent } from 'design-system';
+import { InputTextComponent } from '@design-system';
 
 describe('InputTextComponent', () => {
   let component: InputTextComponent;

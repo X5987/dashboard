@@ -1,5 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { DesignSystemModule, DialogService, NotifService } from 'design-system';
+import {
+  DesignSystemModule,
+  DialogService,
+  NotifService,
+} from '@design-system';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({

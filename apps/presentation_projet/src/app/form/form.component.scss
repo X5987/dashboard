@@ -1,0 +1,51 @@
+:host {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .item {
+      width: 30%;
+      border-radius: 5px;
+      flex-shrink: 1;
+
+      .filter {
+        width: 100%;
+        padding-bottom: 20px;
+      }
+
+      .table {
+        width: 100%;
+      }
+
+      .to-do {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 1800px) {
+      .item:nth-child(1),
+      .item:nth-child(2) {
+        flex-basis: 50%;
+        flex-shrink: 1;
+        margin: inherit;
+      }
+      .item:nth-child(3) {
+        flex-basis: 100%;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .item {
+        width: 100%;
+
+        .filter {
+          width: 100%;
+          padding-bottom: 5px;
+        }
+
+      }
+    }
+
+  }
+}

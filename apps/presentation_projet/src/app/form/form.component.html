@@ -1,0 +1,60 @@
+<div class="container">
+
+  <section class="item">
+    <div class="to-do">
+      <app-to-do-list/>
+    </div>
+  </section>
+
+  <section class="item">
+    <div class="filter">
+      <lib-filter-table
+        [appearance]="filterUser_appearance"
+        [name]="filterUser_name"
+        [placeholder]="filterUser_placeholder"
+        [label]="filterUser_label"
+        (textfilter)="filterTextUser($event)"
+      ></lib-filter-table>
+    </div>
+    @defer (when (listUser$ | async)) {
+      <div class="table">
+        <app-user-table
+          [list]="listUser$"
+          [displayedColumns]="listUser"
+        ></app-user-table>
+      </div>
+    } @loading {
+      <p>Loading...</p>
+    }
+  </section>
+
+  <section class="item ">
+    <div class="filter">
+      <lib-filter-table
+        [appearance]="filterPeriodic_appearance"
+        [name]="filterPeriodic_name"
+        [placeholder]="filterPeriodic_placeholder"
+        [label]="filterPeriodic_label"
+        (textfilter)="filterText($event)">
+        <mat-slide-toggle
+          [(ngModel)]="checkbox"
+          #toggle
+          (click)="toggleStatus(checkbox)"
+          matSuffix></mat-slide-toggle>
+      </lib-filter-table>
+    </div>
+
+    @defer (when (listTable$ | async)) {
+      <div class="table">
+        <app-periodic-table
+          [list]="listTable$"
+          [displayedColumns]="listColumns"
+        ></app-periodic-table>
+      </div>
+    } @loading {
+      <p>Loading...</p>
+    }
+  </section>
+
+</div>
+

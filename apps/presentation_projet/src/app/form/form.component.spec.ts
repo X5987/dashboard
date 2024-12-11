@@ -18,4 +18,15 @@ describe('FormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a filter component exist', () => {
+    const compiled = fixture.nativeElement;
+    const filterComponent = compiled.querySelector('lib-filter-table');
+    expect(filterComponent).toBeDefined();
+  });
+  it('should have a table component exist', () => {
+    const compiled = fixture.nativeElement;
+    const tableComponent = compiled.querySelector('app-table-dynamic');
+    expect(tableComponent).toBeDefined();
+  });
 });

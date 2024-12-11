@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "design-system": ["design-system/src/index.ts"]
+      "@design-system": ["design-system/src/index.ts"]
     }
   }
 }

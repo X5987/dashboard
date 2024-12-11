@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { DashboardValidators } from 'design-system';
+import { DashboardValidators } from '@design-system';
 
 describe('DashboardValidators', () => {
   let service: DashboardValidators;

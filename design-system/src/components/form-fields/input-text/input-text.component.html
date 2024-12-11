@@ -1,9 +1,17 @@
-<mat-form-field class="example-form-field" [appearance]="appearance">
+<mat-form-field [appearance]="appearance">
   <mat-label>{{ label }}</mat-label>
-  <input matInput [type]="type" #value [formControl]="control" [placeholder]="placeholder">
+
+  <input matInput
+         [id]="id"
+         [type]="type"
+         [formControl]="control"
+         [placeholder]="placeholder">
 
   @if (control.valid) {
-    <button [disabled]="control.pending" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+    <button [disabled]="control.pending"
+            matSuffix mat-icon-button
+            aria-label="Clear"
+            (click)="clear()">
       <mat-icon>close</mat-icon>
     </button>
   }

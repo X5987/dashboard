@@ -1,7 +1,7 @@
 // import { TestBed } from '@angular/core/testing';
 // import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 // import { of } from 'rxjs';
-// import { DialogComponent, DialogService } from 'design-system';
+// import { DialogComponent, DialogService } from '@design-system';
 
 describe('DialogService', () => {
   // let service: DialogService;

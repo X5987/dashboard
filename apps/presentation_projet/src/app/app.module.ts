@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DesignSystemModule } from '../../../../design-system/src/design-system.module';
 import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
+import { DesignSystemModule } from '@design-system';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [CommonModule, AppRoutingModule, DesignSystemModule],
+  declarations: [],
+  imports: [CommonModule, AppRoutingModule, DesignSystemModule, AppComponent],
   exports: [],
 })
 export class AppModule {}

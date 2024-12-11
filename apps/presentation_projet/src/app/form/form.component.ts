@@ -1,0 +1,99 @@
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { DesignSystemModule, User, UserElementHeadTab } from '@design-system';
+import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
+import { FormService } from './services/form.service';
+import {
+  PeriodicElement,
+  PeriodicElementHeadTab,
+} from './models/table.interface';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { PeriodicTableComponent } from './components/periodic-table/periodic-table.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { ActivatedRoute } from '@angular/router';
+import { FilterService } from './services/filter.service';
+import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+
+@Component({
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrl: './form.component.scss',
+  standalone: true,
+  imports: [
+    DesignSystemModule,
+    MatSlideToggle,
+    PeriodicTableComponent,
+    UserTableComponent,
+    ToDoListComponent,
+  ],
+})
+export class FormComponent implements OnInit, OnDestroy {
+  filterPeriodic_appearance: 'fill' | 'outline' = 'outline';
+  filterPeriodic_name: string = 'Filter';
+  filterPeriodic_placeholder: string = 'filtre ça pédale';
+  filterPeriodic_label: string = 'Filtre periodic';
+
+  filterUser_appearance: 'fill' | 'outline' = 'outline';
+  filterUser_name: string = 'Filter';
+  filterUser_placeholder: string = 'filtre ça pédale';
+  filterUser_label: string = 'Filtre user';
+
+  protected readonly router: ActivatedRoute = inject(ActivatedRoute);
+  protected readonly serviceForm: FormService = inject(FormService);
+  protected filterService: FilterService = inject(FilterService);
+  protected listColumns: string[] = PeriodicElementHeadTab;
+  protected listUser: string[] = UserElementHeadTab;
+
+  protected listTable$: Observable<PeriodicElement[]> = new Observable<
+    PeriodicElement[]
+  >();
+  protected listUser$: Observable<User[]> = new Observable<User[]>();
+  private unsubscribe$ = new Subject<void>();
+
+  protected checkbox: boolean = false;
+
+  private filterTextSubject = new BehaviorSubject<string>('');
+  private filterTextUserSubject = new BehaviorSubject<string>('');
+  private toggleStatusSubject = new BehaviorSubject<boolean>(false);
+
+  ngOnInit() {
+    this.router.data.pipe(take(1)).subscribe((data) => {
+      this.listTable$ = data['data'].listPeriodic;
+      this.listUser$ = data['data'].listUsers;
+    });
+
+    this.listTable$ = this.filterService.filterList(
+      this.serviceForm.getElementPeriodic(),
+      this.filterTextSubject,
+      (item: PeriodicElement, text: string, toggle?: boolean) =>
+        (item.name.toLowerCase().includes(text.toLowerCase()) ||
+          item.position.toString().includes(text.toLowerCase()) ||
+          item.weight.toString().includes(text.toLowerCase()) ||
+          item.symbol.toLowerCase().includes(text.toLowerCase())) &&
+        (!item.active ? item.active === toggle : item.active),
+      this.toggleStatusSubject,
+    );
+
+    this.listUser$ = this.filterService.filterList(
+      this.serviceForm.getAllUsers(),
+      this.filterTextUserSubject,
+      (item: User, text: string) => item.username.includes(text.toLowerCase()),
+    );
+  }
+
+  filterText(filterText: string) {
+    this.filterTextSubject.next(filterText);
+  }
+
+  filterTextUser(filterText: string) {
+    this.filterTextUserSubject.next(filterText);
+  }
+
+  toggleStatus(statut: boolean) {
+    this.toggleStatusSubject.next(statut);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+}
