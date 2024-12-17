@@ -7,11 +7,14 @@
     }
   </mat-select>
 
-    @if (control.value) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
+  @if (control.value) {
+    <button matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
 
   @if (control.hasError('required')) {
     <mat-error>{{ 'require' }}</mat-error>

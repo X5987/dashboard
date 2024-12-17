@@ -28,7 +28,7 @@ export class FormService {
 
   createFormGroup(): FormGroup<FormModel> {
     return this.formBuilder.group<FormModel>({
-      name: new FormControl<string | null>('test', [
+      name: new FormControl<string | null>('', [
         Validators.required,
         this.dashboardValidators.whiteSpace(),
         Validators.maxLength(20),

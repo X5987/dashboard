@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DesignSystemModule } from '@design-system';
 import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
+import {
+  femaleHeightWeight,
+  maleHeightWeight,
+} from './data/height-weight-data';
 
 @Component({
   selector: 'app-charts',
@@ -12,6 +16,8 @@ import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 export class ChartsComponent implements OnInit {
   public chartOptionsPie = {};
   public chartOptionsDonnut = {};
+  public chartOptionsLine = {};
+  public chartOptionsBuble = {};
 
   ngOnInit() {
     this.chartOptionsPie = {
@@ -22,7 +28,6 @@ export class ChartsComponent implements OnInit {
         { label: 'Html', value: 17 },
         { label: 'Css', value: 15 },
         { label: 'Webstorm', value: 14 },
-        { label: 'Pop!_OS', value: 12 },
       ],
       series: [
         {
@@ -36,7 +41,7 @@ export class ChartsComponent implements OnInit {
       },
     };
     this.chartOptionsDonnut = {
-      theme: 'ag-charts',
+      theme: 'ag-default',
       data: [
         { asset: 'Stocks', amount: 60000 },
         { asset: 'Bonds', amount: 40000 },
@@ -55,6 +60,143 @@ export class ChartsComponent implements OnInit {
       background: {
         fill: 'white',
       },
+    };
+    this.chartOptionsLine = {
+      theme: 'ag-default',
+
+      title: {
+        text: '',
+      },
+      subtitle: {
+        text: '',
+      },
+      data: [
+        {
+          quarter: "Q1'18",
+          iphone: 140,
+          mac: 16,
+          ipad: 14,
+          wearables: 12,
+          services: 20,
+        },
+        {
+          quarter: "Q2'18",
+          iphone: 124,
+          mac: 20,
+          ipad: 14,
+          wearables: 12,
+          services: 30,
+        },
+        {
+          quarter: "Q3'18",
+          iphone: 112,
+          mac: 20,
+          ipad: 18,
+          wearables: 14,
+          services: 36,
+        },
+        {
+          quarter: "Q4'18",
+          iphone: 118,
+          mac: 24,
+          ipad: 14,
+          wearables: 14,
+          services: 36,
+        },
+      ],
+      series: [
+        {
+          type: 'bar',
+          xKey: 'quarter',
+          yKey: 'iphone',
+          yName: 'iPhone',
+        },
+        {
+          type: 'bar',
+          xKey: 'quarter',
+          yKey: 'mac',
+          yName: 'Mac',
+        },
+        {
+          type: 'bar',
+          xKey: 'quarter',
+          yKey: 'ipad',
+          yName: 'iPad',
+        },
+        {
+          type: 'bar',
+          xKey: 'quarter',
+          yKey: 'wearables',
+          yName: 'Wearables',
+        },
+        {
+          type: 'bar',
+          xKey: 'quarter',
+          yKey: 'services',
+          yName: 'Services',
+        },
+      ],
+    };
+    this.chartOptionsBuble = {
+      theme: 'ag-default',
+      title: {
+        text: '',
+      },
+      subtitle: {
+        text: '',
+      },
+      series: [
+        {
+          type: 'bubble',
+          title: 'Typescript',
+          data: maleHeightWeight,
+          xKey: 'height',
+          xName: 'Commit',
+          yKey: 'weight',
+          yName: 'Update',
+          sizeKey: 'age',
+          sizeName: 'Version',
+        },
+        {
+          fill: 'rgba(255,8,0,0.24)',
+          stroke: 'rgba(255,74,69,0.71)',
+          type: 'bubble',
+          title: 'Angular',
+          data: femaleHeightWeight,
+          xKey: 'height',
+          xName: 'Commit',
+          yKey: 'weight',
+          yName: 'Update',
+          sizeKey: 'age',
+          sizeName: 'Version',
+        },
+      ],
+      axes: [
+        {
+          type: 'number',
+          position: 'bottom',
+          title: {
+            text: 'Height',
+          },
+          label: {
+            formatter: (params: any) => {
+              return params.value;
+            },
+          },
+        },
+        {
+          type: 'number',
+          position: 'left',
+          title: {
+            text: 'Weight',
+          },
+          label: {
+            formatter: (params: any) => {
+              return params.value;
+            },
+          },
+        },
+      ],
     };
   }
 }

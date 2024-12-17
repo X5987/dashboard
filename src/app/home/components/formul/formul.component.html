@@ -38,7 +38,7 @@
   </form>
 </ng-template>
 <ng-template #formSecondTemplate let-tile="tile">
-  <form id="formSecond" [formGroup]="formSecondGroupSource">
+  <form id="form-second" [formGroup]="formSecondGroupSource">
 
     <div class="form-row">
       <lib-autocomplete
@@ -57,6 +57,14 @@
   </form>
 </ng-template>
 <ng-template #formThirdTemplate let-tile="tile">
+  <div id="form-third">
+    <app-todo #appTodo
+              [placeholder]="todoPlaceholder"
+              [label]="todoLabel"
+              [buttonName]="todoButtonName"
+              [arrayListTodo]="arrayListTodo">
+    </app-todo>
+  </div>
 </ng-template>
 
 <!-- retsult zone -->
@@ -75,13 +83,29 @@
           src="https://material.angular.io/assets/img/examples/shiba1.jpg"
           alt="Photo of a Shiba Inu"
         />
-
         {{ marque.libelle }}
       </mat-chip>
     }</mat-chip-set>
 </ng-template>
-
-
-<!--@for (user of user$ | async; track user.id) {-->
-<!--  {{user.name.firstname}}-->
-<!--}-->
+<ng-template #formThirdResultTemplate let-data="data">
+  <div class="list">
+    <ul>
+      @for (todo of (arrayListTodo | async); track todo.id; let i = $index) {
+        <li class="line">
+          <div class="checkbox-todo">
+            <mat-checkbox [disabled]="(loading | async)"
+              [checked]="todo.complete"
+              (change)="changeTodo(todo)">
+            </mat-checkbox>
+          </div>
+          <div class="message-todo" (auxclick)="changeTodoText(todo, i)">{{ todo.message }}</div>
+          <div class="remove-todo">
+              <button mat-icon-button (click)="removeTodo(i)" [disabled]="(loading | async)">
+                <mat-icon>delete</mat-icon>
+              </button>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</ng-template>

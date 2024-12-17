@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AutoCompleteList, ListSelect, User } from '@design-system';
 import { HttpClient } from '@angular/common/http';
+import { Todo } from '../components/formul/components/todo/todo.component';
 
 @Injectable({
   providedIn: 'root',
@@ -89,5 +90,15 @@ export class FormulService {
 
   getAllUser(): Observable<User[]> {
     return this.http.get<User[]>(`${this.url}/users`);
+  }
+
+  getListTodo(): Observable<Todo[]> {
+    return of([
+      { id: 0, message: 'Faire des pommes', complete: false },
+      { id: 1, message: 'Faire du sport', complete: true },
+      { id: 2, message: 'Prendre les médicaments', complete: false },
+      { id: 3, message: 'Taches ménagères', complete: true },
+      { id: 4, message: 'Accompagnée mamie à la gare', complete: false },
+    ]);
   }
 }

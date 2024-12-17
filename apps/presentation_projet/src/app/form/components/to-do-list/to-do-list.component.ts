@@ -1,8 +1,10 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   inject,
   OnDestroy,
+  Renderer2,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +15,7 @@ import {
   MatCardHeader,
   MatCardSubtitle,
   MatCardTitle,
+  MatCardTitleGroup,
 } from '@angular/material/card';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { ToDoEnumform, TodoForm, ToDoList } from '@design-system';
@@ -80,6 +83,7 @@ import { TruncatePipe } from '../../../../../../../design-system/src/services/pi
     MatSort,
     MatIcon,
     TruncatePipe,
+    MatCardTitleGroup,
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss',
@@ -112,6 +116,9 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   fb: FormBuilder = inject(FormBuilder);
 
   todoForm: FormGroup<TodoForm> = this.todoFormService.initializeForm();
+
+  renderer: Renderer2 = inject(Renderer2);
+  el: ElementRef = inject(ElementRef);
 
   ngAfterViewInit() {
     this.subscribe$ = this.list.subscribe((list: ToDoList[]) => {
