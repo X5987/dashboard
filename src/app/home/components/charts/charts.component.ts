@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DesignSystemModule } from '@design-system';
-import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 import {
   femaleHeightWeight,
   maleHeightWeight,
@@ -9,7 +8,7 @@ import {
 @Component({
   selector: 'app-charts',
   standalone: true,
-  imports: [DesignSystemModule, DragScrollComponent, DragScrollItemDirective],
+  imports: [DesignSystemModule],
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss',
 })

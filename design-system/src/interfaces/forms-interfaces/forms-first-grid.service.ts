@@ -34,7 +34,7 @@ export class FormService {
         Validators.maxLength(20),
       ]),
       email: new FormControl<string | null>(
-        '',
+        'allowed@example.com',
         [
           Validators.email,
           Validators.required,

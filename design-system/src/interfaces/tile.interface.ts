@@ -3,8 +3,8 @@ import { TemplateRef } from '@angular/core';
 export interface GridStructur {
   grid: {
     cols: number;
-    rowHeight: number;
-    gutterSize: number;
+    rowHeight: number | string;
+    gutterSize: number | string;
   };
   tile: Tile[];
 }
@@ -18,6 +18,7 @@ export interface Tile {
   border_color?: string;
   context?: TemplateRef<never> | null;
   data?: object | null;
+  class?: string;
 }
 
 export enum TileTypeEnum {

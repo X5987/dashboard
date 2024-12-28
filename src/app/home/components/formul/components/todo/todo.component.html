@@ -2,7 +2,8 @@
   <div class="item">
     <mat-form-field [appearance]="'outline'">
       <mat-label>{{ label() }}</mat-label>
-      <input id="inputMessage" [type]="'text'" [(ngModel)]="todoCurrent.value.message" matInput [placeholder]="placeholder()" #value>
+      <input id="inputMessage" [type]="'text'" [(ngModel)]="todoCurrent.value.message" matInput
+             [placeholder]="placeholder()" #value>
     </mat-form-field>
     <ng-container id="zone-button">
       @if (modeEdition()) {

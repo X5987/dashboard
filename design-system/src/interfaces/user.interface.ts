@@ -1,5 +1,3 @@
-import { PeriodicElementEnum } from '../../../apps/presentation_projet/src/app/form/models/table.interface';
-
 export interface Geolocation {
   lat: number;
   long: number;

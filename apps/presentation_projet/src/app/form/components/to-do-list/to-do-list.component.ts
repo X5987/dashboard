@@ -137,6 +137,7 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
           const index = this.dataSource.data.indexOf(editElement);
           if (index !== -1) {
             this.dataSource.data[index] = newElement;
+            this.dataSource.data = [...this.dataSource.data];
           }
         } else {
           newElement[ToDoEnumform.status] = true;

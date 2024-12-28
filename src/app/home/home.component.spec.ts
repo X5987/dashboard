@@ -3,7 +3,6 @@ import { HomeComponent } from './home.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
@@ -13,7 +12,6 @@ describe('HomeComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

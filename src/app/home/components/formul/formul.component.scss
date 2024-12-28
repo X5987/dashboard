@@ -1,4 +1,14 @@
 :host {
+
+  :root {
+    --primary-color: #ff8383;
+    --secondary-color: #adbcf8;
+  }
+
+  .color-form {
+    background-color: #ff8383;
+  }
+
   #form {
     display: flex;
     flex-direction: column;
@@ -42,50 +52,26 @@
     margin: 10px;
     justify-content: space-evenly;
 
-
-    .line {
-      width: 500px;
-      text-overflow: "…";
+    .checkbox-todo {
+      width: 10%;
       left: 0;
-      background-color: white;
-      border: 1px solid #ffffff;
-      border-radius: 5px;
-      padding: 10px;
-      list-style: none;
-      margin: 4px 0;
-      transition: 0.5s;
-      cursor: pointer;
-
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      .checkbox-todo {
-        width: 10%;
-        left: 0;
-      }
-
-      .message-todo {
-        width: 80%;
-        left: 0;
-      }
-
-      .remove-todo {
-        width: 5%;
-        position: sticky;
-        right: 0;
-      }
     }
 
-    .line:hover {
-      text-overflow: "…";
+    .message-todo {
+      width: 80%;
       left: 0;
-      list-style: none;
+      margin: 7px;
       cursor: pointer;
-      transition: 0.2s;
-      mat-icon {
-        color: #c5002e;
-      }
+    }
+
+    .remove-todo {
+      width: 5%;
+      position: sticky;
+      right: 0;
+    }
+
+    mat-icon {
+      color: #c5002e;
     }
   }
 

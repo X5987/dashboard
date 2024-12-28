@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AutoCompleteList, ListSelect, User } from '@design-system';
+import { AutoCompleteList, ListSelect, Product, User } from '@design-system';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../components/formul/components/todo/todo.component';
 
@@ -100,5 +100,9 @@ export class FormulService {
       { id: 3, message: 'Taches ménagères', complete: true },
       { id: 4, message: 'Accompagnée mamie à la gare', complete: false },
     ]);
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.url}/products/${id}`);
   }
 }

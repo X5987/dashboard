@@ -28,14 +28,11 @@ export interface Todo {
   standalone: true,
   imports: [
     DesignSystemModule,
-    MatCheckbox,
     MatLabel,
     MatFormField,
-    AsyncPipe,
     MatInput,
     MatButton,
     FormsModule,
-    JsonPipe,
   ],
 })
 export class TodoComponent implements OnInit, OnDestroy {

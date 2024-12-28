@@ -1,12 +1,17 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { DesignSystemModule, User, UserElementHeadTab } from '@design-system';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  DesignSystemModule,
+  User,
+  UserElementHeadTab,
+  UserEnum,
+} from '@design-system';
 import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 import { FormService } from './services/form.service';
 import {
   PeriodicElement,
+  PeriodicElementEnum,
   PeriodicElementHeadTab,
 } from './models/table.interface';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { PeriodicTableComponent } from './components/periodic-table/periodic-table.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +25,6 @@ import { ToDoListComponent } from './components/to-do-list/to-do-list.component'
   standalone: true,
   imports: [
     DesignSystemModule,
-    MatSlideToggle,
     PeriodicTableComponent,
     UserTableComponent,
     ToDoListComponent,
@@ -55,28 +59,42 @@ export class FormComponent implements OnInit, OnDestroy {
   private filterTextUserSubject = new BehaviorSubject<string>('');
   private toggleStatusSubject = new BehaviorSubject<boolean>(false);
 
-  ngOnInit() {
+  async ngOnInit() {
     this.router.data.pipe(take(1)).subscribe((data) => {
-      this.listTable$ = data['data'].listPeriodic;
-      this.listUser$ = data['data'].listUsers;
+      if (data) {
+        this.listTable$ = data['data'].listPeriodic;
+        this.listUser$ = data['data'].listUsers;
+      }
     });
 
     this.listTable$ = this.filterService.filterList(
       this.serviceForm.getElementPeriodic(),
       this.filterTextSubject,
       (item: PeriodicElement, text: string, toggle?: boolean) =>
-        (item.name.toLowerCase().includes(text.toLowerCase()) ||
-          item.position.toString().includes(text.toLowerCase()) ||
-          item.weight.toString().includes(text.toLowerCase()) ||
-          item.symbol.toLowerCase().includes(text.toLowerCase())) &&
-        (!item.active ? item.active === toggle : item.active),
+        (item[PeriodicElementEnum.name]
+          .toLowerCase()
+          .includes(text.toLowerCase()) ||
+          item[PeriodicElementEnum.position]
+            .toString()
+            .includes(text.toLowerCase()) ||
+          item[PeriodicElementEnum.weight]
+            .toString()
+            .includes(text.toLowerCase()) ||
+          item[PeriodicElementEnum.symbol]
+            .toLowerCase()
+            .includes(text.toLowerCase())) &&
+        (!item[PeriodicElementEnum.active]
+          ? item.active === toggle
+          : item.active),
       this.toggleStatusSubject,
     );
 
     this.listUser$ = this.filterService.filterList(
       this.serviceForm.getAllUsers(),
       this.filterTextUserSubject,
-      (item: User, text: string) => item.username.includes(text.toLowerCase()),
+      (item: User, text: string) =>
+        item[UserEnum.username].includes(text.toLowerCase()) ||
+        item[UserEnum.password].includes(text.toLowerCase()),
     );
   }
 

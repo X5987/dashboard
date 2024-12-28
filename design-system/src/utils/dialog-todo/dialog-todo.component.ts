@@ -1,4 +1,4 @@
-import { Component, inject, model, signal, Signal } from '@angular/core';
+import { Component, inject, model, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import {
@@ -15,8 +15,6 @@ import { MatInput } from '@angular/material/input';
 import { DesignSystemModule } from '../../design-system.module';
 import { FormGroup } from '@angular/forms';
 import { TodoDialog, ToDoEnumform, TodoForm } from '../../interfaces';
-import { switchMap } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ValueChangesFormService } from '../../services/form-service/value-changes-form.service';
 
 @Component({

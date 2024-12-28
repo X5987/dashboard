@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'form_projet',
-  preset: '../jest.preset.js',
+  displayName: 'form-projet',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../coverage/form_projet',
+  coverageDirectory: '../../coverage/apps/form-projet',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

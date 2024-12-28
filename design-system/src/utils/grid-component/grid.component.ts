@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Signal } from '@angular/core';
 import { DesignSystemModule } from '../../design-system.module';
 import { GridStructur, TileTypeEnum } from '../../interfaces';
 
@@ -11,6 +11,6 @@ import { GridStructur, TileTypeEnum } from '../../interfaces';
 })
 export class GridComponent {
   @Input({ required: true }) tileTypes!: TileTypeEnum;
-  @Input({ required: true }) grid!: GridStructur;
+  @Input({ required: true }) grid!: Signal<GridStructur>;
   protected readonly TileTypeEnum = TileTypeEnum;
 }

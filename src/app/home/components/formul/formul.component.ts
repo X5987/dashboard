@@ -23,17 +23,18 @@ import {
   ListSelect,
   NotifService,
   TileTypeEnum,
-  User,
   UserWithoutAdress,
 } from '@design-system';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, exhaustMap, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { FormulService } from '../../services/formul.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Todo, TodoComponent } from './components/todo/todo.component';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
-import { filter, tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { DestroySubscribes } from '../../../../../design-system/src/services/destroy/destroy-subscribes';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-formul',
@@ -44,12 +45,14 @@ import { filter, tap } from 'rxjs/operators';
     AutocompleteComponent,
     TodoComponent,
     MatCheckbox,
+    MatSortModule,
+    MatSort,
   ],
   templateUrl: './formul.component.html',
   styleUrls: ['./formul.component.scss'],
 })
 export class FormulComponent implements OnInit, OnDestroy {
-  tilesForms: GridStructur = {
+  tilesForms: Signal<GridStructur> = signal({
     grid: {
       cols: 3,
       rowHeight: 400,
@@ -60,7 +63,7 @@ export class FormulComponent implements OnInit, OnDestroy {
         text: 'form1',
         cols: 4,
         rows: 1,
-        color: '#005ecb',
+        color: '#ff8383',
         border_radius: 10,
         context: null,
       },
@@ -70,7 +73,7 @@ export class FormulComponent implements OnInit, OnDestroy {
         rows: 1,
         color: '#ffffff',
         border_radius: 10,
-        border_color: '2px solid #005ecb',
+        border_color: '2px solid #ff8383',
         context: null,
       },
 
@@ -78,7 +81,7 @@ export class FormulComponent implements OnInit, OnDestroy {
         text: 'form3',
         cols: 4,
         rows: 1,
-        color: '#ff7923',
+        color: '#ff8383',
         border_radius: 10,
         context: null,
       },
@@ -88,22 +91,28 @@ export class FormulComponent implements OnInit, OnDestroy {
         rows: 2,
         color: '#ffffff',
         border_radius: 10,
-        border_color: '2px solid #005ecb',
+        border_color: '2px solid #ff8383',
         context: null,
       },
 
-      { text: 'form2', cols: 4, rows: 2, color: '#004da4', border_radius: 10 },
+      {
+        text: 'form2',
+        cols: 4,
+        rows: 2,
+        color: 'var(--primary-color)',
+        border_radius: 10,
+      },
       {
         text: 'form3Result',
         cols: 4,
         rows: 2,
-        color: '#f5a072',
+        color: '#ffffff',
         border_radius: 10,
-        border_color: '2px solid #005ecb',
+        border_color: '2px solid #ff8383',
         context: null,
       },
     ],
-  };
+  });
   protected readonly TileTypeEnum = TileTypeEnum;
   @ViewChild('formTemplate', { static: true })
   formTemplate!: TemplateRef<never>;
@@ -156,12 +165,21 @@ export class FormulComponent implements OnInit, OnDestroy {
   arrayListTodo: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
   loading: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
+  protected readonly router: ActivatedRoute = inject(ActivatedRoute);
+  protected readonly destroySubs: DestroySubscribes = inject(DestroySubscribes);
+
   ngOnInit(): void {
+    this.router.data
+      .pipe(this.destroySubs.untilDestroyed())
+      .subscribe((data) => {
+        console.log("data['data']", data['data']);
+      });
+
     if (this.formTemplate) {
-      this.tilesForms.tile[0].context = this.formTemplate;
-      this.tilesForms.tile[4].context = this.formSecondTemplate;
-      this.tilesForms.tile[2].context = this.formThirdTemplate;
-      this.tilesForms.tile[5].context = this.formThirdResultTemplate;
+      this.tilesForms().tile[0].context = this.formTemplate;
+      this.tilesForms().tile[4].context = this.formSecondTemplate;
+      this.tilesForms().tile[2].context = this.formThirdTemplate;
+      this.tilesForms().tile[5].context = this.formThirdResultTemplate;
     }
     this.userWithoutAdress$ = this.serviceList.getAllUser();
 
@@ -171,27 +189,58 @@ export class FormulComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  sortData(sort: Sort) {
+    const data = this.arrayListTodo.value.slice();
+    if (!sort.active || sort.direction === '') {
+      return;
+    }
+
+    this.arrayListTodo.next(
+      data.sort((a, b) => {
+        const isAsc = sort.direction === 'asc';
+        switch (sort.active) {
+          case 'id':
+            return this.compare(a.id, b.id, isAsc);
+          case 'message':
+            return this.compare(a.message, b.message, isAsc);
+          case 'complete':
+            return this.compare(a.complete, b.complete, isAsc);
+          default:
+            return 0;
+        }
+      }),
+    );
+  }
+
+  compare(
+    a: number | string | boolean,
+    b: number | string | boolean,
+    isAsc: boolean,
+  ) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
   sentFirstForm() {
     //  allowed@example.com | test@domain.com
-    this.tilesForms.tile[3].context = this.formFirstResultTemplate;
-    this.tilesForms.tile[3].data = this.formGroupSource.value;
+    this.tilesForms().tile[3].context = this.formFirstResultTemplate;
+    this.tilesForms().tile[3].data = this.formGroupSource.value;
     this.formGroupSource = this.formService.createFormGroup();
   }
 
   sentSecondForm() {
-    this.tilesForms.tile[1].context = this.formSecondResultTemplate;
-    this.tilesForms.tile[1].data = this.formSecondGroupSource.value;
+    this.tilesForms().tile[1].context = this.formSecondResultTemplate;
+    this.tilesForms().tile[1].data = this.formSecondGroupSource.value;
     this.autocompleteMarque.itemsSelected.set([]);
     console.table(this.formSecondGroupSource.controls.marques.value);
     this.formSecondGroupSource.reset();
   }
 
   changeTodo(todo: Todo) {
-    this.tilesForms.tile[2].data = this.formThirdResultTemplate;
+    this.tilesForms().tile[2].data = this.formThirdResultTemplate;
     todo.complete = !todo.complete;
   }
 
-  changeTodoText(todo: Todo, index: number) {
+  changeTodoText(todo: Todo) {
     this.renderer.setStyle(
       this.el.nativeElement.querySelector('#form-third'),
       'background-color',
@@ -224,6 +273,7 @@ export class FormulComponent implements OnInit, OnDestroy {
     this.arrayListTodo.next(updatedList);
     this.notifService.openNotif(config.data, config);
     this.loading.next(false);
+    this.appTodo.removeInputText();
   }
 
   ngOnDestroy() {

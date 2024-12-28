@@ -1,11 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
 
 export const routesFormProjet: Routes = [
   {
-    path: '',
-    component: AppComponent,
+    path: 'dashboard-personal',
+    loadComponent: () =>
+      import('apps/form_projet/src/app/dashboard/dashboard.component').then(
+        (m) => m.DashboardComponent,
+      ),
   },
 ];
 

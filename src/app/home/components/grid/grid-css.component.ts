@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Signal, signal } from '@angular/core';
 import {
   DesignSystemModule,
   GridComponent,
@@ -16,7 +16,7 @@ import {
 export class GridCssComponent {
   protected readonly TileTypeEnum = TileTypeEnum;
 
-  gridData: GridStructur = {
+  gridData: Signal<GridStructur> = signal({
     grid: {
       cols: 4,
       rowHeight: 100,
@@ -28,5 +28,5 @@ export class GridCssComponent {
       { text: 'Three', cols: 1, rows: 2, color: '#90EE90', border_radius: 10 }, // Light Green
       { text: 'Four', cols: 2, rows: 2, color: '#FFD700', border_radius: 10 }, // Gold
     ],
-  };
+  });
 }

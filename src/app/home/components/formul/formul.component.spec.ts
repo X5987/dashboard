@@ -50,4 +50,9 @@ describe('FormulComponent', () => {
   it('should have formGroupSource', () => {
     expect(component.formGroupSource).toBeTruthy();
   });
+
+  it('should have formGroupSource', () => {
+    const fixture = TestBed.createComponent(FormulComponent);
+    expect(fixture.componentInstance.appTodo).toBeTruthy();
+  });
 });

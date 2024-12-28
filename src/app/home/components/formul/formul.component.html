@@ -88,24 +88,40 @@
     }</mat-chip-set>
 </ng-template>
 <ng-template #formThirdResultTemplate let-data="data">
-  <div class="list">
-    <ul>
-      @for (todo of (arrayListTodo | async); track todo.id; let i = $index) {
-        <li class="line">
-          <div class="checkbox-todo">
-            <mat-checkbox [disabled]="(loading | async)"
-              [checked]="todo.complete"
-              (change)="changeTodo(todo)">
-            </mat-checkbox>
-          </div>
-          <div class="message-todo" (auxclick)="changeTodoText(todo, i)">{{ todo.message }}</div>
-          <div class="remove-todo">
+  <div class="list ">
+    <table matSort (matSortChange)="sortData($event)">
+      <tr>
+        <th mat-sort-header="complete"></th>
+        <th mat-sort-header="id">Id</th>
+        <th mat-sort-header="message">Message</th>
+        <th mat-sort-header="delete">Delete</th>
+      </tr>
+
+      @for (todo of arrayListTodo | async; track todo; let i = $index) {
+        <tr>
+
+          <td>
+            <div class="checkbox-todo ">
+              <mat-checkbox [disabled]="(loading | async)"
+                            [checked]="todo.complete"
+                            (change)="changeTodo(todo)">
+              </mat-checkbox>
+            </div>
+          </td>
+          <td>{{ todo.id }}</td>
+          <td (click)="changeTodoText(todo)">
+            <div class="message-todo">{{ todo.message }}</div>
+          </td>
+          <td>
+            <div class="remove-todo">
               <button mat-icon-button (click)="removeTodo(i)" [disabled]="(loading | async)">
                 <mat-icon>delete</mat-icon>
               </button>
-          </div>
-        </li>
+            </div>
+          </td>
+
+        </tr>
       }
-    </ul>
+    </table>
   </div>
 </ng-template>

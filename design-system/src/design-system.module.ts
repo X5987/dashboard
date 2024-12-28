@@ -47,7 +47,7 @@ import {
   InputTextComponent,
   SingleSelectComponent,
 } from './components/form-fields';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {
   MatChip,
   MatChipGrid,
@@ -60,6 +60,11 @@ import {
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
 import { FilterTableComponent } from './components/filter-table/filter-table.component';
+import { AppRoutingModule } from '../../apps/form_projet/src/app/app.routes';
+import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
+import { GridComponent } from './utils/grid-component/grid.component';
+import { MatTab, MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 const materialElement = [
   MatButtonModule,
@@ -100,9 +105,16 @@ const materialElement = [
   MatAutocompleteTrigger,
   MatChipSet,
   MatChip,
+  DragScrollComponent,
+  DragScrollItemDirective,
+  MatTabsModule,
+  MatTab,
+  MatSlideToggle,
 ];
 const commonList = [
   CommonModule,
+  AppRoutingModule,
+  RouterModule,
   RouterOutlet,
   RouterLink,
   NgIf,

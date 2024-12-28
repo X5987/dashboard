@@ -7,7 +7,7 @@ import {
 import { PeriodicElement } from '../models/table.interface';
 import { User } from '@design-system';
 import { FormService } from './form.service';
-import { catchError, combineLatest, forkJoin, map, Observable, of } from 'rxjs';
+import { catchError, combineLatest, map, Observable, of } from 'rxjs';
 
 export interface TableData {
   listPeriodic: Observable<PeriodicElement[]>;
