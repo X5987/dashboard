@@ -11,15 +11,11 @@ import { CommonModule } from '@angular/common';
 import {
   MatCard,
   MatCardActions,
-  MatCardContent,
   MatCardHeader,
-  MatCardSubtitle,
   MatCardTitle,
-  MatCardTitleGroup,
 } from '@angular/material/card';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { ToDoEnumform, TodoForm, ToDoList } from '@design-system';
-import { UserTableComponent } from '../user-table/user-table.component';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
@@ -37,13 +33,7 @@ import {
   MatTable,
   MatTableDataSource,
 } from '@angular/material/table';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { FormService } from '../../services/form.service';
@@ -56,13 +46,10 @@ import { TruncatePipe } from '../../../../../../../design-system/src/services/pi
   imports: [
     CommonModule,
     MatCard,
-    MatCardSubtitle,
     MatCardTitle,
     MatCardHeader,
     MatCardActions,
     MatButton,
-    MatCardContent,
-    UserTableComponent,
     MatCell,
     MatHeaderCell,
     MatHeaderRow,
@@ -74,16 +61,11 @@ import { TruncatePipe } from '../../../../../../../design-system/src/services/pi
     MatRowDef,
     MatHeaderRowDef,
     MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogContent,
     MatPaginator,
     MatSortHeader,
     MatSort,
     MatIcon,
     TruncatePipe,
-    MatCardTitleGroup,
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss',

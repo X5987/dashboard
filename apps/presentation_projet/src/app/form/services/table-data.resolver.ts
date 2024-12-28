@@ -20,10 +20,7 @@ export interface TableData {
 export class TableDataResolver implements Resolve<TableData> {
   formService: FormService = inject(FormService);
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): Observable<TableData> {
+  resolve(): Observable<TableData> {
     const listPeriodic$ = this.formService.getElementPeriodic().pipe(
       catchError((error) => {
         console.error('error getElementPeriodic', error);

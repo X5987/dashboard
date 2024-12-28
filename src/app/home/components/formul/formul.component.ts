@@ -26,7 +26,7 @@ import {
   UserWithoutAdress,
 } from '@design-system';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { FormulService } from '../../services/formul.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Todo, TodoComponent } from './components/todo/todo.component';

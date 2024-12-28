@@ -6,10 +6,8 @@ import {
   signal,
   Signal,
 } from '@angular/core';
-import { BehaviorSubject, catchError, map, Subject } from 'rxjs';
-import { MatCheckbox } from '@angular/material/checkbox';
+import { BehaviorSubject, map, Subject } from 'rxjs';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { AsyncPipe, JsonPipe } from '@angular/common';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';

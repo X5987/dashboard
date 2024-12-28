@@ -62,7 +62,6 @@ import {
 import { FilterTableComponent } from './components/filter-table/filter-table.component';
 import { AppRoutingModule } from '../../apps/form_projet/src/app/app.routes';
 import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
-import { GridComponent } from './utils/grid-component/grid.component';
 import { MatTab, MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 

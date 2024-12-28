@@ -18,7 +18,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {}
 
-  traite($event: HTMLInputElement) {}
-
   ngOnDestroy(): void {}
 }

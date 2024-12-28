@@ -1,12 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Product } from '@design-system';
 import { FormulService } from './formul.service';
-import { concatMap, forkJoin, map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 export interface FormulData {
   listProduct: Observable<Product[]>;
@@ -18,10 +14,7 @@ export interface FormulData {
 export class FormulDataResolver implements Resolve<FormulData> {
   service: FormulService = inject(FormulService);
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): Observable<FormulData> {
+  resolve(): Observable<FormulData> {
     const listNum$ = of([
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
     ]);

@@ -1,5 +1,3 @@
-import { User, UserEnum } from './user.interface';
-
 export interface Rate {
   rate: number;
   count: number;
