@@ -5,14 +5,14 @@ import { RouterModule } from '@angular/router';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, RouterModule.forRoot([])],
+      declarations: [AppComponent, RouterModule.forRoot([])],
     }).compileComponents();
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
+    const compiled = fixture.nativeElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
       'Welcome form_projet',
     );

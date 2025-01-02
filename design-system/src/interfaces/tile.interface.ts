@@ -1,4 +1,4 @@
-import { TemplateRef } from '@angular/core';
+import { Component, ComponentRef, TemplateRef, Type } from '@angular/core';
 
 export interface GridStructur {
   grid: {
@@ -10,13 +10,13 @@ export interface GridStructur {
 }
 
 export interface Tile {
-  color: string;
+  color?: string;
   cols: number;
   rows: number;
   text: string;
-  border_radius: number;
+  border_radius?: number;
   border_color?: string;
-  context?: TemplateRef<never> | null;
+  context?: any;
   data?: object | null;
   class?: string;
 }

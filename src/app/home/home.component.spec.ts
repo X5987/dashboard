@@ -7,7 +7,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent], // Use imports for standalone component
+      declarations: [HomeComponent], // Use imports for standalone component
       providers: [provideAnimations()],
     }).compileComponents();
 

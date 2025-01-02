@@ -8,7 +8,7 @@ describe('GridCssComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GridCssComponent],
+      declarations: [GridCssComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GridCssComponent);

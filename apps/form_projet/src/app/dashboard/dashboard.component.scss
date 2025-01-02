@@ -1,36 +1,31 @@
-@import "../../../../../design-system/src/styles/core-style";
+:host * {
+  transition: all 200ms ease-in-out;
+}
 
-:host {
+.container {
+  display: flex;
+  flex-direction: column;
 
-
-  .mat-elevation-z1 {
-    background-color: #ffffff;
+  .menu-top {
+    box-shadow: 0.2em 0.2em 0.2em #d8dae0b1, -0.075em -0.075em 1em #ffffff;
   }
 
-  .item {
-    margin: 50px;
-    //.menu-left {
-    //  width: 20%;
-    //  background-color: #e4adf8;
-    //}
-    //
-    //.menu-top {
-    //  width: 100%;
-    //  background-color: #a5a4a4;
-    //}
-    //
-    //.content {
-    //  width: 80%;
-    //  background-color: #00b2ff;
-    //}
-    //
-    //.footer {
-    //  width: 100%;
-    //  background-color: #a5a4a4;
-    //}
+  mat-toolbar {
+    position: relative;
+    z-index: 5;
+  }
 
+  .content {
+    padding: 24px;
+    background-color: #f1f1f1;
+
+  }
+
+  mat-sidenav-container {
+    height: calc(100vh - 167px);
   }
 
 }
+
 
 

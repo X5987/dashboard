@@ -10,7 +10,7 @@ describe('FormulComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormulComponent],
+      declarations: [FormulComponent],
       providers: [provideAnimations()],
     }).compileComponents();
 

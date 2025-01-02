@@ -7,7 +7,7 @@ describe('PeriodicTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PeriodicTableComponent],
+      declarations: [PeriodicTableComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PeriodicTableComponent);

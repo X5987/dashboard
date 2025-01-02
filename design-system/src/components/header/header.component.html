@@ -7,6 +7,14 @@
     <a mat-button routerLink="presentation">Présentation</a>
     <a mat-button routerLink="dashboard-personal">Formulaire</a>
     <a mat-flat-button routerLink="contact">Contact</a>
+
+    <div class="toggle-zone">
+      <mat-slide-toggle
+        [checked]="checked"
+        [disabled]="disabled">
+      </mat-slide-toggle>
+    </div>
+
   </div>
 
 </div>

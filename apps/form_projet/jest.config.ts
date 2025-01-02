@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'form-projet',
+  displayName: 'form_projet',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/apps/form-projet',

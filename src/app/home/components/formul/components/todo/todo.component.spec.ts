@@ -7,7 +7,7 @@ describe('TodoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TodoComponent],
+      declarations: [TodoComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodoComponent);

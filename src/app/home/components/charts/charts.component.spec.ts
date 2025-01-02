@@ -9,7 +9,7 @@ describe('ChartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+      declarations: [
         DesignSystemModule,
         DragScrollComponent,
         DragScrollItemDirective,

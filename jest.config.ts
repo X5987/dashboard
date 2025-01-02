@@ -1,8 +1,8 @@
 module.exports = {
   displayName: 'apps',
-  preset: '../../jest.preset.js',
+  preset: 'ts-jest',
   transform: {
-    '^.+\\.(ts|js|html|css)$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
   collectCoverageFrom: [
     'src/**/*.{ts,js}',
@@ -16,7 +16,7 @@ module.exports = {
     },
   },
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   moduleFileExtensions: ['ts', 'js', 'html', 'json'],
   coverageDirectory: '../../coverage/apps/my-app',
 };

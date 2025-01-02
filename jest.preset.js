@@ -1,4 +1,3 @@
-module.exports = {
-  testEnvironment: 'node',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-};
+const nxPreset = require('@nx/jest/preset').default;
+
+module.exports = { ...nxPreset };

@@ -64,6 +64,7 @@ import { AppRoutingModule } from '../../apps/form_projet/src/app/app.routes';
 import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 import { MatTab, MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { LoaderDirective } from './directives/loader/loader.directive';
 
 const materialElement = [
   MatButtonModule,
@@ -124,7 +125,12 @@ const commonList = [
   AsyncPipe,
 ];
 const microComponents = [InputTextComponent, SingleSelectComponent];
-const componentWeb = [HeaderComponent, DialogComponent, FilterTableComponent];
+const componentWeb = [
+  HeaderComponent,
+  DialogComponent,
+  FilterTableComponent,
+  LoaderDirective,
+];
 
 @NgModule({
   declarations: [microComponents],
