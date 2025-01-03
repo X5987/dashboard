@@ -1,5 +1,10 @@
 :host {
 
+  .content {
+    height: 100%;
+    width: 100%;
+  }
+
   .mat-grid-tile {
     box-shadow: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
     border-radius: 0.75em;

@@ -2,7 +2,7 @@
   transition: all 200ms ease-in-out;
 }
 
-.container {
+:host {
   display: flex;
   flex-direction: column;
 
@@ -18,14 +18,13 @@
   .content {
     padding: 24px;
     background-color: #f1f1f1;
-
   }
 
   mat-sidenav-container {
     height: calc(100vh - 167px);
   }
 
-}
 
+}
 
 

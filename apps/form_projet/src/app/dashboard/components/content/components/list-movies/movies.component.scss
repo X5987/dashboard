@@ -1,0 +1,32 @@
+:host {
+
+  .full-size-card {
+    justify-content: stretch;
+    width: 100%;
+    height: 100%;
+
+    > mat-card-header mat-card-title {
+      padding-bottom: 30px;
+    }
+
+    > mat-card-content {
+      overflow-y: scroll;
+      height: 100%;
+    }
+
+    mat-card {
+      background-color: #0048ff;
+      color: white;
+      margin-bottom: 14px;
+
+     .icon-right {
+        display: flex;
+        justify-content: flex-end;
+
+        mat-icon {
+          color: white;
+        }
+      }
+    }
+  }
+}

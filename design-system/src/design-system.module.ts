@@ -65,6 +65,7 @@ import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 import { MatTab, MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { LoaderDirective } from './directives/loader/loader.directive';
+import { MatListModule } from '@angular/material/list';
 
 const materialElement = [
   MatButtonModule,
@@ -110,6 +111,7 @@ const materialElement = [
   MatTabsModule,
   MatTab,
   MatSlideToggle,
+  MatListModule,
 ];
 const commonList = [
   CommonModule,
