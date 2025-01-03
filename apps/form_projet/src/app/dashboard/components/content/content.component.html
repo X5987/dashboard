@@ -2,15 +2,15 @@
                [rowHeight]="'100px'"
                [gutterSize]="'25'">
   @for (tile of tiles; track tile) {
-    <mat-grid-tile class="custom-shadow"
+    <mat-grid-tile class="mat-grid-tile"
                    [colspan]="tile.cols"
                    [rowspan]="tile.rows">
-      @if (tile.context) {
-        <ng-container *ngComponentOutlet="tile.context">
-        </ng-container>
-      } @else {
-        {{ tile.text }}
-      }
+        @if (tile.context) {
+          <ng-container *ngComponentOutlet="tile.context">
+          </ng-container>
+        } @else {
+          {{ tile.text }}
+        }
     </mat-grid-tile>
   }
 </mat-grid-list>

@@ -1,0 +1,14 @@
+<form class="container" [formGroup]="formMovie" (submit)="saveToParent()">
+    <lib-input-text
+      [label]="'title'"
+      [placeholder]="'Nom du film'"
+      [formControl]="formMovie.controls['title']">
+    </lib-input-text>
+    <lib-input-text
+      [label]="'Description'"
+      [placeholder]="'Descriptiondu film'"
+      [formControl]="formMovie.controls['description']">
+    </lib-input-text>
+    <button mat-raised-button>save</button>
+</form>
+
