@@ -1,23 +1,24 @@
-import { TemplateRef } from '@angular/core';
+import { Component, ComponentRef, TemplateRef, Type } from '@angular/core';
 
 export interface GridStructur {
   grid: {
     cols: number;
-    rowHeight: number;
-    gutterSize: number;
+    rowHeight: number | string;
+    gutterSize: number | string;
   };
   tile: Tile[];
 }
 
 export interface Tile {
-  color: string;
+  color?: string;
   cols: number;
   rows: number;
   text: string;
-  border_radius: number;
+  border_radius?: number;
   border_color?: string;
-  context?: TemplateRef<never> | null;
+  context?: any;
   data?: object | null;
+  class?: string;
 }
 
 export enum TileTypeEnum {

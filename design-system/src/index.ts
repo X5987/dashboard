@@ -15,3 +15,4 @@ export * from './components/form-fields/index';
 export * from './services/validators/dashboard-validators.service';
 
 export * from './utils/dialog-todo/dialog-todo.component';
+export * from './directives/loader/loader.directive';

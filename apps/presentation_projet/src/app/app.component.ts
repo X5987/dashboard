@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { DesignSystemModule } from '@design-system';
+import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app.routes';
 
 @Component({
-  imports: [RouterModule],
+  imports: [
+    DesignSystemModule,
+    CommonModule,
+    AppRoutingModule,
+    DesignSystemModule,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,

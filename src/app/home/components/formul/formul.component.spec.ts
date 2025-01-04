@@ -10,7 +10,7 @@ describe('FormulComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormulComponent],
+      declarations: [FormulComponent],
       providers: [provideAnimations()],
     }).compileComponents();
 
@@ -49,5 +49,10 @@ describe('FormulComponent', () => {
   });
   it('should have formGroupSource', () => {
     expect(component.formGroupSource).toBeTruthy();
+  });
+
+  it('should have formGroupSource', () => {
+    const fixture = TestBed.createComponent(FormulComponent);
+    expect(fixture.componentInstance.appTodo).toBeTruthy();
   });
 });

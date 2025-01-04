@@ -1,0 +1,30 @@
+:host * {
+  transition: all 200ms ease-in-out;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .menu-top {
+    box-shadow: 0.2em 0.2em 0.2em #d8dae0b1, -0.075em -0.075em 1em #ffffff;
+  }
+
+  mat-toolbar {
+    position: relative;
+    z-index: 5;
+  }
+
+  .content {
+    padding: 24px;
+    background-color: #f1f1f1;
+  }
+
+  mat-sidenav-container {
+    height: calc(100vh - 167px);
+  }
+
+
+}
+
+

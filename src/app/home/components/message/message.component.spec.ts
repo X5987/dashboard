@@ -9,7 +9,7 @@ describe('MessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MessageComponent, DesignSystemModule],
+      declarations: [MessageComponent, DesignSystemModule],
     }).compileComponents();
     fixture = TestBed.createComponent(MessageComponent);
     component = fixture.componentInstance;

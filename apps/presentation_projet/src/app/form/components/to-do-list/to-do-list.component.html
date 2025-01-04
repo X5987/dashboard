@@ -1,10 +1,10 @@
 <mat-card role="presentation" appearance="raised" class="todo-header">
 
   <mat-card-header class="todo-header-container">
-    <mat-card-title>To Do List</mat-card-title>
-    <mat-card-subtitle class="mat-mdc-card-subtitle">Crée une liste de choses à faire</mat-card-subtitle>
+      <mat-card-title>To Do List</mat-card-title>
+<!--      <mat-card-subtitle>Crée une liste de choses à faire</mat-card-subtitle>-->
     <mat-card-actions>
-      <button mat-raised-button class="mat-badge-warn" (click)="createOrEdit()">Ajouter</button>
+      <button mat-raised-button class="mat-badge-warn " (click)="createOrEdit()">Ajouter</button>
     </mat-card-actions>
   </mat-card-header>
 </mat-card>
@@ -51,39 +51,39 @@
                     {{ element[column] | date: formatDate }}
                   }
                   @case (ToDoEnumform.status) {
-                      <button mat-icon-button (click)="deactiveTodo(element)">
-                        <mat-icon>
-                          @if (element[column]) {
-                            check_box
-                          } @else {
-                            check_box_outline_blank
-                          }</mat-icon>
-                      </button>
-                    }
-                    @case (ToDoEnumform.archiveMessage) {
-                      @if (element[column]) {
-                        <mat-icon>archive</mat-icon>
-                      }
-                    }
-                    @case (ToDoEnumform.message) {
-                      {{ element[column] | truncate:  15 }}
-                    }
-                    @default {
-                      {{ element[column] }}
+                    <button mat-icon-button (click)="deactiveTodo(element)">
+                      <mat-icon>
+                        @if (element[column]) {
+                          check_box
+                        } @else {
+                          check_box_outline_blank
+                        }</mat-icon>
+                    </button>
+                  }
+                  @case (ToDoEnumform.archiveMessage) {
+                    @if (element[column]) {
+                      <mat-icon>archive</mat-icon>
                     }
                   }
+                  @case (ToDoEnumform.message) {
+                    {{ element[column] | truncate:  15 }}
+                  }
+                  @default {
+                    {{ element[column] }}
+                  }
                 }
-
-                </td>
-                </ng-container>
               }
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-              }
-        </mat-card-actions>
 
-        <mat-paginator [pageSizeOptions]="pageSize" aria-label="Select page of users"></mat-paginator>
+            </td>
+          </ng-container>
+        }
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    }
+  </mat-card-actions>
 
-        </mat-card>
+  <mat-paginator [pageSizeOptions]="pageSize" aria-label="Select page of users"></mat-paginator>
+
+</mat-card>
 

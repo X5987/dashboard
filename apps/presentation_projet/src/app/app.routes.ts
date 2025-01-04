@@ -1,12 +1,16 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { FormComponent } from './form/form.component';
 import { TableDataResolver } from './form/services/table-data.resolver';
+import { FormulService } from '../../../../src/app/home/services/formul.service';
 
 export const routesPresentationProjet: Routes = [
   {
-    path: '',
-    component: FormComponent,
+    path: 'presentation',
+    loadComponent: () =>
+      import('apps/presentation_projet/src/app/form/form.component').then(
+        (m) => m.FormComponent,
+      ),
+    providers: [FormulService],
     resolve: {
       data: TableDataResolver,
     },

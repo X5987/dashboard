@@ -47,7 +47,7 @@ import {
   InputTextComponent,
   SingleSelectComponent,
 } from './components/form-fields';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {
   MatChip,
   MatChipGrid,
@@ -60,6 +60,12 @@ import {
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete';
 import { FilterTableComponent } from './components/filter-table/filter-table.component';
+import { AppRoutingModule } from '../../apps/form_projet/src/app/app.routes';
+import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
+import { MatTab, MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { LoaderDirective } from './directives/loader/loader.directive';
+import { MatListModule } from '@angular/material/list';
 
 const materialElement = [
   MatButtonModule,
@@ -100,9 +106,17 @@ const materialElement = [
   MatAutocompleteTrigger,
   MatChipSet,
   MatChip,
+  DragScrollComponent,
+  DragScrollItemDirective,
+  MatTabsModule,
+  MatTab,
+  MatSlideToggle,
+  MatListModule,
 ];
 const commonList = [
   CommonModule,
+  AppRoutingModule,
+  RouterModule,
   RouterOutlet,
   RouterLink,
   NgIf,
@@ -113,7 +127,12 @@ const commonList = [
   AsyncPipe,
 ];
 const microComponents = [InputTextComponent, SingleSelectComponent];
-const componentWeb = [HeaderComponent, DialogComponent, FilterTableComponent];
+const componentWeb = [
+  HeaderComponent,
+  DialogComponent,
+  FilterTableComponent,
+  LoaderDirective,
+];
 
 @NgModule({
   declarations: [microComponents],

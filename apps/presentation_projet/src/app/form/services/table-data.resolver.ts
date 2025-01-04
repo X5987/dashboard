@@ -7,7 +7,7 @@ import {
 import { PeriodicElement } from '../models/table.interface';
 import { User } from '@design-system';
 import { FormService } from './form.service';
-import { catchError, combineLatest, forkJoin, map, Observable, of } from 'rxjs';
+import { catchError, combineLatest, map, Observable, of } from 'rxjs';
 
 export interface TableData {
   listPeriodic: Observable<PeriodicElement[]>;
@@ -20,10 +20,7 @@ export interface TableData {
 export class TableDataResolver implements Resolve<TableData> {
   formService: FormService = inject(FormService);
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): Observable<TableData> {
+  resolve(): Observable<TableData> {
     const listPeriodic$ = this.formService.getElementPeriodic().pipe(
       catchError((error) => {
         console.error('error getElementPeriodic', error);

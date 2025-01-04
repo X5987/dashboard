@@ -1,25 +1,23 @@
-<mat-card appearance="raised" class="user-Table">
-  <mat-card-header>
-    <mat-card-title> User Table</mat-card-title>
-  </mat-card-header>
-  <mat-card-actions>
-    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
-    >
-      @for (column of displayedColumns; track column) {
-        <ng-container [matColumnDef]="column">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by' + column">
-            {{ column }}
-          </th>
-          <td mat-cell *matCellDef="let element">
+  <mat-card appearance="raised" class="user-Table">
+    <mat-card-header>
+      <mat-card-title> User Table</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+      >
+        @for (column of displayedColumns; track column) {
+          <ng-container [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by' + column">
+              {{ column }}
+            </th>
+            <td mat-cell *matCellDef="let element">
               {{ element[column] }}
-          </td>
-        </ng-container>
-      }
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </mat-card-actions>
-
-  <mat-paginator [pageSizeOptions]="pageSize" aria-label="Select page of users"></mat-paginator>
-
-</mat-card>
+            </td>
+          </ng-container>
+        }
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-actions>
+    <mat-paginator [pageSizeOptions]="pageSize" aria-label="Select page of users"></mat-paginator>
+  </mat-card>

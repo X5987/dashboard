@@ -9,7 +9,7 @@ describe('ChartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+      declarations: [
         DesignSystemModule,
         DragScrollComponent,
         DragScrollItemDirective,
@@ -54,7 +54,7 @@ describe('ChartsComponent', () => {
 
   it('should initialize chartOptionsDonnut correctly', () => {
     expect(component.chartOptionsDonnut).toEqual({
-      theme: 'ag-charts',
+      theme: 'ag-default',
       data: [
         { asset: 'Stocks', amount: 60000 },
         { asset: 'Bonds', amount: 40000 },

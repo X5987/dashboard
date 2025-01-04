@@ -1,0 +1,25 @@
+<mat-card class="full-size-card">
+  <mat-card-header>
+    <mat-card-title>Crée un film</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="container" [formGroup]="form">
+      <lib-input-text
+        [label]="'title'"
+        [placeholder]="'Nom du film'"
+        [formControl]="form.controls['title']">
+      </lib-input-text>
+      <lib-input-text
+        [label]="'Description'"
+        [placeholder]="'Descriptiondu film'"
+        [formControl]="form.controls['description']">
+      </lib-input-text>
+      @if (modeUpdate()) {
+        <button (click)="editToParent(form)" mat-raised-button>edit</button>
+        <button (click)="cancelEdit()" mat-raised-button>cancel</button>
+      } @else {
+        <button (click)="saveToParent(form)" mat-raised-button>save</button>
+      }
+    </form>
+  </mat-card-content>
+</mat-card>

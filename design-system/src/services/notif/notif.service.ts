@@ -8,7 +8,21 @@ import { NotifComponent } from '../../utils/notif/notif.component';
 export class NotifService {
   private _snackBar: MatSnackBar = inject(MatSnackBar);
 
-  openNotif(data: object, config?: MatSnackBarConfig) {
+  defautConfig: MatSnackBarConfig = {
+    duration: 3000,
+    horizontalPosition: 'center',
+    data: {
+      message: 'Lorem Ipsum',
+      action: 'close',
+      classe: 'snackbar-success',
+    },
+    panelClass: 'snackbar-success',
+  };
+
+  openNotif(
+    data: object = this.defautConfig.data,
+    config: MatSnackBarConfig = this.defautConfig,
+  ) {
     const defaultConfig: MatSnackBarConfig = {
       data: data,
       duration: 3000,

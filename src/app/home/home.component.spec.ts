@@ -3,17 +3,15 @@ import { HomeComponent } from './home.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent], // Use imports for standalone component
+      declarations: [HomeComponent], // Use imports for standalone component
       providers: [provideAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
