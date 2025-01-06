@@ -1,0 +1,16 @@
+:host {
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.75em;
+    background-color: #fffdef;
+    box-shadow: 0.1em 0.2em 0.2em #d8dae0b1, -0.075em -0.075em 0.2em #ffffff;
+
+    .date-picker{
+      padding: 16px;
+    }
+  }
+}

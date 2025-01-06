@@ -37,6 +37,13 @@ export const routesDashboardPersonal: Routes = [
         (m) => m.CommentsComponent,
       ),
   },
+  {
+    path: 'memorizing',
+    loadComponent: () =>
+      import('././components/memorize/memorize-calendar.component').then(
+        (m) => m.MemorizeCalendarComponent,
+      ),
+  },
 ];
 
 @NgModule({

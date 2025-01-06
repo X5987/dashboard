@@ -24,6 +24,10 @@ export class TodoService {
 
   initializeForm(element?: ToDoList, readonly = false) {
     const form: FormGroup = this.fb.group({
+      [ToDoEnumform.id]: new FormControl({
+        value: element?.[ToDoEnumform.id] ?? null,
+        disabled: readonly,
+      }),
       [ToDoEnumform.title]: new FormControl(
         {
           value: element?.[ToDoEnumform.title] ?? '',

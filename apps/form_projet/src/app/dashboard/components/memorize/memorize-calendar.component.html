@@ -1,1 +1,33 @@
-<p>memorize-calendar works!</p>
+<div class="container">
+
+  <mat-form-field appearance="outline" class="date-picker">
+    <mat-label>First campaign</mat-label>
+    <mat-date-range-input
+      [formGroup]="campaignOne"
+      [rangePicker]="campaignOnePicker"
+      [comparisonStart]="campaignTwo.value.start"
+      [comparisonEnd]="campaignTwo.value.end">
+      <input matStartDate placeholder="Start date" formControlName="start">
+      <input matEndDate placeholder="End date" formControlName="end">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+  </mat-form-field>
+
+<!--  <mat-form-field appearance="outline" >-->
+<!--    <mat-label>Second campaign</mat-label>-->
+<!--    <mat-date-range-input-->
+<!--      [formGroup]="campaignTwo"-->
+<!--      [rangePicker]="campaignTwoPicker"-->
+<!--      [comparisonStart]="campaignOne.value.start"-->
+<!--      [comparisonEnd]="campaignOne.value.end">-->
+<!--      <input matStartDate placeholder="Start date" formControlName="start">-->
+<!--      <input matEndDate placeholder="End date" formControlName="end">-->
+<!--    </mat-date-range-input>-->
+<!--    <mat-datepicker-toggle matIconSuffix [for]="campaignTwoPicker"></mat-datepicker-toggle>-->
+<!--    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>-->
+<!--    <mat-date-range-picker #campaignTwoPicker></mat-date-range-picker>-->
+<!--  </mat-form-field>-->
+
+</div>

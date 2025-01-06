@@ -32,7 +32,6 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatIcon } from '@angular/material/icon';
 import { User, UserEnum } from '@design-system';
 
 @Component({
@@ -47,7 +46,6 @@ import { User, UserEnum } from '@design-system';
     MatCell,
     MatTable,
     MatHeaderCell,
-    MatIcon,
     MatSort,
     MatPaginator,
     MatRow,

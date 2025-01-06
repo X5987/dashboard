@@ -4,7 +4,7 @@
       <mat-card-title>To Do List</mat-card-title>
 <!--      <mat-card-subtitle>Crée une liste de choses à faire</mat-card-subtitle>-->
     <mat-card-actions>
-      <button mat-raised-button class="mat-badge-warn " (click)="createOrEdit()">Ajouter</button>
+      <button mat-raised-button class="mat-badge-warn " (click)="create()">Ajouter</button>
     </mat-card-actions>
   </mat-card-header>
 </mat-card>
@@ -25,7 +25,7 @@
               @if (element) {
                 @switch (column) {
                   @case (ToDoEnumform.action) {
-                    <button mat-icon-button (click)="createOrEdit(element)">
+                    <button mat-icon-button (click)="edit(element)">
                       <mat-icon class="table-size-icon"
                                 aria-label="edit"
                                 title="edit"

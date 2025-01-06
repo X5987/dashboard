@@ -93,6 +93,11 @@ export class MenuSidebarComponent {
       label: 'Commentaires',
       route: 'comments',
     },
+    {
+      icon: 'memory',
+      label: 'Souvenir calendar',
+      route: 'memorizing',
+    },
   ]);
 
   @Input() set collapsed(value: boolean) {
