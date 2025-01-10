@@ -2,6 +2,7 @@
   <h2 mat-dialog-title>{{ titleTodo() }}</h2>
   <mat-dialog-content class="item">
     <form [formGroup]="formReceived">
+
       <div class="title-input">
         <lib-input-text
           [type]="'text'"
@@ -14,17 +15,15 @@
         />
       </div>
 
-      <mat-form-field appearance="outline" class="message-input">
-        <mat-label>{{ messageTitle() }}</mat-label>
-        <textarea
-          class="message-area"
-          [title]="ToDoEnumform.message"
+      <div class="message-input">
+        <lib-textarea
           [id]="ToDoEnumform.message"
-          [formControlName]="ToDoEnumform.message"
-          matInput
-          [placeholder]="messagePlaceholder()"
-        ></textarea>
-      </mat-form-field>
+          [formControl]="formReceived.controls[ToDoEnumform.message]"
+          [label]="messageTitle()"
+          [appearance]="'outline'"
+          [placeholder]="messageTitle()"/>
+      </div>
+
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

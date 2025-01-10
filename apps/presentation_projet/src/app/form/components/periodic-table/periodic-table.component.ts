@@ -8,26 +8,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  MatCard,
-  MatCardActions,
-  MatCardHeader,
-  MatCardTitle,
-} from '@angular/material/card';
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
-  MatRow,
-  MatRowDef,
-  MatTable,
-  MatTableDataSource,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import {
   Direction,
@@ -35,34 +16,14 @@ import {
   PeriodicElementEnum,
 } from '../../models/table.interface';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatIcon } from '@angular/material/icon';
+import { DesignSystemModule } from '@design-system';
 
 @Component({
   selector: 'app-periodic-table',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCard,
-    MatCardActions,
-    MatCardHeader,
-    MatCardTitle,
-    MatCell,
-    MatTable,
-    MatHeaderCell,
-    MatIcon,
-    MatSort,
-    MatPaginator,
-    MatRow,
-    MatHeaderRow,
-    MatCellDef,
-    MatHeaderRowDef,
-    MatRowDef,
-    MatHeaderCellDef,
-    MatSortHeader,
-    MatColumnDef,
-  ],
+  imports: [DesignSystemModule],
   templateUrl: './periodic-table.component.html',
   styleUrl: './periodic-table.component.scss',
 })

@@ -55,8 +55,6 @@ export interface TodoListState {
   empty: boolean;
 }
 
-/* todo arendu en signal pour utiliser l'effect() sur le composant parent et evité les dataSource.
- *   data = store.list... */
 export const initialTodoListState: TodoListState = {
   list: [
     {

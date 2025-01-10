@@ -1,16 +1,41 @@
 :host {
-  .container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    border-radius: 0.75em;
-    background-color: #fffdef;
-    box-shadow: 0.1em 0.2em 0.2em #d8dae0b1, -0.075em -0.075em 0.2em #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 0.75em;
+  margin: 0;
 
-    .date-picker{
-      padding: 16px;
+  .input-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    box-shadow: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    gap: 10px;
+    padding: 20px;
+
+    mat-form-field {
+      width: 80%;
+    }
+
+    button {
+      width: 20%;
+    }
+
+  }
+
+  .date-picker {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    background-color: #f8f8f8;
+    border-radius: 0.75em;
+
+    mat-calendar {
+      width: calc(70vh - 140px);
+      height: calc(82vh - 200px);
     }
   }
+
 }

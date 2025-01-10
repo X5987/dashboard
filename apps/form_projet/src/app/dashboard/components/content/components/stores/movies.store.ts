@@ -43,6 +43,6 @@ export const MoviesStore = signalStore(
   })),
 
   withComputed((store) => ({
-    empty: computed<boolean>(() => store.items.length === 0),
+    empty: computed<boolean>(() => store.items().length < 1),
   })),
 );

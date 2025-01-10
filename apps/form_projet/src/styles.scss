@@ -1,10 +1,10 @@
-@import "../../../design-system/src/styles/core-style";
-
-@use "@angular/material" as mat;
-
-html {
-  @include  mat.theme((
-    color: mat.$cyan-palette,
-    typography: Arial
-  ))
-}
+//@import "../../../design-system/src/styles/core-style";
+//
+//@use "@angular/material" as mat;
+//
+//html {
+//  @include  mat.theme((
+//    color: mat.$cyan-palette,
+//    typography: Arial
+//  ))
+//}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {
   AsyncPipe,
   CommonModule,
+  DatePipe,
   NgForOf,
   NgIf,
   NgOptimizedImage,
@@ -15,7 +16,14 @@ import {
 } from '@angular/material/button';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { CdkMenuItem, CdkMenuModule } from '@angular/cdk/menu';
-import { MatCardContent, MatCardModule } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardModule,
+  MatCardTitle,
+} from '@angular/material/card';
 import {
   MatGridList,
   MatGridListModule,
@@ -38,6 +46,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatError,
   MatFormField,
+  MatFormFieldModule,
   MatHint,
   MatLabel,
 } from '@angular/material/form-field';
@@ -46,6 +55,7 @@ import { MatIcon } from '@angular/material/icon';
 import {
   InputTextComponent,
   SingleSelectComponent,
+  TextareaComponent,
 } from './components/form-fields';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {
@@ -66,6 +76,23 @@ import { MatTab, MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { LoaderDirective } from './directives/loader/loader.directive';
 import { MatListModule } from '@angular/material/list';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+} from '@angular/material/table';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { TruncatePipe } from './services/pipes/truncate.pipe';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const materialElement = [
   MatButtonModule,
@@ -82,7 +109,6 @@ const materialElement = [
   MatGridList,
   MatGridTile,
   AgCharts,
-  MatButtonModule,
   MatDialogModule,
   MatDialogContent,
   MatDialogActions,
@@ -92,9 +118,7 @@ const materialElement = [
   MatHint,
   MatLabel,
   MatError,
-  MatGridList,
   MatButton,
-  MatGridTile,
   MatSelect,
   MatOption,
   MatIcon,
@@ -112,6 +136,31 @@ const materialElement = [
   MatTab,
   MatSlideToggle,
   MatListModule,
+  MatCard,
+  MatCardActions,
+  MatCardHeader,
+  MatCardTitle,
+  MatCell,
+  MatTable,
+  MatHeaderCell,
+  MatSort,
+  MatPaginator,
+  MatRow,
+  MatHeaderRow,
+  MatCellDef,
+  MatHeaderRowDef,
+  MatRowDef,
+  MatHeaderCellDef,
+  MatSortHeader,
+  MatColumnDef,
+  TruncatePipe,
+  MatFormField,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  FormsModule,
+  MatNativeDateModule,
+  DatePipe,
+  MatInput,
 ];
 const commonList = [
   CommonModule,
@@ -126,7 +175,11 @@ const commonList = [
   MatAnchor,
   AsyncPipe,
 ];
-const microComponents = [InputTextComponent, SingleSelectComponent];
+const microComponents = [
+  InputTextComponent,
+  SingleSelectComponent,
+  TextareaComponent,
+];
 const componentWeb = [
   HeaderComponent,
   DialogComponent,

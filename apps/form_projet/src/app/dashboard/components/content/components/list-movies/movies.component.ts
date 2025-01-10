@@ -15,6 +15,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class MoviesComponent {
   store = inject(MoviesStore);
   listMovies: Observable<Movies> = toObservable(this.store.items);
+  loading: Observable<boolean> = toObservable(this.store.loading);
   @Output() editMovie: EventEmitter<Movie> = new EventEmitter();
   @Output() deleteMovie: EventEmitter<Movie> = new EventEmitter();
 

@@ -4,8 +4,6 @@
   </mat-card-header>
   <mat-card-content>
     <mat-list role="list">
-<!--      @if(store.loading){-->
-<!--      }-->
       @for (movie of (listMovies | async); track movie) {
         <mat-card>
           <mat-card-header>

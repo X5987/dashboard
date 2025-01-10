@@ -8,55 +8,17 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  MatCard,
-  MatCardActions,
-  MatCardHeader,
-  MatCardTitle,
-} from '@angular/material/card';
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
-  MatRow,
-  MatRowDef,
-  MatTable,
-  MatTableDataSource,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { User, UserEnum } from '@design-system';
+import { DesignSystemModule, User, UserEnum } from '@design-system';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCard,
-    MatCardActions,
-    MatCardHeader,
-    MatCardTitle,
-    MatCell,
-    MatTable,
-    MatHeaderCell,
-    MatSort,
-    MatPaginator,
-    MatRow,
-    MatHeaderRow,
-    MatCellDef,
-    MatHeaderRowDef,
-    MatRowDef,
-    MatHeaderCellDef,
-    MatSortHeader,
-    MatColumnDef,
-  ],
+  imports: [DesignSystemModule],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss',
 })

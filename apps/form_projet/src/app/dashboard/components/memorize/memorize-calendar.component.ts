@@ -1,39 +1,61 @@
-import { Component } from '@angular/core';
-import { MatFormField } from '@angular/material/form-field';
+import { Component, inject, model, OnInit } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
+  FormControlStatus,
+  Validators,
 } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
-const today = new Date();
-const month = today.getMonth();
-const year = today.getFullYear();
+import { DesignSystemModule } from '@design-system';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-memorize-calendar',
   standalone: true,
   templateUrl: './memorize-calendar.component.html',
   styleUrl: './memorize-calendar.component.scss',
-  imports: [
-    MatFormField,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-  ],
+  imports: [DesignSystemModule],
 })
-export class MemorizeCalendarComponent {
-  readonly campaignOne = new FormGroup({
-    start: new FormControl(new Date(year, month, 13)),
-    end: new FormControl(new Date(year, month, 16)),
+export class MemorizeCalendarComponent implements OnInit {
+  today = new Date();
+  selected = model<Date | null>(null);
+
+  fb: FormBuilder = inject(FormBuilder);
+
+  startDateLearnForm = this.fb.group({
+    firstDateLearn: new FormControl(null, [Validators.required]),
   });
-  readonly campaignTwo = new FormGroup({
-    start: new FormControl(new Date(year, month, 15)),
-    end: new FormControl(new Date(year, month, 19)),
-  });
+
+  protected statusComputeButton: Observable<FormControlStatus> =
+    this.startDateLearnForm.controls.firstDateLearn.events.pipe(
+      map((event) => event.source.status),
+    );
+
+  ngOnInit(): void {
+    this.startDateLearnForm.controls.firstDateLearn.events.subscribe(
+      (event) => {
+        console.log(event);
+      },
+    );
+  }
+
+  // prendre la date et l'heure entré,
+  // lui ajouter un planing de date :
+  // C'est-à-dire : date de l'apprentissage → 10min → 1Days → 1week → 1month → 6months
+  // ainsi mettre en place un calendrier qui reprendra
+  // toutes ces dates et crééra un planing
+  returnDateCompute(date: Date | null): Date[] {
+    if (!date) return [];
+    const tabPlaningTitle: number[] = [1, 7, 1, 6];
+    const tabDate: Date[] = tabPlaningTitle.map(
+      (value: number, index: number) => {
+        const uniqueDate = date;
+        index <= 1
+          ? uniqueDate.setDate(date.getDate() + value)
+          : uniqueDate.setMonth(date.getMonth() + value);
+        return uniqueDate;
+      },
+    );
+    console.log('planning dates', tabDate);
+    return tabDate;
+  }
 }

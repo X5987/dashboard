@@ -1,33 +1,30 @@
-<div class="container">
+<mat-card class="input-and-button">
+    <mat-form-field appearance="outline">
+      <mat-label>Date début</mat-label>
+      <form [formGroup]="startDateLearnForm">
+        <input matInput
+               [matDatepicker]="picker"
+               [formControlName]="'firstDateLearn'">
+      </form>
+      <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
 
-  <mat-form-field appearance="outline" class="date-picker">
-    <mat-label>First campaign</mat-label>
-    <mat-date-range-input
-      [formGroup]="campaignOne"
-      [rangePicker]="campaignOnePicker"
-      [comparisonStart]="campaignTwo.value.start"
-      [comparisonEnd]="campaignTwo.value.end">
-      <input matStartDate placeholder="Start date" formControlName="start">
-      <input matEndDate placeholder="End date" formControlName="end">
-    </mat-date-range-input>
-    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
-  </mat-form-field>
+      @if (startDateLearnForm.controls.firstDateLearn.hasError('required')) {
+        <mat-error>Date début est requis</mat-error>
+      }
+    </mat-form-field>
 
-<!--  <mat-form-field appearance="outline" >-->
-<!--    <mat-label>Second campaign</mat-label>-->
-<!--    <mat-date-range-input-->
-<!--      [formGroup]="campaignTwo"-->
-<!--      [rangePicker]="campaignTwoPicker"-->
-<!--      [comparisonStart]="campaignOne.value.start"-->
-<!--      [comparisonEnd]="campaignOne.value.end">-->
-<!--      <input matStartDate placeholder="Start date" formControlName="start">-->
-<!--      <input matEndDate placeholder="End date" formControlName="end">-->
-<!--    </mat-date-range-input>-->
-<!--    <mat-datepicker-toggle matIconSuffix [for]="campaignTwoPicker"></mat-datepicker-toggle>-->
-<!--    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>-->
-<!--    <mat-date-range-picker #campaignTwoPicker></mat-date-range-picker>-->
-<!--  </mat-form-field>-->
 
+    <button [disabled]="(statusComputeButton | async)"
+            mat-raised-button
+            (click)="returnDateCompute(startDateLearnForm.controls.firstDateLearn.value)">
+      Calcule
+    </button>
+</mat-card>
+
+<div class="date-picker">
+      <mat-calendar [(selected)]="selected"/>
 </div>
+
+
+

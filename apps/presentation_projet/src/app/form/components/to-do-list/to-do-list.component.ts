@@ -6,67 +6,28 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
-  MatCard,
-  MatCardActions,
-  MatCardHeader,
-  MatCardTitle,
-} from '@angular/material/card';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { ToDoEnumform, TodoForm, ToDoList } from '@design-system';
+  DesignSystemModule,
+  ToDoEnumform,
+  TodoForm,
+  ToDoList,
+} from '@design-system';
 import { Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
-  MatRow,
-  MatRowDef,
-  MatTable,
-  MatTableDataSource,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatIcon } from '@angular/material/icon';
 import { FormService } from '../../services/form.service';
 import { TodoService } from '../../services/todo.service';
-import { TruncatePipe } from '../../../../../../../design-system/src/services/pipes/truncate.pipe';
 import { TodoListStore } from './todo-list-store/todo-list-store';
 
 @Component({
   selector: 'app-to-do-list',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCard,
-    MatCardTitle,
-    MatCardHeader,
-    MatCardActions,
-    MatButton,
-    MatCell,
-    MatHeaderCell,
-    MatHeaderRow,
-    MatRow,
-    MatColumnDef,
-    MatCellDef,
-    MatHeaderCellDef,
-    MatTable,
-    MatRowDef,
-    MatHeaderRowDef,
-    MatButtonModule,
-    MatPaginator,
-    MatSortHeader,
-    MatSort,
-    MatIcon,
-    TruncatePipe,
-  ],
+  imports: [DesignSystemModule],
+
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss',
   providers: [TodoListStore],
@@ -109,7 +70,6 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.dataSource.data = this.store.list();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -117,7 +77,7 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   create(): void {
     const dialogRef = this.todoFormService.dialogManage();
     this.subscribeDialog$ = dialogRef.afterClosed().subscribe((result) => {
-      this.store.create(result.data);
+      if (result) this.store.create(result.data);
       this.todoForm.reset();
     });
   }
@@ -125,7 +85,7 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   edit(el: ToDoList): void {
     const dialogRef = this.todoFormService.dialogManage(el);
     this.subscribeDialog$ = dialogRef.afterClosed().subscribe((result) => {
-      this.store.edit(result.data);
+      if (result) this.store.edit(result.data);
       this.todoForm.reset();
     });
   }
