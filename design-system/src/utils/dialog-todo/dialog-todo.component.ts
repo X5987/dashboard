@@ -22,19 +22,18 @@ import { TodoDialog, ToDoEnumform, TodoForm } from '../../interfaces';
 import { ValueChangesFormService } from '../../services/form-service/value-changes-form.service';
 
 @Component({
-  selector: 'lib-dialog-todo',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButton,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatDialogTitle,
-    DesignSystemModule,
-  ],
-  templateUrl: './dialog-todo.component.html',
-  styleUrl: './dialog-todo.component.scss',
+    selector: 'lib-dialog-todo',
+    imports: [
+        CommonModule,
+        MatButton,
+        MatDialogActions,
+        MatDialogClose,
+        MatDialogContent,
+        MatDialogTitle,
+        DesignSystemModule,
+    ],
+    templateUrl: './dialog-todo.component.html',
+    styleUrl: './dialog-todo.component.scss'
 })
 export class DialogTodoComponent extends DialogComponent {
   dialogRef = inject(MatDialogRef<DialogComponent>);

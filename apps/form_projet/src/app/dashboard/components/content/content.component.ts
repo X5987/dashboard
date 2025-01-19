@@ -15,17 +15,16 @@ import { MoviesStore } from './components/stores/movies.store';
 import { FormulaireLambdaServices } from './components/services/formulaire-lambda.services';
 
 @Component({
-  selector: 'app-content',
-  standalone: true,
-  imports: [
-    DesignSystemModule,
-    SlideFootballImgComponent,
-    WeatherComponent,
-    MoviesComponent,
-    FormulaireLambdaComponent,
-  ],
-  templateUrl: './content.component.html',
-  styleUrl: './content.component.scss',
+    selector: 'app-content',
+    imports: [
+        DesignSystemModule,
+        SlideFootballImgComponent,
+        WeatherComponent,
+        MoviesComponent,
+        FormulaireLambdaComponent,
+    ],
+    templateUrl: './content.component.html',
+    styleUrl: './content.component.scss'
 })
 export class ContentComponent implements OnInit {
   @ViewChild('slideFootballImg', { static: true })

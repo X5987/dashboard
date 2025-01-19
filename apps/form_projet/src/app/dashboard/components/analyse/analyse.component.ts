@@ -16,7 +16,6 @@ import {
   Observable,
   startWith,
   Subject,
-  switchMap,
   takeUntil,
   tap,
 } from 'rxjs';
@@ -26,7 +25,6 @@ import { Communes } from '../../models/commune.interface';
 
 @Component({
   selector: 'app-analyse',
-  standalone: true,
   imports: [CommonModule, DesignSystemModule],
   templateUrl: './analyse.component.html',
   styleUrl: './analyse.component.scss',

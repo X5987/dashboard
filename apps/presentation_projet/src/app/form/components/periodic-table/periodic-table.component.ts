@@ -21,11 +21,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { DesignSystemModule } from '@design-system';
 
 @Component({
-  selector: 'app-periodic-table',
-  standalone: true,
-  imports: [DesignSystemModule],
-  templateUrl: './periodic-table.component.html',
-  styleUrl: './periodic-table.component.scss',
+    selector: 'app-periodic-table',
+    imports: [DesignSystemModule],
+    templateUrl: './periodic-table.component.html',
+    styleUrl: './periodic-table.component.scss'
 })
 export class PeriodicTableComponent
   implements OnChanges, OnDestroy, AfterViewInit

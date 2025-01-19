@@ -1,7 +1,6 @@
-
-@import "table";
-@import "loader";
-@import "scrollbar";
+@use "table";
+@use "loader";
+@use "scrollbar";
 
 // Variables globales
 $primary-color: #3498db;

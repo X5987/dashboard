@@ -1,5 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -13,7 +13,6 @@ export type MenuItem = {
 
 @Component({
   selector: 'app-menu-sidebar',
-  standalone: true,
   imports: [
     CommonModule,
     MatListModule,

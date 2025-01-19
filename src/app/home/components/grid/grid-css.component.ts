@@ -7,11 +7,10 @@ import {
 } from '@design-system';
 
 @Component({
-  selector: 'app-grid-css',
-  templateUrl: './grid-css.component.html',
-  styleUrl: './grid-css.component.scss',
-  standalone: true,
-  imports: [DesignSystemModule, GridComponent],
+    selector: 'app-grid-css',
+    templateUrl: './grid-css.component.html',
+    styleUrl: './grid-css.component.scss',
+    imports: [DesignSystemModule, GridComponent]
 })
 export class GridCssComponent {
   protected readonly TileTypeEnum = TileTypeEnum;

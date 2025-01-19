@@ -2,9 +2,10 @@ import { Component, input, Self } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 
 @Component({
-  selector: 'lib-input-text',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
+    selector: 'lib-input-text',
+    templateUrl: './input-text.component.html',
+    styleUrls: ['./input-text.component.scss'],
+    standalone: false
 })
 export class InputTextComponent {
   appearance = input<'fill' | 'outline'>('outline');

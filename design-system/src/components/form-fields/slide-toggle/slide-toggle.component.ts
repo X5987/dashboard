@@ -6,14 +6,13 @@ import {
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'lib-slide-toggle',
-  template: `<mat-slide-toggle
+    selector: 'lib-slide-toggle',
+    template: `<mat-slide-toggle
     [formControl]="control"
     (change)="switchChange($event)"
   >
   </mat-slide-toggle> `,
-  standalone: true,
-  imports: [ReactiveFormsModule, MatSlideToggle],
+    imports: [ReactiveFormsModule, MatSlideToggle]
 })
 export class SlideToggleComponent {
   label = input.required<string>();

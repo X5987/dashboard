@@ -3,11 +3,10 @@ import { DesignSystemModule } from '../../design-system.module';
 import { GridStructur, TileTypeEnum } from '../../interfaces';
 
 @Component({
-  selector: 'lib-grid',
-  standalone: true,
-  templateUrl: './grid.component.html',
-  styleUrl: './grid.component.scss',
-  imports: [DesignSystemModule],
+    selector: 'lib-grid',
+    templateUrl: './grid.component.html',
+    styleUrl: './grid.component.scss',
+    imports: [DesignSystemModule]
 })
 export class GridComponent {
   @Input({ required: true }) tileTypes!: TileTypeEnum;

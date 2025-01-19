@@ -6,11 +6,10 @@ import { Movie } from '../models';
 import { FormulaireLambdaServices } from '../services/formulaire-lambda.services';
 
 @Component({
-  selector: 'app-formulaire-lambda',
-  standalone: true,
-  imports: [DesignSystemModule],
-  templateUrl: './formulaire-lambda.component.html',
-  styleUrl: './formulaire-lambda.component.scss',
+    selector: 'app-formulaire-lambda',
+    imports: [DesignSystemModule],
+    templateUrl: './formulaire-lambda.component.html',
+    styleUrl: './formulaire-lambda.component.scss'
 })
 export class FormulaireLambdaComponent {
   store = inject(MoviesStore);

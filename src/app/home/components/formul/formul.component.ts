@@ -37,19 +37,18 @@ import { DestroySubscribes } from '../../../../../design-system/src/services/des
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-formul',
-  standalone: true,
-  imports: [
-    DesignSystemModule,
-    GridComponent,
-    AutocompleteComponent,
-    TodoComponent,
-    MatCheckbox,
-    MatSortModule,
-    MatSort,
-  ],
-  templateUrl: './formul.component.html',
-  styleUrls: ['./formul.component.scss'],
+    selector: 'app-formul',
+    imports: [
+        DesignSystemModule,
+        GridComponent,
+        AutocompleteComponent,
+        TodoComponent,
+        MatCheckbox,
+        MatSortModule,
+        MatSort,
+    ],
+    templateUrl: './formul.component.html',
+    styleUrls: ['./formul.component.scss']
 })
 export class FormulComponent implements OnInit, OnDestroy {
   tilesForms: Signal<GridStructur> = signal({

@@ -8,18 +8,17 @@ import { GridCssComponent } from './components/grid/grid-css.component';
 import { DesignSystemModule } from '@design-system';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  imports: [
-    DesignSystemModule,
-    SliderComponent,
-    ChartsComponent,
-    FormulComponent,
-    MessageComponent,
-    FooterComponent,
-    GridCssComponent,
-  ],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    imports: [
+        DesignSystemModule,
+        SliderComponent,
+        ChartsComponent,
+        FormulComponent,
+        MessageComponent,
+        FooterComponent,
+        GridCssComponent,
+    ]
 })
 export class HomeComponent {}

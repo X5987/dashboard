@@ -15,11 +15,10 @@ import { DesignSystemModule } from '@design-system';
 import { map, Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-memorize-calendar',
-  standalone: true,
-  templateUrl: './memorize-calendar.component.html',
-  styleUrl: './memorize-calendar.component.scss',
-  imports: [DesignSystemModule],
+    selector: 'app-memorize-calendar',
+    templateUrl: './memorize-calendar.component.html',
+    styleUrl: './memorize-calendar.component.scss',
+    imports: [DesignSystemModule]
 })
 export class MemorizeCalendarComponent {
   selected = model<Date | null>(null);

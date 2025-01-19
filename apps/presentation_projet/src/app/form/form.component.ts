@@ -19,16 +19,15 @@ import { FilterService } from './services/filter.service';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrl: './form.component.scss',
-  standalone: true,
-  imports: [
-    DesignSystemModule,
-    PeriodicTableComponent,
-    UserTableComponent,
-    ToDoListComponent,
-  ],
+    selector: 'app-form',
+    templateUrl: './form.component.html',
+    styleUrl: './form.component.scss',
+    imports: [
+        DesignSystemModule,
+        PeriodicTableComponent,
+        UserTableComponent,
+        ToDoListComponent,
+    ]
 })
 export class FormComponent implements OnInit, OnDestroy {
   filterPeriodic_appearance: 'fill' | 'outline' = 'outline';

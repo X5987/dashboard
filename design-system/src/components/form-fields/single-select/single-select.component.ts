@@ -8,9 +8,10 @@ export interface ListSelect {
 }
 
 @Component({
-  selector: 'lib-single-select',
-  templateUrl: './single-select.component.html',
-  styleUrls: ['./single-select.component.scss'],
+    selector: 'lib-single-select',
+    templateUrl: './single-select.component.html',
+    styleUrls: ['./single-select.component.scss'],
+    standalone: false
 })
 export class SingleSelectComponent implements OnDestroy {
   appearance = input.required<'fill' | 'outline'>();

@@ -7,11 +7,10 @@ import {
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-message',
-  standalone: true,
-  imports: [DesignSystemModule],
-  templateUrl: './message.component.html',
-  styleUrl: './message.component.scss',
+    selector: 'app-message',
+    imports: [DesignSystemModule],
+    templateUrl: './message.component.html',
+    styleUrl: './message.component.scss'
 })
 export class MessageComponent {
   title: string = 'Test Notification';
