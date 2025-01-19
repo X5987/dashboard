@@ -11,8 +11,8 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { FormulaireLambdaComponent } from './components/formulaire/formulaire-lambda.component';
 import { MoviesComponent } from './components/list-movies/movies.component';
 import { Movie } from './components/models';
-import { FormBuilder } from '@angular/forms';
 import { MoviesStore } from './components/stores/movies.store';
+import { FormulaireLambdaServices } from './components/services/formulaire-lambda.services';
 
 @Component({
   selector: 'app-content',
@@ -62,8 +62,8 @@ export class ContentComponent implements OnInit {
     { text: 'Four', cols: 3, rows: 3 },
   ];
 
-  formBuilder: FormBuilder = inject(FormBuilder);
   store = inject(MoviesStore);
+  formService = inject(FormulaireLambdaServices);
 
   ngOnInit(): void {
     const componentTab = [
@@ -80,13 +80,14 @@ export class ContentComponent implements OnInit {
   editMovie($event: Movie) {
     if (this.formulaireLambda?.form) {
       this.formulaireLambda.modeUpdate.set(true);
-      this.formulaireLambda.form = this.formBuilder.group({
+      this.formulaireLambda.form = this.formService.formulaireLambda({
         id: $event.id,
         title: $event.title,
         description: $event.description,
       });
     }
   }
+
   deleteMovie($event: Movie) {
     this.store.delete($event);
   }

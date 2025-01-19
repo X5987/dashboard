@@ -7,7 +7,7 @@
   flex-direction: column;
 
   .menu-top {
-    box-shadow: 0.2em 0.2em 0.2em #d8dae0b1, -0.075em -0.075em 1em #ffffff;
+    box-shadow: var(--main-box-shadow-design);
   }
 
   mat-toolbar {
@@ -26,5 +26,4 @@
 
 
 }
-
 

@@ -1,9 +1,16 @@
+:host * {
+  transition: 0.3s;
+}
+
+
 :host {
 
   .full-size-card {
+    display: flex;
     justify-content: stretch;
     width: 100%;
     height: 100%;
+    font-size: 12px;
 
     > mat-card-header mat-card-title {
       padding-bottom: 30px;
@@ -15,18 +22,29 @@
     }
 
     mat-card {
-      background-color: #0048ff;
+      background-color: #2d5ab4;
       color: white;
       margin-bottom: 14px;
 
-     .icon-right {
+      .icon-right {
         display: flex;
         justify-content: flex-end;
 
         mat-icon {
+          font-size: 20px;
+          color: #c4c4c4;
+        }
+
+        mat-icon:hover {
+          font-size: 22px;
           color: white;
         }
       }
+    }
+
+    mat-card:hover {
+      background-color: #0d4ccd;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
   }
 }

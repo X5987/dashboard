@@ -1,4 +1,18 @@
 
+@import "table";
+@import "loader";
+@import "scrollbar";
+
+// Variables globales
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+
+// Mixins réutilisables
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 body {
@@ -75,13 +89,6 @@ body {
   }
 
 }
-
-@import "table";
-@import "loader";
-@import "scrollbar";
-
-
-
 
 
 

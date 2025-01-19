@@ -1,3 +1,6 @@
+
+@import "../../../../styles.scss";
+
 :host {
   display: flex;
   flex-direction: column;
@@ -10,7 +13,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
-    box-shadow: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    box-shadow: var(--main-box-shadow-design);
     gap: 10px;
     padding: 20px;
 
@@ -24,11 +27,25 @@
 
   }
 
-  .date-picker {
+  .list-date {
+    box-shadow: var(--main-box-shadow-design);
+    display: flex;
+    flex-direction: column;
+
+    .planning {
+      padding-top: 20px;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 10px;
+      display: flex;
+    }
+  }
+
+  .calendar {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    box-shadow: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    box-shadow: var(--main-box-shadow-design);
     background-color: #f8f8f8;
     border-radius: 0.75em;
 
@@ -38,4 +55,8 @@
     }
   }
 
+  button.orange {
+    background: orange;
+    border-radius: 100%;
+  }
 }

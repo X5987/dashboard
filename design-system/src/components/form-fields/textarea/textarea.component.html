@@ -1,9 +1,9 @@
-<mat-form-field [appearance]="appearance" class="text-area">
-  <mat-label>{{ label }}</mat-label>
+<mat-form-field [appearance]="appearance()" class="text-area">
+  <mat-label>{{ label() }}</mat-label>
   <textarea matInput
-            [id]="id"
+            [id]="id()"
             [formControl]="control"
-            [placeholder]="placeholder">
+            [placeholder]="placeholder()">
   </textarea>
 
   @if (control.valid) {
@@ -17,7 +17,7 @@
 </mat-form-field>
 
   @if (control.hasError('required')) {
-    <mat-error>{{ label }} est requis</mat-error>
+    <mat-error>{{ label() }} est requis</mat-error>
   }
   @if (!control.hasError('required') && control.hasError('minlength')) {
     <mat-error>Le nombre minimum est {{ control.getError('minlength')['requiredLength'] }}</mat-error>

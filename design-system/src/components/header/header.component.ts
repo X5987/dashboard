@@ -1,29 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatAnchor } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { SlideToggleComponent } from '../form-fields';
 
 @Component({
   selector: 'lib-header',
-  template: `<div id="navbar">
-    <img
-      class="navbar-logo"
-      src="https://www.kasandbox.org/programming-images/avatars/leaf-blue.png"
-      alt="logo"
-    />
+  imports: [MatAnchor, RouterLink, SlideToggleComponent, ReactiveFormsModule],
+  template: `
+    <div id="navbar">
+      <div class="navbar-logo">
+        <img class="navbar-logo" [src]="avatar()" alt="logo" />
+      </div>
 
-    <div class="navbar-item">
-      <a mat-button routerLink="home">Accueil</a>
-      <a mat-button routerLink="presentation">Présentation</a>
-      <a mat-button routerLink="dashboard-personal">Formulaire</a>
-      <a mat-flat-button routerLink="contact">Contact</a>
+      <div class="navbar-item">
+        <a mat-button routerLink="home">Accueil</a>
+        <a mat-button routerLink="presentation">Présentation</a>
+        <a mat-button routerLink="dashboard-personal">Formulaire</a>
+        <a mat-flat-button routerLink="contact">Contact</a>
 
-      <div class="toggle-zone">
-        <mat-slide-toggle [checked]="checked" [disabled]="disabled">
-        </mat-slide-toggle>
+        <div class="toggle-zone">
+          <lib-slide-toggle
+            [label]="'slide me'"
+            [formControl]="toggleForm.controls['slide']"
+          ></lib-slide-toggle>
+        </div>
       </div>
     </div>
-  </div> `,
+  `,
   styles: `
     :host {
       #navbar {
@@ -58,9 +62,18 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     }
   `,
   standalone: true,
-  imports: [MatAnchor, RouterLink, MatSlideToggle],
 })
 export class HeaderComponent {
-  checked = false;
   disabled = false;
+
+  fb = inject(FormBuilder);
+
+  toggleForm = this.fb.group({
+    slide: new FormControl(false),
+  });
+
+  avatar = signal(
+    'https://www.kasandbox.org/programming-images/avatars/leaf-blue.png',
+  );
+  protected readonly signal = signal;
 }

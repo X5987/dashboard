@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { DesignSystemModule } from '@design-system';
 import { MoviesStore } from '../stores/movies.store';
 import { Movie, Movies } from '../models';
@@ -16,8 +16,8 @@ export class MoviesComponent {
   store = inject(MoviesStore);
   listMovies: Observable<Movies> = toObservable(this.store.items);
   loading: Observable<boolean> = toObservable(this.store.loading);
-  @Output() editMovie: EventEmitter<Movie> = new EventEmitter();
-  @Output() deleteMovie: EventEmitter<Movie> = new EventEmitter();
+  editMovie = output<Movie>();
+  deleteMovie = output<Movie>();
 
   edit(movie: Movie) {
     this.editMovie.emit(movie);

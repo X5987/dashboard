@@ -1,13 +1,9 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { DesignSystemModule } from '@design-system';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MoviesStore } from '../stores/movies.store';
 import { Movie } from '../models';
+import { FormulaireLambdaServices } from '../services/formulaire-lambda.services';
 
 @Component({
   selector: 'app-formulaire-lambda',
@@ -19,15 +15,11 @@ import { Movie } from '../models';
 export class FormulaireLambdaComponent {
   store = inject(MoviesStore);
   requestToSave = output<Movie>();
-  formBuilder: FormBuilder = inject(FormBuilder);
+  formService = inject(FormulaireLambdaServices);
 
   modeUpdate = signal(false);
 
-  form = this.formBuilder.group({
-    id: new FormControl(0),
-    title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-  });
+  form = this.formService.formulaireLambda();
 
   saveToParent(movie: FormGroup): void {
     this.store.create(movie.value);

@@ -1,5 +1,5 @@
-import { Component, computed, Input, Signal, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, signal } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -25,12 +25,11 @@ export type MenuItem = {
     <div class="sidenav-header">
       <img
         class="sidenav-header-picture"
-        [width]="profilePictureSize()"
         [height]="profilePictureSize()"
+        [width]="profilePictureSize()"
         [src]="pictureSession()"
-        alt=""
+        [alt]="'avatar'"
       />
-
       <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
         <h2>{{ nameSession() }}</h2>
         <p>{{ surnameSession() }}</p>
@@ -72,7 +71,7 @@ export class MenuSidebarComponent {
   pictureSession = signal('https://picsum.photos/seed/picsum/200/300');
   nameSession = signal('John');
   surnameSession = signal('Lorem Ipsum');
-  menuItems: Signal<MenuItem[]> = signal<MenuItem[]>([
+  menuItems = signal<MenuItem[]>([
     {
       icon: 'dashboard',
       label: 'Dashboard',
@@ -99,12 +98,10 @@ export class MenuSidebarComponent {
       route: 'memorizing',
     },
   ]);
+  profilePictureSize = signal(100);
 
   @Input() set collapsed(value: boolean) {
     this.sideNavCollapsed.set(value);
+    this.profilePictureSize.set(value ? 32 : 100);
   }
-
-  profilePictureSize = computed(() => {
-    return this.sideNavCollapsed() ? '32' : ' 100';
-  });
 }

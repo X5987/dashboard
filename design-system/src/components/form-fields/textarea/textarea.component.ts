@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, input, Self } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 
 @Component({
@@ -7,12 +7,12 @@ import { FormControl, NgControl } from '@angular/forms';
   styleUrls: ['./textarea.component.scss'],
 })
 export class TextareaComponent {
-  @Input({ required: true }) label: string = '';
-  @Input({ required: true }) placeholder: string = '';
-  @Input({ required: true }) id: string = '';
-  @Input() minlength: number = 0;
-  @Input() maxlength: number = 0;
-  @Input() appearance: 'fill' | 'outline' = 'outline';
+  label = input.required<string>();
+  placeholder = input.required<string>();
+  id = input.required<string>();
+  minlength = input<number>(0);
+  maxlength = input<number>(0);
+  appearance = input<'fill' | 'outline'>('outline');
 
   constructor(@Self() private controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

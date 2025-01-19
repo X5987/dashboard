@@ -1,26 +1,46 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { MatLegacySlideToggleChange as MatSlideToggleChange } from '@angular/material/legacy-slide-toggle';
+import { Component, input, output, Self } from '@angular/core';
+import {
+  MatSlideToggle,
+  MatSlideToggleChange,
+} from '@angular/material/slide-toggle';
+import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'bac-slide-toggle',
-  templateUrl: './slide-toggle.component.html',
-  styleUrls: ['./slide-toggle.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'lib-slide-toggle',
+  template: `<mat-slide-toggle
+    [formControl]="control"
+    (change)="switchChange($event)"
+  >
+  </mat-slide-toggle> `,
+  standalone: true,
+  imports: [ReactiveFormsModule, MatSlideToggle],
 })
-export class SlideToggleComponent implements OnInit {
-  @Input() form: UntypedFormControl;
-  @Input() control: UntypedFormControl;
-  @Input() label: string;
-  @Input() readonly = false;
-  @Output() changeValue: EventEmitter<boolean> = new EventEmitter();
+export class SlideToggleComponent {
+  label = input.required<string>();
+  readonly = input(false);
+  changeValue = output<boolean>();
 
-  constructor() { }
-
-  ngOnInit(): void {}
+  constructor(@Self() public controlDir: NgControl) {
+    this.controlDir.valueAccessor = this;
+  }
 
   switchChange($event: MatSlideToggleChange) {
     this.changeValue.emit($event.checked);
   }
 
+  writeValue(value: never) {
+    if (value) {
+      this.control.setValue(value, { emitEvent: false });
+    }
+  }
+
+  registerOnChange(fn: (value: never) => void): void {
+    this.control.valueChanges.subscribe((fn) => {});
+  }
+
+  registerOnTouched(fn: any): void {}
+
+  get control(): FormControl {
+    return this.controlDir.control as FormControl;
+  }
 }

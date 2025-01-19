@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@design-system": ["design-system/src/index.ts"]
+      "@design-system": ["design-system/src/index.ts"],
+      "shared-styles": ["shared-styles/src/index.ts"]
     }
   }
 }

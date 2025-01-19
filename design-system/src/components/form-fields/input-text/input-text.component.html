@@ -1,10 +1,10 @@
-<mat-form-field [appearance]="appearance">
-  <mat-label>{{ label }}</mat-label>
+<mat-form-field [appearance]="appearance()">
+  <mat-label>{{ label() }}</mat-label>
   <input matInput
-         [id]="id"
-         [type]="type"
+         [id]="id()"
+         [type]="type()"
          [formControl]="control"
-         [placeholder]="placeholder">
+         [placeholder]="placeholder()">
 
   @if (control.valid) {
     <button [disabled]="control.pending"
@@ -16,7 +16,7 @@
   }
 
   @if (control.hasError('required')) {
-    <mat-error>{{ label }} est requis</mat-error>
+    <mat-error>{{ label() }} est requis</mat-error>
   }
   @if (!control.hasError('required') && control.hasError('minlength')) {
     <mat-error>Le nombre minimum est {{ control.getError('minlength')['requiredLength'] }}</mat-error>

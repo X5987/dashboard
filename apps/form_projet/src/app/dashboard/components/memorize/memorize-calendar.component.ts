@@ -1,4 +1,10 @@
-import { Component, inject, model, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  model,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,47 +21,48 @@ import { map, Observable } from 'rxjs';
   styleUrl: './memorize-calendar.component.scss',
   imports: [DesignSystemModule],
 })
-export class MemorizeCalendarComponent implements OnInit {
-  today = new Date();
+export class MemorizeCalendarComponent {
   selected = model<Date | null>(null);
-
-  fb: FormBuilder = inject(FormBuilder);
+  private fb: FormBuilder = inject(FormBuilder);
 
   startDateLearnForm = this.fb.group({
-    firstDateLearn: new FormControl(null, [Validators.required]),
+    firstDateLearn: new FormControl(null, {
+      nonNullable: false,
+      validators: [Validators.required],
+    }),
   });
 
   protected statusComputeButton: Observable<FormControlStatus> =
     this.startDateLearnForm.controls.firstDateLearn.events.pipe(
-      map((event) => event.source.status),
+      map((event) => {
+        console.log(event.source.value);
+        return event.source.status;
+      }),
     );
 
-  ngOnInit(): void {
-    this.startDateLearnForm.controls.firstDateLearn.events.subscribe(
-      (event) => {
-        console.log(event);
-      },
-    );
+  protected tabDate: WritableSignal<Date[] | null> = signal(null);
+
+  dateCompute(date: Date | null): void {
+    if (date) {
+      const tabPlaningTitle: number[] = [1, 7, 1, 6];
+      this.tabDate.set(
+        tabPlaningTitle.map((intervalDayAndMonth: number, index: number) => {
+          const uniqueDate: Date = date;
+          index <= 1
+            ? uniqueDate.setDate(date.getDate() + intervalDayAndMonth)
+            : uniqueDate.setMonth(date.getMonth() + intervalDayAndMonth);
+          return new Date(uniqueDate);
+        }),
+      );
+    }
   }
 
-  // prendre la date et l'heure entré,
-  // lui ajouter un planing de date :
-  // C'est-à-dire : date de l'apprentissage → 10min → 1Days → 1week → 1month → 6months
-  // ainsi mettre en place un calendrier qui reprendra
-  // toutes ces dates et crééra un planing
-  returnDateCompute(date: Date | null): Date[] {
-    if (!date) return [];
-    const tabPlaningTitle: number[] = [1, 7, 1, 6];
-    const tabDate: Date[] = tabPlaningTitle.map(
-      (value: number, index: number) => {
-        const uniqueDate = date;
-        index <= 1
-          ? uniqueDate.setDate(date.getDate() + value)
-          : uniqueDate.setMonth(date.getMonth() + value);
-        return uniqueDate;
-      },
-    );
-    console.log('planning dates', tabDate);
-    return tabDate;
+  clear() {
+    this.startDateLearnForm.controls.firstDateLearn.setValue(null, {
+      emitEvent: false,
+    });
+    setTimeout(() => {
+      this.startDateLearnForm.controls.firstDateLearn.enable();
+    });
   }
 }
