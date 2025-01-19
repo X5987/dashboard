@@ -1,74 +1,36 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
+  effect,
   inject,
   OnDestroy,
-  Renderer2,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
-  MatCard,
-  MatCardActions,
-  MatCardHeader,
-  MatCardTitle,
-} from '@angular/material/card';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { ToDoEnumform, TodoForm, ToDoList } from '@design-system';
-import { Observable, Subject, Subscription } from 'rxjs';
+  DesignSystemModule,
+  ToDoEnumform,
+  TodoForm,
+  ToDoList,
+} from '@design-system';
+import { Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef,
-  MatHeaderRow,
-  MatHeaderRowDef,
-  MatRow,
-  MatRowDef,
-  MatTable,
-  MatTableDataSource,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatIcon } from '@angular/material/icon';
 import { FormService } from '../../services/form.service';
 import { TodoService } from '../../services/todo.service';
-import { TruncatePipe } from '../../../../../../../design-system/src/services/pipes/truncate.pipe';
+import { TodoListStore } from './todo-list-store/todo-list-store';
 
 @Component({
   selector: 'app-to-do-list',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCard,
-    MatCardTitle,
-    MatCardHeader,
-    MatCardActions,
-    MatButton,
-    MatCell,
-    MatHeaderCell,
-    MatHeaderRow,
-    MatRow,
-    MatColumnDef,
-    MatCellDef,
-    MatHeaderCellDef,
-    MatTable,
-    MatRowDef,
-    MatHeaderRowDef,
-    MatButtonModule,
-    MatPaginator,
-    MatSortHeader,
-    MatSort,
-    MatIcon,
-    TruncatePipe,
-  ],
+  imports: [DesignSystemModule],
+
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss',
+  providers: [TodoListStore],
 })
 export class ToDoListComponent implements AfterViewInit, OnDestroy {
   dataSource: MatTableDataSource<ToDoList> = new MatTableDataSource<ToDoList>();
@@ -76,6 +38,7 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
+    ToDoEnumform.id,
     ToDoEnumform.status,
     ToDoEnumform.archiveMessage,
     ToDoEnumform.title,
@@ -88,7 +51,8 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   protected readonly formatDate: string = 'dd-MM-YYYY';
 
   readonly service: FormService = inject(FormService);
-  list: Observable<ToDoList[]> = this.service.getElementTodoList();
+
+  store = inject(TodoListStore);
 
   private subscribe$: Subscription = new Subscription();
   private subscribeDialog$: Subscription = new Subscription();
@@ -99,33 +63,29 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
 
   todoForm: FormGroup<TodoForm> = this.todoFormService.initializeForm();
 
-  renderer: Renderer2 = inject(Renderer2);
-  el: ElementRef = inject(ElementRef);
+  constructor() {
+    effect(() => {
+      this.dataSource.data = [...this.store.list()];
+    });
+  }
 
   ngAfterViewInit() {
-    this.subscribe$ = this.list.subscribe((list: ToDoList[]) => {
-      this.dataSource.data = list;
-    });
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  createOrEdit(editElement?: ToDoList): void {
-    const dialogRef = this.todoFormService.dialogManage(editElement);
+  create(): void {
+    const dialogRef = this.todoFormService.dialogManage();
     this.subscribeDialog$ = dialogRef.afterClosed().subscribe((result) => {
-      const newElement: ToDoList = result.data;
-      if (result) {
-        if (editElement) {
-          const index = this.dataSource.data.indexOf(editElement);
-          if (index !== -1) {
-            this.dataSource.data[index] = newElement;
-            this.dataSource.data = [...this.dataSource.data];
-          }
-        } else {
-          newElement[ToDoEnumform.status] = true;
-          this.dataSource.data = [...this.dataSource.data, newElement];
-        }
-      }
+      if (result) this.store.create(result.data);
+      this.todoForm.reset();
+    });
+  }
+
+  edit(el: ToDoList): void {
+    const dialogRef = this.todoFormService.dialogManage(el);
+    this.subscribeDialog$ = dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.store.edit(result.data);
       this.todoForm.reset();
     });
   }
@@ -135,16 +95,11 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   }
 
   removeLine(el: ToDoList) {
-    const index = this.dataSource.data.indexOf(el);
-    if (index >= 0) {
-      this.dataSource.data.splice(index, 1);
-      this.dataSource.data = [...this.dataSource.data];
-    }
+    this.store.delete(el);
   }
 
   deactiveTodo(el: ToDoList) {
-    const index = this.dataSource.data.indexOf(el);
-    this.dataSource.data[index][ToDoEnumform.status] = !el[ToDoEnumform.status];
+    this.store.deactiv(el[ToDoEnumform.id]);
   }
 
   announceSortChange(sortState: Sort) {

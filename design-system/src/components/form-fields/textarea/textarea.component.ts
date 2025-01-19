@@ -1,25 +1,44 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { Component, input, Self } from '@angular/core';
+import { FormControl, NgControl } from '@angular/forms';
 
 @Component({
-  selector: 'bac-textarea',
+  selector: 'lib-textarea',
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaComponent implements OnInit {
-  @Input() appearance: 'legacy' | 'standard' | 'fill' | 'outline' = 'outline';
-  @Input() control: UntypedFormControl;
-  @Input() label: string;
-  @Input() placeholder: string;
-  @Input() hint: string;
-  constructor() { }
+export class TextareaComponent {
+  label = input.required<string>();
+  placeholder = input.required<string>();
+  id = input.required<string>();
+  minlength = input<number>(0);
+  maxlength = input<number>(0);
+  appearance = input<'fill' | 'outline'>('outline');
 
-  ngOnInit(): void {
+  constructor(@Self() private controlDir: NgControl) {
+    this.controlDir.valueAccessor = this;
   }
 
-  private explainControlErrors(): string {
-    return null;
+  writeValue(value: never) {
+    if (value) {
+      this.control.setValue(value, { emitEvent: false });
+    }
   }
 
+  registerOnChange(fn: (value: never) => void): void {
+    this.control.valueChanges.subscribe((fn) => {});
+  }
+
+  registerOnTouched(fn: any): void {}
+
+  get control(): FormControl {
+    return this.controlDir.control as FormControl;
+  }
+
+  clear() {
+    this.control.disable({ emitEvent: false });
+    this.control.setValue('', { emitEvent: false });
+    setTimeout(() => {
+      this.control.enable();
+    });
+  }
 }

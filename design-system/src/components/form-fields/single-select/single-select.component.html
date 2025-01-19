@@ -1,8 +1,8 @@
-<mat-form-field [appearance]="appearance">
-  <mat-label>{{ label }}</mat-label>
+<mat-form-field [appearance]="appearance()">
+  <mat-label>{{ label() }}</mat-label>
 
   <mat-select [formControl]="control">
-    @for (item of list$ | async; track item) {
+    @for (item of list$() | async; track item) {
       <mat-option [value]="item">{{ item.libelle }}</mat-option>
     }
   </mat-select>

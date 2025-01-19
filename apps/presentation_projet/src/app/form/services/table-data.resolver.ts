@@ -1,9 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { Resolve } from '@angular/router';
 import { PeriodicElement } from '../models/table.interface';
 import { User } from '@design-system';
 import { FormService } from './form.service';

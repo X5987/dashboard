@@ -2,8 +2,7 @@
   <mat-card-header>
     <mat-card-title>Crée un film</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <form class="container" [formGroup]="form">
+  <mat-card-content class="formulaire">
       <lib-input-text
         [label]="'title'"
         [placeholder]="'Nom du film'"
@@ -15,11 +14,12 @@
         [formControl]="form.controls['description']">
       </lib-input-text>
       @if (modeUpdate()) {
-        <button (click)="editToParent(form)" mat-raised-button>edit</button>
-        <button (click)="cancelEdit()" mat-raised-button>cancel</button>
+        <div class="edit-button">
+        <button [disabled]="form.invalid" (click)="editToParent(form)" mat-raised-button>edit</button>
+        <button [disabled]="form.invalid" (click)="cancelEdit()" mat-raised-button>cancel</button>
+        </div>
       } @else {
-        <button (click)="saveToParent(form)" mat-raised-button>save</button>
+        <button [disabled]="form.invalid" (click)="saveToParent(form)" mat-raised-button>save</button>
       }
-    </form>
   </mat-card-content>
 </mat-card>

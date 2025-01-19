@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, input, Self } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 
 @Component({
@@ -7,20 +7,19 @@ import { FormControl, NgControl } from '@angular/forms';
   styleUrls: ['./input-text.component.scss'],
 })
 export class InputTextComponent {
-  @Input() appearance: 'fill' | 'outline' = 'outline';
-  @Input({ required: true }) label: string = '';
-  @Input({ required: true }) placeholder: string = '';
-  @Input() id: string = '';
-  @Input() type: 'email' | 'text' | 'number' = 'text';
-  @Input() readonly: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() min: number = 0;
-  @Input() max: number = 0;
-  @Input() minlength: number = 0;
-  @Input() maxlength: number = 0;
-  @Input() resetAllowed: boolean = false;
-  @Input() upperCaseActive: boolean = false;
-  @Input() specialCharOmit: boolean = false;
+  appearance = input<'fill' | 'outline'>('outline');
+  label = input.required<string>();
+  placeholder = input.required<string>();
+  id = input<string>('');
+  type = input<string>('');
+  readonly = input<boolean>(false);
+  disabled = input<boolean>(false);
+  min = input<number>(0);
+  max = input<number>(0);
+  minlength = input<number>(0);
+  maxlength = input<number>(0);
+  upperCaseActive = input<boolean>(false);
+  specialCharOmit = input<boolean>(false);
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

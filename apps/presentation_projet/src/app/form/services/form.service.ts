@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { PeriodicElement } from '../models/table.interface';
-import { ToDoEnumform, ToDoList, User } from '@design-system';
+import { User } from '@design-system';
 
 @Injectable({
   providedIn: 'root',
@@ -10,31 +10,32 @@ import { ToDoEnumform, ToDoList, User } from '@design-system';
 export class FormService {
   http: HttpClient = inject(HttpClient);
 
-  getElementTodoList(): Observable<ToDoList[]> {
-    return of([
-      {
-        [ToDoEnumform.title]: 'Coco',
-        [ToDoEnumform.message]: 'Lorem ioptuilekjnlzeqscqscqscqscqscnflf',
-        [ToDoEnumform.status]: true,
-        [ToDoEnumform.date]: new Date('01 Jan 1970 00:00:00 GMT'),
-        [ToDoEnumform.archiveMessage]: true,
-      },
-      {
-        [ToDoEnumform.title]: 'BOBO',
-        [ToDoEnumform.message]: 'Lorem ioptuilekjqscqscqscqsnlzenflf',
-        [ToDoEnumform.status]: false,
-        [ToDoEnumform.date]: new Date('01 Jan 1970 00:00:00 GMT'),
-        [ToDoEnumform.archiveMessage]: false,
-      },
-      {
-        [ToDoEnumform.title]: 'Faire des calins',
-        [ToDoEnumform.message]: 'Lorem ioptuilescsckjnlzenflf',
-        [ToDoEnumform.status]: true,
-        [ToDoEnumform.date]: new Date('01 Jan 1970 00:00:00 GMT'),
-        [ToDoEnumform.archiveMessage]: false,
-      },
-    ]);
-  }
+  // getElementTodoList(): Observable<ToDoList[]> {
+  //   return of([
+  //     {
+  //       [ToDoEnumform.title]: 'Coco',
+  //       [ToDoEnumform.message]: 'Lorem ioptuilekjnlzeqscqscqscqscqscnflf',
+  //       [ToDoEnumform.status]: true,
+  //       [ToDoEnumform.date]: new Date('01 Jan 1970 00:00:00 GMT'),
+  //       [ToDoEnumform.archiveMessage]: true,
+  //     },
+  //     {
+  //       [ToDoEnumform.title]: 'BOBO',
+  //       [ToDoEnumform.message]: 'Lorem ioptuilekjqscqscqscqsnlzenflf',
+  //       [ToDoEnumform.status]: false,
+  //       [ToDoEnumform.date]: new Date('01 Jan 1970 00:00:00 GMT'),
+  //       [ToDoEnumform.archiveMessage]: false,
+  //     },
+  //     {
+  //       [ToDoEnumform.title]: 'Faire des calins',
+  //       [ToDoEnumform.message]: 'Lorem ioptuilescsckjnlzenflf',
+  //       [ToDoEnumform.status]: true,
+  //       [ToDoEnumform.date]: new Date('01 Jan 1970 00:00:00 GMT'),
+  //       [ToDoEnumform.archiveMessage]: false,
+  //     },
+  //   ]);
+  // }
+
   getElementPeriodic(): Observable<PeriodicElement[]> {
     return of([
       {

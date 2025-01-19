@@ -1,25 +1,31 @@
-<div class="form-field-common textarea">
-  <mat-form-field [appearance]="appearance"
-                  bacErrorTooltip
-                  [control]="control">
-    <mat-label> {{label}} </mat-label>
-    <textarea matInput
-              [placeholder]="placeholder"
-              [formControl]="control"
-              autocomplete="off"
-              autocorrect="off"
-              autocapitalize="none"
-              spellcheck="false">
-    </textarea>
-    <mat-error *ngIf="control.hasError('required')">
-      {{'ERROR_FIELD_REQUIRED' | translate}}
-    </mat-error>
-    <mat-error *ngIf="!control.hasError('required') && control.hasError('minlength')">
-      {{'ERROR_FIELD_MIN_LENGTH' | translate : control.errors.minlength }}
-    </mat-error>
-    <mat-error *ngIf="!control.hasError('required') && control.hasError('maxlength')">
-      {{'ERROR_FIELD_MAX_LENGTH' | translate : control.errors.maxlength }}
-    </mat-error>
-    <mat-hint *ngIf="control.hasError('required')">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-hint>
-  </mat-form-field>
-</div>
+<mat-form-field [appearance]="appearance()" class="text-area">
+  <mat-label>{{ label() }}</mat-label>
+  <textarea matInput
+            [id]="id()"
+            [formControl]="control"
+            [placeholder]="placeholder()">
+  </textarea>
+
+  @if (control.valid) {
+    <button [disabled]="control.pending"
+            matSuffix mat-icon-button
+            aria-label="Clear"
+            (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</mat-form-field>
+
+  @if (control.hasError('required')) {
+    <mat-error>{{ label() }} est requis</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('minlength')) {
+    <mat-error>Le nombre minimum est {{ control.getError('minlength')['requiredLength'] }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('maxlength')) {
+    <mat-error>Le nombre maximum {{ control.getError('maxlength')['requiredLength'] }} est atteint</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('whitespace')) {
+    <mat-error>Le champ ne peut pas être vide ou contenir uniquement des espaces.</mat-error>
+  }
+

@@ -1,6 +1,6 @@
-import { Component, Input, OnDestroy, Self } from '@angular/core';
+import { Component, input, OnDestroy, Self } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export interface ListSelect {
   libelle: string;
@@ -13,12 +13,12 @@ export interface ListSelect {
   styleUrls: ['./single-select.component.scss'],
 })
 export class SingleSelectComponent implements OnDestroy {
-  @Input({ required: true }) appearance: 'fill' | 'outline' = 'outline';
-  @Input() readonly = false;
-  @Input() disabled = false;
-  @Input({ required: true }) label: string = '';
-  @Input({ required: true }) placeholder: string = '';
-  @Input({ required: true }) list$: Observable<ListSelect[]> = of([]);
+  appearance = input.required<'fill' | 'outline'>();
+  readonly = input(false);
+  disabled = input(false);
+  label = input.required<string>();
+  placeholder = input.required<string>();
+  list$ = input.required<Observable<ListSelect[]>>();
 
   protected _onDestroy = new Subject<void>();
   constructor(@Self() public controlDir: NgControl) {

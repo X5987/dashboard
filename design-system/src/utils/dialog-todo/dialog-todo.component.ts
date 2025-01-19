@@ -1,4 +1,10 @@
-import { Component, inject, model, Signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import {
@@ -10,8 +16,6 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { DesignSystemModule } from '../../design-system.module';
 import { FormGroup } from '@angular/forms';
 import { TodoDialog, ToDoEnumform, TodoForm } from '../../interfaces';
@@ -27,9 +31,6 @@ import { ValueChangesFormService } from '../../services/form-service/value-chang
     MatDialogClose,
     MatDialogContent,
     MatDialogTitle,
-    MatFormField,
-    MatInput,
-    MatLabel,
     DesignSystemModule,
   ],
   templateUrl: './dialog-todo.component.html',
@@ -43,14 +44,16 @@ export class DialogTodoComponent extends DialogComponent {
     ValueChangesFormService,
   );
   readonly data: TodoDialog = inject<TodoDialog>(MAT_DIALOG_DATA);
-  protected titleTodo: Signal<string> = model(this.data.title);
-  protected inputLabel: Signal<string> = model(this.data.inputLabel);
-  protected placeholder: Signal<string> = model(this.data.placeholder);
-  protected closeLabel: Signal<string> = model(this.data.close);
-  protected readonly: Signal<boolean> = model(this.data.readonly);
-  protected save: Signal<string> = model(this.data.save);
-  protected messageTitle: Signal<string> = model(this.data.messageTitle);
-  protected messagePlaceholder: Signal<string> = model(
+  protected titleTodo: WritableSignal<string> = signal(this.data.title);
+  protected inputLabel: WritableSignal<string> = signal(this.data.inputLabel);
+  protected placeholder: WritableSignal<string> = signal(this.data.placeholder);
+  protected closeLabel: WritableSignal<string> = signal(this.data.close);
+  protected readonly: WritableSignal<boolean> = signal(this.data.readonly);
+  protected save: WritableSignal<string> = signal(this.data.save);
+  protected messageTitle: WritableSignal<string> = signal(
+    this.data.messageTitle,
+  );
+  protected messagePlaceholder: WritableSignal<string> = signal(
     this.data.messagePlaceholder,
   );
   protected formReceived: FormGroup<TodoForm> = this.data.formValue;
