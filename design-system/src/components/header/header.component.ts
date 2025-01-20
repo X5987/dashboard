@@ -5,9 +5,9 @@ import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SlideToggleComponent } from '../form-fields';
 
 @Component({
-  selector: 'lib-header',
-  imports: [MatAnchor, RouterLink, SlideToggleComponent, ReactiveFormsModule],
-  template: `
+    selector: 'lib-header',
+    imports: [MatAnchor, RouterLink, SlideToggleComponent, ReactiveFormsModule],
+    template: `
     <div id="navbar">
       <div class="navbar-logo">
         <img class="navbar-logo" [src]="avatar()" alt="logo" />
@@ -28,7 +28,7 @@ import { SlideToggleComponent } from '../form-fields';
       </div>
     </div>
   `,
-  styles: `
+    styles: `
     :host {
       #navbar {
         display: flex;
@@ -60,8 +60,7 @@ import { SlideToggleComponent } from '../form-fields';
         }
       }
     }
-  `,
-  standalone: true,
+  `
 })
 export class HeaderComponent {
   disabled = false;

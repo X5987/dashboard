@@ -5,16 +5,14 @@ import {
   MatLabel,
   MatSuffix,
 } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
-import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'lib-filter-table',
-  standalone: true,
   templateUrl: './filter-table.component.html',
   styleUrl: './filter-table.component.scss',
   imports: [
@@ -22,14 +20,12 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
     MatCard,
     MatCardContent,
     MatFormField,
-    MatIcon,
-    MatIconButton,
     MatInput,
     MatLabel,
     FormsModule,
     MatSuffix,
-    MatButton,
-    MatSlideToggle,
+    MatIconButton,
+    MatIcon,
   ],
 })
 export class FilterTableComponent {

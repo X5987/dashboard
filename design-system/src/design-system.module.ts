@@ -52,11 +52,6 @@ import {
 } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
-import {
-  InputTextComponent,
-  SingleSelectComponent,
-  TextareaComponent,
-} from './components/form-fields';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import {
   MatChip,
@@ -71,7 +66,6 @@ import {
 } from '@angular/material/autocomplete';
 import { FilterTableComponent } from './components/filter-table/filter-table.component';
 import { AppRoutingModule } from '../../apps/form_projet/src/app/app.routes';
-import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
 import { MatTab, MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { LoaderDirective } from './directives/loader/loader.directive';
@@ -130,8 +124,6 @@ const materialElement = [
   MatAutocompleteTrigger,
   MatChipSet,
   MatChip,
-  DragScrollComponent,
-  DragScrollItemDirective,
   MatTabsModule,
   MatTab,
   MatSlideToggle,
@@ -175,11 +167,7 @@ const commonList = [
   MatAnchor,
   AsyncPipe,
 ];
-const microComponents = [
-  InputTextComponent,
-  SingleSelectComponent,
-  TextareaComponent,
-];
+
 const componentWeb = [
   HeaderComponent,
   DialogComponent,
@@ -188,8 +176,8 @@ const componentWeb = [
 ];
 
 @NgModule({
-  declarations: [microComponents],
+  declarations: [],
   imports: [commonList, materialElement, componentWeb],
-  exports: [componentWeb, commonList, materialElement, microComponents],
+  exports: [componentWeb, commonList, materialElement],
 })
 export class DesignSystemModule {}

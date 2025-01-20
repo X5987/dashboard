@@ -20,8 +20,10 @@ import {
   FormService,
   GridComponent,
   GridStructur,
+  InputTextComponent,
   ListSelect,
   NotifService,
+  SingleSelectComponent,
   TileTypeEnum,
   UserWithoutAdress,
 } from '@design-system';
@@ -38,7 +40,6 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-formul',
-  standalone: true,
   imports: [
     DesignSystemModule,
     GridComponent,
@@ -47,6 +48,8 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
     MatCheckbox,
     MatSortModule,
     MatSort,
+    SingleSelectComponent,
+    InputTextComponent,
   ],
   templateUrl: './formul.component.html',
   styleUrls: ['./formul.component.scss'],

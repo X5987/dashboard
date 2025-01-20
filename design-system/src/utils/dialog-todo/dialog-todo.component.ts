@@ -20,10 +20,13 @@ import { DesignSystemModule } from '../../design-system.module';
 import { FormGroup } from '@angular/forms';
 import { TodoDialog, ToDoEnumform, TodoForm } from '../../interfaces';
 import { ValueChangesFormService } from '../../services/form-service/value-changes-form.service';
+import {
+  InputTextComponent,
+  TextareaComponent,
+} from '../../components/form-fields';
 
 @Component({
   selector: 'lib-dialog-todo',
-  standalone: true,
   imports: [
     CommonModule,
     MatButton,
@@ -32,6 +35,8 @@ import { ValueChangesFormService } from '../../services/form-service/value-chang
     MatDialogContent,
     MatDialogTitle,
     DesignSystemModule,
+    InputTextComponent,
+    TextareaComponent,
   ],
   templateUrl: './dialog-todo.component.html',
   styleUrl: './dialog-todo.component.scss',

@@ -38,7 +38,6 @@ export interface AutoCompleteList {
   selector: 'lib-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
-  standalone: true,
   imports: [
     CommonModule,
     MatFormField,
@@ -80,8 +79,6 @@ export class AutocompleteComponent implements OnInit {
 
   readonly announcer = inject(LiveAnnouncer);
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  private onChange: (value: AutoCompleteList[]) => void = () => {};
-  private onTouched: () => void = () => {};
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

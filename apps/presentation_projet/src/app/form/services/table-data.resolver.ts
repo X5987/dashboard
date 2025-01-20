@@ -19,13 +19,13 @@ export class TableDataResolver implements Resolve<TableData> {
   resolve(): Observable<TableData> {
     const listPeriodic$ = this.formService.getElementPeriodic().pipe(
       catchError((error) => {
-        console.error('error getElementPeriodic', error);
+        console.error("LA LISTE PERIODIC N'EST PAS RECUPERER", error);
         return of([]);
       }),
     );
     const listUsers$ = this.formService.getAllUsers().pipe(
       catchError((error) => {
-        console.error('error getAllUsers', error);
+        console.error("LA LISTE ALLUSERS N'EST PAS RECUPERER", error);
         return of([]);
       }),
     );

@@ -24,13 +24,11 @@ import { TodoService } from '../../services/todo.service';
 import { TodoListStore } from './todo-list-store/todo-list-store';
 
 @Component({
-  selector: 'app-to-do-list',
-  standalone: true,
-  imports: [DesignSystemModule],
-
-  templateUrl: './to-do-list.component.html',
-  styleUrl: './to-do-list.component.scss',
-  providers: [TodoListStore],
+    selector: 'app-to-do-list',
+    imports: [DesignSystemModule],
+    templateUrl: './to-do-list.component.html',
+    styleUrl: './to-do-list.component.scss',
+    providers: [TodoListStore]
 })
 export class ToDoListComponent implements AfterViewInit, OnDestroy {
   dataSource: MatTableDataSource<ToDoList> = new MatTableDataSource<ToDoList>();

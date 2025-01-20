@@ -6,11 +6,10 @@ import { Observable } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-movies',
-  standalone: true,
-  imports: [DesignSystemModule],
-  templateUrl: './movies.component.html',
-  styleUrl: './movies.component.scss',
+    selector: 'app-movies',
+    imports: [DesignSystemModule],
+    templateUrl: './movies.component.html',
+    styleUrl: './movies.component.scss'
 })
 export class MoviesComponent {
   store = inject(MoviesStore);

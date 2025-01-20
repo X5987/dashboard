@@ -14,13 +14,10 @@ import { MenuSidebarComponent } from './components/menu/menu-sidebar.component';
 import { MatIconButton } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app.routes';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   imports: [
-    DesignSystemModule,
     CommonModule,
     RouterModule,
     AppRoutingModule,
@@ -34,12 +31,6 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
-  providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { subscriptSizing: 'dynamic' },
-    },
-  ],
 })
 export class DashboardComponent {
   collapse: WritableSignal<boolean> = signal(false);

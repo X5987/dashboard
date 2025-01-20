@@ -1,64 +1,49 @@
-<div class="container">
-  <div class="item ">
-    <mat-tab-group>
+<mat-tab-group>
+  <mat-tab label="Todo list">
+      <app-to-do-list class="to-do"/>
+  </mat-tab>
 
-      <mat-tab label="Todo list">
-        <div class="to-do">
-          <app-to-do-list/>
-        </div>
-      </mat-tab>
+  <mat-tab label="User list">
+      <lib-filter-table class="filter"
+        [appearance]="filterUser_appearance"
+        [name]="filterUser_name"
+        [placeholder]="filterUser_placeholder"
+        [label]="filterUser_label"
+        (textfilter)="filterTextUser($event)"
+      ></lib-filter-table>
+    @if ((listUser$ | async)) {
+        <app-user-table class="table"
+          [list]="listUser$"
+          [displayedColumns]="listUser"
+        ></app-user-table>
+    } @else {
+      <p>Loading...</p>
+    }
+  </mat-tab>
 
-      <mat-tab label="User list">
-        <div class="filter">
-          <lib-filter-table
-            [appearance]="filterUser_appearance"
-            [name]="filterUser_name"
-            [placeholder]="filterUser_placeholder"
-            [label]="filterUser_label"
-            (textfilter)="filterTextUser($event)"
-          ></lib-filter-table>
-        </div>
-        @if ( (listUser$ | async)) {
-          <div class="table">
-            <app-user-table
-              [list]="listUser$"
-              [displayedColumns]="listUser"
-            ></app-user-table>
-          </div>
-        } @else {
-          <p>Loading...</p>
-        }
-      </mat-tab>
+  <mat-tab label="Tableau Periodic">
+      <lib-filter-table class="filter"
+        [appearance]="filterPeriodic_appearance"
+        [name]="filterPeriodic_name"
+        [placeholder]="filterPeriodic_placeholder"
+        [label]="filterPeriodic_label"
+        (textfilter)="filterText($event)">
+        <mat-slide-toggle
+          [(ngModel)]="checkbox"
+          #toggle
+          (click)="toggleStatus(checkbox)"
+          matSuffix></mat-slide-toggle>
+      </lib-filter-table>
 
-      <mat-tab label="Tableau Periodic">
-        <div class="filter">
-          <lib-filter-table
-            [appearance]="filterPeriodic_appearance"
-            [name]="filterPeriodic_name"
-            [placeholder]="filterPeriodic_placeholder"
-            [label]="filterPeriodic_label"
-            (textfilter)="filterText($event)">
-            <mat-slide-toggle
-              [(ngModel)]="checkbox"
-              #toggle
-              (click)="toggleStatus(checkbox)"
-              matSuffix></mat-slide-toggle>
-          </lib-filter-table>
-        </div>
+    @defer (when (listTable$ | async)) {
+        <app-periodic-table class="table"
+          [list]="listTable$"
+          [displayedColumns]="listColumns"
+        ></app-periodic-table>
+    } @loading {
+      <p>Loading...</p>
+    }
+  </mat-tab>
 
-        @defer (when (listTable$ | async)) {
-          <div class="table">
-            <app-periodic-table
-              [list]="listTable$"
-              [displayedColumns]="listColumns"
-            ></app-periodic-table>
-          </div>
-        } @loading {
-          <p>Loading...</p>
-        }
-      </mat-tab>
-
-    </mat-tab-group>
-  </div>
-</div>
+</mat-tab-group>
 

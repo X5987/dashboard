@@ -5,7 +5,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { DesignSystemModule, Tile } from '@design-system';
+import { Tile } from '@design-system';
 import { SlideFootballImgComponent } from './components/slide/slide-football-img.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { FormulaireLambdaComponent } from './components/formulaire/formulaire-lambda.component';
@@ -13,16 +13,19 @@ import { MoviesComponent } from './components/list-movies/movies.component';
 import { Movie } from './components/models';
 import { MoviesStore } from './components/stores/movies.store';
 import { FormulaireLambdaServices } from './components/services/formulaire-lambda.services';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-content',
-  standalone: true,
   imports: [
-    DesignSystemModule,
     SlideFootballImgComponent,
     WeatherComponent,
     MoviesComponent,
     FormulaireLambdaComponent,
+    MatGridList,
+    MatGridTile,
+    NgTemplateOutlet,
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',

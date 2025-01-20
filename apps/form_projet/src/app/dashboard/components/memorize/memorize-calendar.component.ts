@@ -9,17 +9,52 @@ import {
   FormBuilder,
   FormControl,
   FormControlStatus,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DesignSystemModule } from '@design-system';
 import { map, Observable } from 'rxjs';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import {
+  MatCard,
+  MatCardContent,
+  MatCardHeader,
+  MatCardModule,
+} from '@angular/material/card';
+import {
+  MatCalendar,
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerModule,
+} from '@angular/material/datepicker';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-memorize-calendar',
-  standalone: true,
   templateUrl: './memorize-calendar.component.html',
   styleUrl: './memorize-calendar.component.scss',
-  imports: [DesignSystemModule],
+  imports: [
+    MatFormField,
+    MatCard,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatDatepickerInput,
+    MatInput,
+    MatDatepicker,
+    MatButton,
+    AsyncPipe,
+    MatCardHeader,
+    MatCardContent,
+    DatePipe,
+    MatCalendar,
+    MatError,
+    MatLabel,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  providers: [MatDatepickerModule],
 })
 export class MemorizeCalendarComponent {
   selected = model<Date | null>(null);

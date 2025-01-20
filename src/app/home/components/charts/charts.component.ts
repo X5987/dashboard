@@ -6,11 +6,10 @@ import {
 } from './data/height-weight-data';
 
 @Component({
-  selector: 'app-charts',
-  standalone: true,
-  imports: [DesignSystemModule],
-  templateUrl: './charts.component.html',
-  styleUrl: './charts.component.scss',
+    selector: 'app-charts',
+    imports: [DesignSystemModule],
+    templateUrl: './charts.component.html',
+    styleUrl: './charts.component.scss'
 })
 export class ChartsComponent implements OnInit {
   public chartOptionsPie = {};

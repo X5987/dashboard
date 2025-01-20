@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
-  DesignSystemModule,
+  FilterTableComponent,
   User,
   UserElementHeadTab,
   UserEnum,
@@ -17,17 +17,27 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from './services/filter.service';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { AsyncPipe } from '@angular/common';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatSuffix } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
-  standalone: true,
   imports: [
-    DesignSystemModule,
     PeriodicTableComponent,
     UserTableComponent,
     ToDoListComponent,
+    MatTab,
+    FilterTableComponent,
+    AsyncPipe,
+    MatSlideToggle,
+    MatSuffix,
+    FormsModule,
+    MatTabGroup,
   ],
 })
 export class FormComponent implements OnInit, OnDestroy {

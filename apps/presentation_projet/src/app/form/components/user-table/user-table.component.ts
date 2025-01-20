@@ -16,11 +16,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { DesignSystemModule, User, UserEnum } from '@design-system';
 
 @Component({
-  selector: 'app-user-table',
-  standalone: true,
-  imports: [DesignSystemModule],
-  templateUrl: './user-table.component.html',
-  styleUrl: './user-table.component.scss',
+    selector: 'app-user-table',
+    imports: [DesignSystemModule],
+    templateUrl: './user-table.component.html',
+    styleUrl: './user-table.component.scss'
 })
 export class UserTableComponent implements OnChanges, OnDestroy, AfterViewInit {
   protected readonly UserEnum = UserEnum;

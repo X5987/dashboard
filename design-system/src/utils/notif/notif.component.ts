@@ -8,7 +8,6 @@ import { MatIcon } from '@angular/material/icon';
   selector: 'lib-notif',
   templateUrl: './notif.component.html',
   styleUrl: './notif.component.scss',
-  standalone: true,
   imports: [MatFormFieldModule, NgClass, MatIcon],
 })
 export class NotifComponent {

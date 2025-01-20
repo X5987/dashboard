@@ -1,10 +1,29 @@
 import { Component, input, Self } from '@angular/core';
-import { FormControl, NgControl } from '@angular/forms';
+import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  MatError,
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'lib-textarea',
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss'],
+  imports: [
+    MatSuffix,
+    MatIconButton,
+    MatLabel,
+    MatFormField,
+    ReactiveFormsModule,
+    MatInput,
+    MatError,
+    MatIcon,
+  ],
 })
 export class TextareaComponent {
   label = input.required<string>();

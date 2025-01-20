@@ -1,6 +1,13 @@
 import { Component, input, OnDestroy, Self } from '@angular/core';
-import { FormControl, NgControl } from '@angular/forms';
+import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconButton } from '@angular/material/button';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { AsyncPipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 export interface ListSelect {
   libelle: string;
@@ -11,6 +18,16 @@ export interface ListSelect {
   selector: 'lib-single-select',
   templateUrl: './single-select.component.html',
   styleUrls: ['./single-select.component.scss'],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatSelect,
+    MatOption,
+    ReactiveFormsModule,
+    AsyncPipe,
+    MatIconButton,
+  ],
 })
 export class SingleSelectComponent implements OnDestroy {
   appearance = input.required<'fill' | 'outline'>();
