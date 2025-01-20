@@ -1,11 +1,30 @@
 import { Component, input, Self } from '@angular/core';
-import { FormControl, NgControl } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  NgControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-    selector: 'lib-input-text',
-    templateUrl: './input-text.component.html',
-    styleUrls: ['./input-text.component.scss'],
-    standalone: false
+  selector: 'lib-input-text',
+  templateUrl: './input-text.component.html',
+  styleUrls: ['./input-text.component.scss'],
+  imports: [
+    MatFormField,
+    MatInput,
+    ReactiveFormsModule,
+    MatIconButton,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIcon,
+  ],
 })
 export class InputTextComponent {
   appearance = input<'fill' | 'outline'>('outline');

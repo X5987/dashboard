@@ -1,1 +1,8 @@
 <p>weather works!</p>
+
+
+@for (item of resultLinkedSignal(); track item) {
+  <h3>{{ item.name }}</h3>
+}
+<button (click)="updateSignal()">updatesignal</button>
+<button (click)="updateDependentSignal()">updateDependentSignal</button>

@@ -1,15 +1,15 @@
 import { Component, inject, output, signal } from '@angular/core';
-import { DesignSystemModule } from '@design-system';
+import {DesignSystemModule, InputTextComponent} from '@design-system';
 import { FormGroup } from '@angular/forms';
 import { MoviesStore } from '../stores/movies.store';
 import { Movie } from '../models';
 import { FormulaireLambdaServices } from '../services/formulaire-lambda.services';
 
 @Component({
-    selector: 'app-formulaire-lambda',
-    imports: [DesignSystemModule],
-    templateUrl: './formulaire-lambda.component.html',
-    styleUrl: './formulaire-lambda.component.scss'
+  selector: 'app-formulaire-lambda',
+  imports: [DesignSystemModule, InputTextComponent],
+  templateUrl: './formulaire-lambda.component.html',
+  styleUrl: './formulaire-lambda.component.scss',
 })
 export class FormulaireLambdaComponent {
   store = inject(MoviesStore);

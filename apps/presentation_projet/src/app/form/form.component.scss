@@ -1,8 +1,4 @@
 :host {
-  .container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
 
     .item {
       width: 100%;
@@ -19,39 +15,11 @@
       .table {
         padding-top: 20px;
         width: 100%;
-
       }
 
       .to-do {
         padding-top: 20px;
         width: 100%;
-
       }
     }
-
-    //@media screen and (max-width: 1800px) {
-    //  .item:nth-child(1),
-    //  .item:nth-child(2) {
-    //    flex-basis: 50%;
-    //    flex-shrink: 1;
-    //    margin: inherit;
-    //  }
-    //  .item:nth-child(3) {
-    //    flex-basis: 100%;
-    //  }
-    //}
-    //
-    //@media screen and (max-width: 900px) {
-    //  .item {
-    //    width: 100%;
-    //
-    //    .filter {
-    //      width: 100%;
-    //      padding-bottom: 5px;
-    //    }
-    //
-    //  }
-    //}
-
-  }
 }

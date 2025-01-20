@@ -35,23 +35,23 @@ export interface AutoCompleteList {
 }
 
 @Component({
-    selector: 'lib-autocomplete',
-    templateUrl: './autocomplete.component.html',
-    styleUrls: ['./autocomplete.component.scss'],
-    imports: [
-        CommonModule,
-        MatFormField,
-        MatChipGrid,
-        MatChipRow,
-        MatIcon,
-        ReactiveFormsModule,
-        MatChipInput,
-        MatAutocompleteTrigger,
-        MatAutocomplete,
-        MatOption,
-        MatLabel,
-        FormsModule,
-    ]
+  selector: 'lib-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.scss'],
+  imports: [
+    CommonModule,
+    MatFormField,
+    MatChipGrid,
+    MatChipRow,
+    MatIcon,
+    ReactiveFormsModule,
+    MatChipInput,
+    MatAutocompleteTrigger,
+    MatAutocomplete,
+    MatOption,
+    MatLabel,
+    FormsModule,
+  ],
 })
 export class AutocompleteComponent implements OnInit {
   @Input({ required: true }) appearance: 'fill' | 'outline' = 'outline';
@@ -79,8 +79,6 @@ export class AutocompleteComponent implements OnInit {
 
   readonly announcer = inject(LiveAnnouncer);
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  private onChange: (value: AutoCompleteList[]) => void = () => {};
-  private onTouched: () => void = () => {};
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

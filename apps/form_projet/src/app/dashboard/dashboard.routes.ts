@@ -40,7 +40,7 @@ export const routesDashboardPersonal: Routes = [
   {
     path: 'memorizing',
     loadComponent: () =>
-      import('././components/memorize/memorize-calendar.component').then(
+      import('./components/memorize/memorize-calendar.component').then(
         (m) => m.MemorizeCalendarComponent,
       ),
   },
