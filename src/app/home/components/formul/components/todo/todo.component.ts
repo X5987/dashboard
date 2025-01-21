@@ -20,17 +20,17 @@ export interface Todo {
 }
 
 @Component({
-    selector: 'app-todo',
-    templateUrl: './todo.component.html',
-    styleUrl: './todo.component.scss',
-    imports: [
-        DesignSystemModule,
-        MatLabel,
-        MatFormField,
-        MatInput,
-        MatButton,
-        FormsModule,
-    ]
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrl: './todo.component.scss',
+  imports: [
+    DesignSystemModule,
+    MatLabel,
+    MatFormField,
+    MatInput,
+    MatButton,
+    FormsModule,
+  ],
 })
 export class TodoComponent implements OnInit, OnDestroy {
   @Input({ required: true }) label: Signal<string> = signal('');
@@ -87,6 +87,7 @@ export class TodoComponent implements OnInit, OnDestroy {
 
   removeInputText() {
     this.todoCurrent.value.message = '';
+    this.modeEdition = signal(false);
   }
 
   ngOnDestroy() {

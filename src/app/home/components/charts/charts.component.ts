@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { DesignSystemModule } from '@design-system';
 import {
   femaleHeightWeight,
   maleHeightWeight,
 } from './data/height-weight-data';
+import { AgCharts } from 'ag-charts-angular';
+import { MatCard, MatCardContent } from '@angular/material/card';
 
 @Component({
-    selector: 'app-charts',
-    imports: [DesignSystemModule],
-    templateUrl: './charts.component.html',
-    styleUrl: './charts.component.scss'
+  selector: 'app-charts',
+  templateUrl: './charts.component.html',
+  styleUrl: './charts.component.scss',
+  imports: [AgCharts, MatCardContent, MatCard],
 })
 export class ChartsComponent implements OnInit {
   public chartOptionsPie = {};

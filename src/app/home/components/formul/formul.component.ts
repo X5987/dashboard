@@ -244,11 +244,6 @@ export class FormulComponent implements OnInit, OnDestroy {
   }
 
   changeTodoText(todo: Todo) {
-    this.renderer.setStyle(
-      this.el.nativeElement.querySelector('#form-third'),
-      'background-color',
-      '#fff7ac',
-    );
     this.renderer
       .selectRootElement(this.el.nativeElement.querySelector('#inputMessage'))
       .focus();

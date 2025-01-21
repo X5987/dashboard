@@ -1,28 +1,2 @@
 :host {
-
-  .todo-header {
-    margin-bottom: 20px;
-    padding-bottom: 30px;
-
-    .todo-header-container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-  }
-
-    .table {
-      width: 100%;
-      .table-size-icon{
-        font-size: 16px;
-      }
-    }
-
-
-  @media screen and (max-width: 900px) {
-    .todo-header {
-      margin-bottom: 5px;
-      padding-bottom: 1px;
-    }
-  }
 }

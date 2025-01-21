@@ -11,10 +11,10 @@
         [label]="filterUser_label"
         (textfilter)="filterTextUser($event)"
       ></lib-filter-table>
-    @if ((listUser$ | async)) {
+    @if (listUser()) {
         <app-user-table class="table"
-          [list]="listUser$"
-          [displayedColumns]="listUser"
+          [listUser]="listUser()"
+          [displayedColumns]="listUserDisplayColumn"
         ></app-user-table>
     } @else {
       <p>Loading...</p>

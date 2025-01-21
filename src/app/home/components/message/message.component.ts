@@ -1,16 +1,25 @@
 import { Component, inject } from '@angular/core';
-import {
-  DesignSystemModule,
-  DialogService,
-  NotifService,
-} from '@design-system';
+import { DialogService, NotifService, SnackBarStats } from '@design-system';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
+import {
+  MatCardContent,
+  MatCardFooter,
+  MatCardHeader,
+  MatCardModule,
+} from '@angular/material/card';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-    selector: 'app-message',
-    imports: [DesignSystemModule],
-    templateUrl: './message.component.html',
-    styleUrl: './message.component.scss'
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrl: './message.component.scss',
+  imports: [
+    MatCardModule,
+    MatCardHeader,
+    MatCardContent,
+    MatCardFooter,
+    MatButton,
+  ],
 })
 export class MessageComponent {
   title: string = 'Test Notification';
@@ -44,9 +53,9 @@ export class MessageComponent {
       data: {
         message: 'Lorem CACA',
         action: 'close',
-        classe: 'snackbar-success',
+        classe: SnackBarStats.success,
       },
-      panelClass: 'snackbar-success',
+      panelClass: SnackBarStats.success,
     };
     this.notifService.openNotif(config.data, config);
   }
@@ -56,10 +65,10 @@ export class MessageComponent {
       {
         message: 'Opération réussie!',
         action: 'Fermer',
-        classe: 'snackbar-success',
+        classe: SnackBarStats.success,
       },
       {
-        panelClass: 'snackbar-success',
+        panelClass: SnackBarStats.success,
       },
     );
   }
@@ -69,19 +78,19 @@ export class MessageComponent {
       {
         message: 'Erreur survenue!',
         action: 'Fermer',
-        classe: 'snackbar-error',
+        classe: SnackBarStats.error,
       },
       {
-        panelClass: 'snackbar-error',
+        panelClass: SnackBarStats.error,
       },
     );
   }
 
   showWarningNotification() {
     this.notifService.openNotif(
-      { message: 'Info !', action: 'Fermer', classe: 'snackbar-info' },
+      { message: 'Info !', action: 'Fermer', classe: SnackBarStats.info },
       {
-        panelClass: 'snackbar-warning',
+        panelClass: SnackBarStats.warning,
         duration: 5000,
       },
     );

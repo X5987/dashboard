@@ -1,11 +1,25 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  linkedSignal,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   FilterTableComponent,
   User,
   UserElementHeadTab,
   UserEnum,
 } from '@design-system';
-import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
+import {
+  BehaviorSubject,
+  map,
+  Observable,
+  Subject,
+  take,
+  takeUntil,
+} from 'rxjs';
 import { FormService } from './services/form.service';
 import {
   PeriodicElement,
@@ -55,12 +69,12 @@ export class FormComponent implements OnInit, OnDestroy {
   protected readonly serviceForm: FormService = inject(FormService);
   protected filterService: FilterService = inject(FilterService);
   protected listColumns: string[] = PeriodicElementHeadTab;
-  protected listUser: string[] = UserElementHeadTab;
+  protected listUserDisplayColumn: string[] = UserElementHeadTab;
 
   protected listTable$: Observable<PeriodicElement[]> = new Observable<
     PeriodicElement[]
   >();
-  protected listUser$: Observable<User[]> = new Observable<User[]>();
+  protected listUser = signal([] as User[]);
   private unsubscribe$ = new Subject<void>();
 
   protected checkbox: boolean = false;
@@ -73,7 +87,7 @@ export class FormComponent implements OnInit, OnDestroy {
     this.router.data.pipe(take(1)).subscribe((data) => {
       if (data) {
         this.listTable$ = data['data'].listPeriodic;
-        this.listUser$ = data['data'].listUsers;
+        this.listUser = data['data'].listUsers;
       }
     });
 
@@ -99,13 +113,18 @@ export class FormComponent implements OnInit, OnDestroy {
       this.toggleStatusSubject,
     );
 
-    this.listUser$ = this.filterService.filterList(
-      this.serviceForm.getAllUsers(),
-      this.filterTextUserSubject,
-      (item: User, text: string) =>
-        item[UserEnum.username].includes(text.toLowerCase()) ||
-        item[UserEnum.password].includes(text.toLowerCase()),
-    );
+    this.filterService
+      .filterList(
+        this.serviceForm.getAllUsers(),
+        this.filterTextUserSubject,
+        (item: User, text: string) =>
+          item[UserEnum.username].includes(text.toLowerCase()) ||
+          item[UserEnum.password].includes(text.toLowerCase()),
+      )
+      .subscribe((list) => {
+        this.listUser.set(list);
+        console.log(this.listUser());
+      });
   }
 
   filterText(filterText: string) {
