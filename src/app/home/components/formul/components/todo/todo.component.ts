@@ -11,7 +11,6 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { DesignSystemModule } from '@design-system';
 
 export interface Todo {
   id: number;
@@ -23,14 +22,7 @@ export interface Todo {
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss',
-  imports: [
-    DesignSystemModule,
-    MatLabel,
-    MatFormField,
-    MatInput,
-    MatButton,
-    FormsModule,
-  ],
+  imports: [MatLabel, MatFormField, MatInput, MatButton, FormsModule],
 })
 export class TodoComponent implements OnInit, OnDestroy {
   @Input({ required: true }) label: Signal<string> = signal('');

@@ -1,36 +1,20 @@
 {
   "name": "design-system",
-  "$schema": "/node_modules/nx/schemas/project-schema.json",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "design-system/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["type:library", "scope:shared"],
+  "tags": [],
   "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:ng-packagr",
-      "outputs": ["{workspaceRoot}/dist/design-system"],
-      "options": {
-        "tsConfig": "design-system/tsconfig.lib.json",
-        "project": "design-system/ng-package.json"
-      }
-    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "design-system/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "design-system/**/*.ts",
-          "design-system/**/*.html",
-          "design-system/**/*.scss"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     }
   }
 }

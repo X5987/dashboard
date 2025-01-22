@@ -86,7 +86,6 @@
     }
   },
   "tags": ["type:application", "scope:dashboard"],
-
   "projects": {
     "design_system": {
       "root": "design-system",

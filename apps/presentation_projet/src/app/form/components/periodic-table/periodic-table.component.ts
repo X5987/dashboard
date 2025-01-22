@@ -8,7 +8,19 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from '@angular/material/table';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import {
   Direction,
@@ -16,15 +28,34 @@ import {
   PeriodicElementEnum,
 } from '../../models/table.interface';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { DesignSystemModule } from '@design-system';
+import { MatCard, MatCardActions } from '@angular/material/card';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-periodic-table',
-    imports: [DesignSystemModule],
-    templateUrl: './periodic-table.component.html',
-    styleUrl: './periodic-table.component.scss'
+  selector: 'app-periodic-table',
+  templateUrl: './periodic-table.component.html',
+  styleUrl: './periodic-table.component.scss',
+  imports: [
+    MatCard,
+    MatIconModule,
+    MatCardActions,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCell,
+    MatHeaderCellDef,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatRow,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatPaginator,
+    MatIcon,
+  ],
 })
 export class PeriodicTableComponent
   implements OnChanges, OnDestroy, AfterViewInit

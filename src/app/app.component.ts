@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { DesignSystemModule } from '@design-system';
+import { HeaderComponent } from '@design-system';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-root',
-    imports: [DesignSystemModule],
-    templateUrl: './app.component.html'
+  selector: 'app-root',
+  imports: [HeaderComponent, RouterOutlet],
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
   title = 'dashboard_cv';

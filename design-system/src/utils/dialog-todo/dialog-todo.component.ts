@@ -16,8 +16,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { DesignSystemModule } from '../../design-system.module';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TodoDialog, ToDoEnumform, TodoForm } from '../../interfaces';
 import { ValueChangesFormService } from '../../services/form-service/value-changes-form.service';
 import {
@@ -34,9 +33,9 @@ import {
     MatDialogClose,
     MatDialogContent,
     MatDialogTitle,
-    DesignSystemModule,
     InputTextComponent,
     TextareaComponent,
+    ReactiveFormsModule,
   ],
   templateUrl: './dialog-todo.component.html',
   styleUrl: './dialog-todo.component.scss',

@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "presentation_projet/src",
-  "tags": ["type:application", "scope:presentation"],
+  "tags": ["type:application", "scope:presentation_projet"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -30,25 +30,16 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kB",
-              "maximumError": "1MB"
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kB",
-              "maximumError": "4kB"
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all",
-          "fileReplacements": [
-            {
-              "replace": "presentation_projet/src/environments/environment.ts",
-              "with": "presentation_projet/src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "sourceMap": false,
-          "extractLicenses": true
+          "outputHashing": "all"
         },
         "development": {
           "buildOptimizer": false,
@@ -80,17 +71,13 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["presentation_projet/**/*.ts", "presentation_projet/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "presentation_projet/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "jest.config.ts"
       }
     },
     "serve-static": {
