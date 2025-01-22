@@ -1,12 +1,20 @@
 import { Component, Input, Signal } from '@angular/core';
-import { DesignSystemModule } from '../../design-system.module';
 import { GridStructur, TileTypeEnum } from '../../interfaces';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { NgTemplateOutlet } from '@angular/common';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
-    selector: 'lib-grid',
-    templateUrl: './grid.component.html',
-    styleUrl: './grid.component.scss',
-    imports: [DesignSystemModule]
+  selector: 'lib-grid',
+  templateUrl: './grid.component.html',
+  styleUrl: './grid.component.scss',
+  imports: [
+    MatCard,
+    MatCardContent,
+    NgTemplateOutlet,
+    MatGridList,
+    MatGridTile,
+  ],
 })
 export class GridComponent {
   @Input({ required: true }) tileTypes!: TileTypeEnum;

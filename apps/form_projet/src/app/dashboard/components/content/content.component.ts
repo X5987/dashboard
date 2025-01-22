@@ -15,6 +15,7 @@ import { MoviesStore } from './components/stores/movies.store';
 import { FormulaireLambdaServices } from './components/services/formulaire-lambda.services';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { NgTemplateOutlet } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-content',
@@ -26,6 +27,7 @@ import { NgTemplateOutlet } from '@angular/common';
     MatGridList,
     MatGridTile,
     NgTemplateOutlet,
+    MatCardModule,
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',

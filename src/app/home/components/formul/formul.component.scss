@@ -1,97 +1,23 @@
-//:host {
-//
-//  :root {
-//    --primary-color: #ff8383;
-//    --secondary-color: #adbcf8;
-//  }
-//
-//  .color-form {
-//    background-color: #ff8383;
-//  }
-//
-//  #form {
-//    display: flex;
-//    flex-direction: column;
-//    flex-wrap: wrap;
-//    justify-content: center;
-//    gap: 20px;
-//    background-color: #fff;
-//    padding: 40px;
-//    border-radius: 7px;
-//  }
-//
-//  #form-second {
-//    display: flex;
-//    flex-direction: column;
-//    flex-wrap: wrap;
-//    justify-content: center;
-//    gap: 20px;
-//    background-color: #fff;
-//    padding: 40px;
-//    border-radius: 7px;
-//  }
-//
-//  #form-third {
-//    display: flex;
-//    flex-direction: column;
-//    flex-wrap: wrap;
-//    justify-content: center;
-//    gap: 20px;
-//    background-color: #fff;
-//    padding: 40px;
-//    border-radius: 7px;
-//  }
-//
-//  .list {
-//    display: flex;
-//    flex-direction: column;
-//    align-content: flex-start;
-//    width: 100%;
-//    height: 100%;
-//    overflow-y: scroll;
-//    margin: 10px;
-//    justify-content: space-evenly;
-//
-//    .checkbox-todo {
-//      width: 10%;
-//      left: 0;
-//    }
-//
-//    .message-todo {
-//      width: 80%;
-//      left: 0;
-//      margin: 7px;
-//      cursor: pointer;
-//    }
-//
-//    .remove-todo {
-//      width: 5%;
-//      position: sticky;
-//      right: 0;
-//    }
-//
-//    mat-icon {
-//      color: #c5002e;
-//    }
-//  }
-//
-//
-//  .form-row {
-//    display: flex;
-//    flex-direction: row;
-//    gap: 20px;
-//  }
-//
-//
-//  .button-form {
-//    padding-top: 20px;
-//    display: flex;
-//    justify-content: center;
-//  }
-//
-//  @media screen and (max-width: 1300px) {
-//    .form-row {
-//      flex-direction: column;
-//    }
-//  }
-//}
+:host {
+
+  mat-list {
+    overflow-y: scroll;
+    height: 80%;
+    margin: 20px;
+
+    mat-list-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: white;
+      margin-bottom: 13px;
+      border-radius: 5px;
+    }
+
+    mat-card:hover {
+      background-color: #0041ca;
+    }
+
+  }
+
+}

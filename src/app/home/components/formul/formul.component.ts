@@ -36,7 +36,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { DestroySubscribes } from '../../../../../design-system/src/services/destroy/destroy-subscribes';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-formul',
@@ -47,7 +47,6 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
     TodoComponent,
     MatCheckbox,
     MatSortModule,
-    MatSort,
     SingleSelectComponent,
     InputTextComponent,
   ],

@@ -1,25 +1,38 @@
-:host {
+@use '@angular/material' as mat;
 
-  .snack-container {
+:root {
+  @include mat.snack-bar-overrides((
+    container-color: orange,
+    supporting-text-color: red,
+  ));
+
+
+  .snackbar-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    align-content: center;
+    gap: 8px;
+    padding: 12px;
+
+    &.snackbar-success {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    &.snackbar-error {
+      background-color: #f44336;
+      color: white;
+    }
+
+    &.snackbar-warning {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    &.snackbar-info {
+      background-color: #2196f3;
+      color: white;
+    }
   }
 
-  .snackbar-success {
-    background-color: #4caf50; /* Couleur de fond verte pour le succès */
-    color: white; /* Couleur du texte blanche */
-  }
-
-  .snackbar-error {
-    background-color: #f44336; /* Couleur de fond rouge pour l'erreur */
-    color: white; /* Couleur du texte blanche */
-  }
-
-  .snackbar-warning {
-    background-color: #ff9800; /* Couleur de fond orange pour l'avertissement */
-    color: white; /* Couleur du texte blanche */
-  }
 
 }

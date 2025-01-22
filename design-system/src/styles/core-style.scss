@@ -1,24 +1,12 @@
 @use "table";
 @use "loader";
 @use "scrollbar";
+@use "variables" as *;
 
 :host * {
   transition: all 200ms ease-in-out;
 }
 
-// Variables globales
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-$white-color: #ffffff;
-
-$box-shadow-custom: 1em 1em 1em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
-
-// Mixins réutilisables
-@mixin center-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 body {
   margin: 0;
@@ -50,7 +38,11 @@ body {
         box-shadow: $box-shadow-custom;
       }
     }
+
+    button { font-size: 16px; font-weight: bold; }
   }
+
+
 
 }
 
