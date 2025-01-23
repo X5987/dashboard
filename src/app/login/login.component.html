@@ -1,0 +1,40 @@
+<div class="container">
+  @if (loading()) {
+    <div libLoaderDirective></div>
+  } @else {
+    <small>login: admin & password: admin</small>
+    <mat-card>
+      <mat-card-content>
+        <lib-input-text
+          [label]="'Identifiant'"
+          [placeholder]="'Entrer l\'identifiant'"
+          [formControl]="loginForm.controls['username']"
+        ></lib-input-text>
+        <lib-input-text
+          [label]="'Mot de passe'"
+          [type]="typeInput()"
+          [typePassword]="true"
+          (showText)="typePassword($event)"
+          [placeholder]="'Entrer le mot de passe'"
+          [formControl]="loginForm.controls['password']"
+        ></lib-input-text>
+      </mat-card-content>
+
+      <div class="button-container">
+
+        @if (true) {
+          <button
+            [disabled]="loginForm.value.username === '' || loginForm.value.password === ''"
+            (click)="login()"
+            mat-raised-button
+          >Se connecter
+          </button>
+        }
+        @if (true) {
+          <h3>{{ message() }}</h3>
+        }
+      </div>
+
+    </mat-card>
+  }
+</div>

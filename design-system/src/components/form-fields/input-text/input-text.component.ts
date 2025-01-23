@@ -1,4 +1,4 @@
-import { Component, input, Self } from '@angular/core';
+import { Component, input, output, Self, signal } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -9,12 +9,14 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-input-text',
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
   imports: [
+    CommonModule,
     MatFormField,
     MatInput,
     ReactiveFormsModule,
@@ -32,6 +34,7 @@ export class InputTextComponent {
   placeholder = input.required<string>();
   id = input<string>('');
   type = input<string>('');
+  typePassword = input<boolean>(false);
   readonly = input<boolean>(false);
   disabled = input<boolean>(false);
   min = input<number>(0);
@@ -40,6 +43,8 @@ export class InputTextComponent {
   maxlength = input<number>(0);
   upperCaseActive = input<boolean>(false);
   specialCharOmit = input<boolean>(false);
+  showText = output<boolean>();
+  stateShowText = signal(false);
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
@@ -67,5 +72,10 @@ export class InputTextComponent {
     setTimeout(() => {
       this.control.enable();
     });
+  }
+
+  showPassword() {
+    this.stateShowText.set(!this.stateShowText());
+    this.showText.emit(!this.stateShowText());
   }
 }
