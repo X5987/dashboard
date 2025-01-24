@@ -12,13 +12,13 @@ export const routes: Routes = [
     title: 'Login',
   },
   {
-    path: 'home',
+    path: 'dashboard',
     canActivate: [AuthGuard],
     loadComponent: () =>
       import('./home/home.component').then((m) => m.HomeComponent),
     title: 'Dashboard-accueil',
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   ...routesPresentationProjet,
   ...routesFormProjet,
 ];

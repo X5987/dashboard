@@ -2,10 +2,22 @@
 
   mat-form-field {
     width: 100%;
-    padding-top: 5px;
 
-    > .mat-icon {
-      text-align: right;
+    .mat-mdc-form-field-infix {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .buttons-icon {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      > button {
+        align-items: end;
+      }
     }
 
     > .mat-error {

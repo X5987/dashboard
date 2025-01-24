@@ -1,5 +1,5 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
 import { InputTextComponent, LoaderDirective } from '@design-system';
 import {
   FormBuilder,
@@ -21,6 +21,7 @@ import { AuthService } from '../core/auth/auth.service';
     MatButton,
     RouterModule,
     LoaderDirective,
+    MatCardFooter,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -38,13 +39,14 @@ export class LoginComponent {
   // Vous êtes déconnecté. todo a implementer pour le logout
 
   loginForm = this.fb.group({
-    username: new FormControl('', [
+    username: new FormControl('admin', [
       Validators.required,
       Validators.minLength(3),
+      Validators.maxLength(30),
     ]),
-    password: new FormControl('', [
+    password: new FormControl('admin', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(5),
     ]),
   });
 
@@ -56,11 +58,11 @@ export class LoginComponent {
 
     this.authService.login(login, pass).subscribe((isLoggednIn) => {
       if (isLoggednIn) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/dashboard']);
       } else {
         this.loginForm.reset();
         this.loading.set(false);
-        this.message.set('Identifiants incorrects.');
+        this.message.set('Identifiants / Mot de passe incorrects.');
       }
     });
   }

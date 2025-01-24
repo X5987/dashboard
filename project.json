@@ -91,6 +91,7 @@
       "root": "design-system",
       "sourceRoot": "design-system/src",
       "projectType": "library",
+
       "tags": ["type:library", "scope:ui"],
       "targets": {
         "build": {

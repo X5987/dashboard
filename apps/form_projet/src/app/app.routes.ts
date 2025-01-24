@@ -6,10 +6,10 @@ export const routesFormProjet: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard-personal',
+    redirectTo: 'personal',
   },
   {
-    path: 'dashboard-personal',
+    path: 'dashboard/personal',
     loadComponent: () =>
       import('apps/form_projet/src/app/dashboard/dashboard.component').then(
         (m) => m.DashboardComponent,

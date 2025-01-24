@@ -1,23 +1,59 @@
 :host {
+
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 90vh;
 
-    > mat-card {
-      width: 20%;
-      background-color: #fbfbfb;
-      box-shadow: 0.3em 0.3em 0.3em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
-    }
-
-    .button-container {
+    .item {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 20px;
+
+      > mat-card {
+        display: flex;
+        flex-shrink: 0;
+        width: 25vh;
+        /* background-color: $box-white-color; */
+        > mat-card-footer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .message-error {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          color: red;
+          font-size: 12px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      width: 40vh;
+
+      .item {
+
+        > mat-card {
+          display: flex;
+          flex-shrink: 0;
+        }
+      }
     }
   }
 }

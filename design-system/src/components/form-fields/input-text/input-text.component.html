@@ -5,22 +5,27 @@
          [type]="type()"
          [formControl]="control"
          [placeholder]="placeholder()">
-  @if (typePassword()) {
-    <button
-      matSuffix mat-icon-button
-      (click)="showPassword()">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon>
-    </button>
-  } @else {
-    @if (control.valid) {
-      <button [disabled]="control.pending"
-              matSuffix mat-icon-button
-              aria-label="Clear"
-              (click)="clear()">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+
+  <div class="buttons-icon">
+
+    @if (typePassword() && control.value) {
+      <button
+        matSuffix mat-icon-button
+        (click)="showPassword()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon>
       </button>
     }
-  }
+      @if (control.valid) {
+        <button [disabled]="control.pending"
+                matSuffix mat-icon-button
+                aria-label="Clear"
+                (click)="clear()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+        </button>
+      }
+
+  </div>
+
 
   @if (control.hasError('required')) {
     <mat-error>{{ label() }} est requis</mat-error>

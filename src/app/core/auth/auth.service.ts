@@ -11,8 +11,9 @@ export class AuthService {
   readonly isLoggedIn = this.#isLoggedIn.asReadonly();
 
   login(name: string, password: string): Observable<boolean> {
-    const isLoggednIn: boolean = name === 'admin' && password === 'admin';
+    const isLoggednIn: boolean =
+      name.trim() === 'admin' && password.trim() === 'admin';
     this.#isLoggedIn.set(isLoggednIn);
-    return of(isLoggednIn).pipe(delay(4000));
+    return of(isLoggednIn).pipe(delay(3000));
   }
 }

@@ -14,9 +14,9 @@ import { SlideToggleComponent } from '../form-fields';
       </div>
 
       <div class="navbar-item">
-        <a mat-button routerLink="home">Accueil</a>
+        <a mat-button routerLink="dashboard">Accueil</a>
         <a mat-button routerLink="presentation">Présentation</a>
-        <a mat-button routerLink="dashboard-personal">Formulaire</a>
+        <a mat-button routerLink="personal">Formulaire</a>
         <a mat-flat-button routerLink="contact">Contact</a>
 
         <div class="toggle-zone">
