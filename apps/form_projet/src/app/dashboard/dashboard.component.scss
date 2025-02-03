@@ -1,13 +1,9 @@
 @use "design-system/src/styles/variables.scss";
 
-
 :host * {
   transition: all 200ms ease-in-out;
 }
 
-.menu-top {
-  box-shadow: 0.3em 0.3em 0.3em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
-}
 
 mat-toolbar {
   position: relative;

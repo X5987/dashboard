@@ -9,6 +9,4 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, RouterModule, AppRoutingModule],
   template: ` <router-outlet></router-outlet>`,
 })
-export class AppComponent {
-  title = 'form_projet';
-}
+export class AppComponent {}

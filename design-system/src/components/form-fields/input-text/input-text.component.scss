@@ -1,28 +1,9 @@
-:host {
-
-  mat-form-field {
-    width: 100%;
-
-    .mat-mdc-form-field-infix {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .buttons-icon {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-
-      > button {
-        align-items: end;
-      }
-    }
-
-    > .mat-error {
-      margin-bottom: 15px;
-    }
-
+mat-form-field {
+  width: 100%;
+  .items {
+    display: flex;
+    flex-direction: row;
   }
 }
+
+

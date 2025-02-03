@@ -29,12 +29,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { TodoService } from '../../services/todo.service';
 import { TodoListStore } from './todo-list-store/todo-list-store';
-import {
-  MatCard,
-  MatCardActions,
-  MatCardHeader,
-  MatCardTitle,
-} from '@angular/material/card';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
@@ -44,11 +38,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss',
   imports: [
-    MatCard,
-    MatCardTitle,
     MatIconModule,
-    MatCardHeader,
-    MatCardActions,
     MatButton,
     MatTable,
     MatSort,
@@ -67,7 +57,6 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     MatPaginator,
     MatIcon,
   ],
-  providers: [TodoListStore],
 })
 export class ToDoListComponent implements AfterViewInit, OnDestroy {
   dataSource: MatTableDataSource<ToDoList> = new MatTableDataSource<ToDoList>();

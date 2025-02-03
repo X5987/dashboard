@@ -23,6 +23,7 @@ import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
 })
 export class MoviesComponent {
   store = inject(MoviesStore);
+
   listMovies: Observable<Movies> = toObservable(this.store.items);
   loading: Observable<boolean> = toObservable(this.store.loading);
   editMovie = output<Movie>();

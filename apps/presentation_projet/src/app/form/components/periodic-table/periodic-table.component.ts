@@ -30,7 +30,6 @@ import {
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatCard, MatCardActions } from '@angular/material/card';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -38,9 +37,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
   templateUrl: './periodic-table.component.html',
   styleUrl: './periodic-table.component.scss',
   imports: [
-    MatCard,
     MatIconModule,
-    MatCardActions,
     MatTable,
     MatSort,
     MatColumnDef,

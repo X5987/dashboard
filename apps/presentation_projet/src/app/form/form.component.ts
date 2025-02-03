@@ -1,25 +1,12 @@
-import {
-  Component,
-  inject,
-  linkedSignal,
-  OnDestroy,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   FilterTableComponent,
+  HeaderComponent,
   User,
   UserElementHeadTab,
   UserEnum,
 } from '@design-system';
-import {
-  BehaviorSubject,
-  map,
-  Observable,
-  Subject,
-  take,
-  takeUntil,
-} from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 import { FormService } from './services/form.service';
 import {
   PeriodicElement,
@@ -31,7 +18,6 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from './services/filter.service';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { AsyncPipe } from '@angular/common';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSuffix } from '@angular/material/form-field';
@@ -45,13 +31,12 @@ import { FormsModule } from '@angular/forms';
     PeriodicTableComponent,
     UserTableComponent,
     ToDoListComponent,
-    MatTab,
     FilterTableComponent,
     AsyncPipe,
     MatSlideToggle,
     MatSuffix,
     FormsModule,
-    MatTabGroup,
+    HeaderComponent,
   ],
 })
 export class FormComponent implements OnInit, OnDestroy {

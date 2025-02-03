@@ -9,9 +9,6 @@ import { initialMovieState, Movie } from '../models';
 import { computed } from '@angular/core';
 
 export const MoviesStore = signalStore(
-  {
-    providedIn: 'root',
-  },
   // Etat du store
   withState(initialMovieState),
 

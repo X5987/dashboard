@@ -1,49 +1,45 @@
-<mat-tab-group>
-  <mat-tab label="Todo list">
-      <app-to-do-list class="to-do"/>
-  </mat-tab>
+<lib-header></lib-header>
 
-  <mat-tab label="User list">
-      <lib-filter-table class="filter"
-        [appearance]="filterUser_appearance"
-        [name]="filterUser_name"
-        [placeholder]="filterUser_placeholder"
-        [label]="filterUser_label"
-        (textfilter)="filterTextUser($event)"
-      ></lib-filter-table>
+<div class="container">
+  <div class="item">
+    <app-to-do-list/>
+  </div>
+
+  <div class="item">
+    <lib-filter-table
+      [appearance]="filterUser_appearance"
+      [name]="filterUser_name"
+      [placeholder]="filterUser_placeholder"
+      [label]="filterUser_label"
+      (textfilter)="filterTextUser($event)"
+    />
     @if (listUser()) {
-        <app-user-table class="table"
-          [listUser]="listUser()"
-          [displayedColumns]="listUserDisplayColumn"
-        ></app-user-table>
+      <app-user-table [listUser]="listUser()" [displayedColumns]="listUserDisplayColumn"/>
     } @else {
       <p>Loading...</p>
     }
-  </mat-tab>
+  </div>
 
-  <mat-tab label="Tableau Periodic">
-      <lib-filter-table class="filter"
-        [appearance]="filterPeriodic_appearance"
-        [name]="filterPeriodic_name"
-        [placeholder]="filterPeriodic_placeholder"
-        [label]="filterPeriodic_label"
-        (textfilter)="filterText($event)">
-        <mat-slide-toggle
-          [(ngModel)]="checkbox"
-          #toggle
-          (click)="toggleStatus(checkbox)"
-          matSuffix></mat-slide-toggle>
-      </lib-filter-table>
-
+  <div class="item">
+    <lib-filter-table
+      [appearance]="filterPeriodic_appearance"
+      [name]="filterPeriodic_name"
+      [placeholder]="filterPeriodic_placeholder"
+      [label]="filterPeriodic_label"
+      (textfilter)="filterText($event)">
+      <mat-slide-toggle
+        [(ngModel)]="checkbox"
+        #toggle
+        (click)="toggleStatus(checkbox)"
+        matSuffix/>
+    </lib-filter-table>
     @defer (when (listTable$ | async)) {
-        <app-periodic-table class="table"
-          [list]="listTable$"
-          [displayedColumns]="listColumns"
-        ></app-periodic-table>
+      <app-periodic-table [list]="listTable$" [displayedColumns]="listColumns"/>
     } @loading {
       <p>Loading...</p>
     }
-  </mat-tab>
+  </div>
 
-</mat-tab-group>
+
+</div>
 

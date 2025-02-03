@@ -2,15 +2,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TableDataResolver } from './form/services/table-data.resolver';
 import { FormulService } from '../../../../src/app/home/services/formul.service';
+import { TodoListStore } from './form/components/to-do-list/todo-list-store/todo-list-store';
 
 export const routesPresentationProjet: Routes = [
   {
-    path: 'dashboard/presentation',
+    path: 'presentation',
     loadComponent: () =>
       import('apps/presentation_projet/src/app/form/form.component').then(
         (m) => m.FormComponent,
       ),
-    providers: [FormulService],
+    providers: [TodoListStore, FormulService],
     resolve: {
       data: TableDataResolver,
     },

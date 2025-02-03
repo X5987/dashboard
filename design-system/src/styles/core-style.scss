@@ -9,41 +9,32 @@
 
 body {
   font-family: Roboto Light Sans, sans-serif;
-  font-weight: 400;
-  background-color: #f1f1ff;
-  line-height: 1.5;
-  text-align: left;
-  font-size: 12px;
 
   .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    margin-bottom: .5rem;
     font-family: "Arial Black", sans-serif !important;
     font-weight: 500;
-    line-height: 1.5;
     color: #32325d;
+  }
+
+  mat-grid-list {
+    height: 100%;
+    width: 100%;
+  }
+
+  mat-grid-tile {
+    box-shadow: 0.3em 0.3em 0.3em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
+    border-radius: 0.75em;
   }
 
   .container {
     display: flex;
 
-    .item {
-      display: flex;
-
-      mat-card {
-        //background-color: #ededed;
-        color: #fff !important;
-        display: flex;
-        box-shadow: $box-shadow-custom;
-      }
-
-      button {
-        font-size: 12px;
-        font-weight: 500;
-        color: #000;
-      }
+    mat-card {
+      background-color: white;
     }
   }
 }
+
 
 
 

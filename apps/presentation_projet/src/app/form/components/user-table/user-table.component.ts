@@ -27,15 +27,12 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { User, UserEnum } from '@design-system';
-import { MatCard, MatCardActions } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss',
   imports: [
-    MatCard,
-    MatCardActions,
     MatTable,
     MatHeaderCell,
     MatCell,

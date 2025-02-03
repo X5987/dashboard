@@ -13,6 +13,7 @@ import { MenuSidebarComponent } from './components/menu/menu-sidebar.component';
 import { MatIconButton } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app.routes';
+import { HeaderComponent } from '@design-system';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +27,7 @@ import { AppRoutingModule } from '../app.routes';
     MatIconModule,
     MenuSidebarComponent,
     MatIconButton,
+    HeaderComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

@@ -22,7 +22,7 @@
             "input": "presentation_projet/public"
           }
         ],
-        "styles": ["presentation_projet/src/styles.scss"],
+        "styles": ["presentation_projet/src/styles.scss", "design-system/src/styles/core-styles.scss"],
         "scripts": []
       },
       "configurations": {

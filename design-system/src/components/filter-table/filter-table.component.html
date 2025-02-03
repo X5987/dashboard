@@ -1,23 +1,29 @@
-<mat-card>
-  <mat-card-content class="container">
-    <mat-form-field [appearance]="appearance" class="item-input">
-      <mat-label>{{ label }}</mat-label>
-      <input id="filterId" #filter
-             (keyup)="filterFn(value)"
-             matInput
-             type="text"
-             [placeholder]="inputPlaceholder"
-             [(ngModel)]="value">
-      @if (value) {
-        <button [disabled]="!filter"
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="clear()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
-        </button>
-      }
-    </mat-form-field>
+<div class="container">
+<div class="item">
+
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field [appearance]="appearance">
+        <mat-label>{{ label }}</mat-label>
+        <input id="filterId" #filter
+               (keyup)="filterFn(value)"
+               matInput
+               type="text"
+               [placeholder]="inputPlaceholder"
+               [(ngModel)]="value">
+        @if (value) {
+          <button [disabled]="!filter"
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  (click)="clear()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+          </button>
+        }
+      </mat-form-field>
       <ng-content></ng-content>
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+</div>

@@ -1,12 +1,12 @@
 <mat-form-field [appearance]="appearance()">
   <mat-label>{{ label() }}</mat-label>
-  <input matInput
-         [id]="id()"
-         [type]="type()"
-         [formControl]="control"
-         [placeholder]="placeholder()">
 
-  <div class="buttons-icon">
+  <div class="items">
+    <input matInput
+           [id]="id()"
+           [type]="type()"
+           [formControl]="control"
+           [placeholder]="placeholder()">
 
     @if (typePassword() && control.value) {
       <button
@@ -15,17 +15,15 @@
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon>
       </button>
     }
-      @if (control.valid) {
-        <button [disabled]="control.pending"
-                matSuffix mat-icon-button
-                aria-label="Clear"
-                (click)="clear()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
-        </button>
-      }
-
+    @if (control.valid) {
+      <button [disabled]="control.pending"
+              matSuffix mat-icon-button
+              aria-label="Clear"
+              (click)="clear()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+      </button>
+    }
   </div>
-
 
   @if (control.hasError('required')) {
     <mat-error>{{ label() }} est requis</mat-error>
@@ -76,3 +74,6 @@
     <mat-error>Le champ ne peut pas être vide ou contenir uniquement des espaces.</mat-error>
   }
 </mat-form-field>
+
+
+
