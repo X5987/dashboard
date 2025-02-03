@@ -1,13 +1,30 @@
 import { Component, inject, output, signal } from '@angular/core';
-import {DesignSystemModule, InputTextComponent} from '@design-system';
-import { FormGroup } from '@angular/forms';
+import { InputTextComponent } from '@design-system';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MoviesStore } from '../stores/movies.store';
 import { Movie } from '../models';
 import { FormulaireLambdaServices } from '../services/formulaire-lambda.services';
+import {
+  MatCard,
+  MatCardContent,
+  MatCardHeader,
+  MatCardTitle,
+} from '@angular/material/card';
+import { MatButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-formulaire-lambda',
-  imports: [DesignSystemModule, InputTextComponent],
+  imports: [
+    InputTextComponent,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    ReactiveFormsModule,
+    MatButton,
+    MatIconModule,
+    MatCardTitle,
+  ],
   templateUrl: './formulaire-lambda.component.html',
   styleUrl: './formulaire-lambda.component.scss',
 })

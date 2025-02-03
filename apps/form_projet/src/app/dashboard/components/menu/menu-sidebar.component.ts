@@ -37,29 +37,29 @@ export type MenuItem = {
 
     <mat-nav-list>
       @for (item of menuItems(); track item) {
-        <a
-          mat-list-item
-          [routerLink]="item.route"
-          routerLinkActive
-          #link="routerLinkActive"
-          [activated]="link.isActive"
+      <a
+        mat-list-item
+        [routerLink]="item.route"
+        routerLinkActive
+        #link="routerLinkActive"
+        [activated]="link.isActive"
+      >
+        <mat-icon
+          [fontSet]="
+            link.isActive ? 'material-icons' : 'material-icons-outlined'
+          "
+          matListItemIcon
+          [class.icon-color-activ]="link.isActive"
+          [class.icon-color-inactiv]="!link.isActive"
+          >{{ item.icon }}
+        </mat-icon>
+        <span
+          [class.text-inactiv]="!link.isActive"
+          [class.text-activ]="link.isActive"
+          matListItemTitle
+          >{{ item.label }}</span
         >
-          <mat-icon
-            [fontSet]="
-              link.isActive ? 'material-icons' : 'material-icons-outlined'
-            "
-            matListItemIcon
-            [class.icon-color-activ]="link.isActive"
-            [class.icon-color-inactiv]="!link.isActive"
-            >{{ item.icon }}
-          </mat-icon>
-          <span
-            [class.text-inactiv]="!link.isActive"
-            [class.text-activ]="link.isActive"
-            matListItemTitle
-            >{{ item.label }}</span
-          >
-        </a>
+      </a>
       }
     </mat-nav-list>
   `,
@@ -72,9 +72,9 @@ export class MenuSidebarComponent {
   surnameSession = signal('Lorem Ipsum');
   menuItems = signal<MenuItem[]>([
     {
-      icon: 'dashboard',
-      label: 'Dashboard',
-      route: 'dashboard-personal',
+      icon: 'board',
+      label: 'board',
+      route: 'board',
     },
     {
       icon: 'toc',

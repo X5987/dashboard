@@ -1,19 +1,21 @@
 :host {
 
-  .flex-container {
+  .mat-grid-tile-content {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
   }
 
-  .flex-item {
-    padding: 20px;
-  }
-
-  @media (max-width: 500px) {
-    .flex-container {
-      flex-direction: column;
-    }
+  mat-grid-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
   }
 
 }

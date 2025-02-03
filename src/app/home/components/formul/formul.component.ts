@@ -14,7 +14,6 @@ import {
 import {
   AutocompleteComponent,
   AutoCompleteList,
-  DesignSystemModule,
   FormModel,
   FormSecondModel,
   FormService,
@@ -27,7 +26,7 @@ import {
   TileTypeEnum,
   UserWithoutAdress,
 } from '@design-system';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { FormulService } from '../../services/formul.service';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -36,20 +35,32 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { DestroySubscribes } from '../../../../../design-system/src/services/destroy/destroy-subscribes';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
+import { MatChip, MatChipSet } from '@angular/material/chips';
+import { MatList, MatListItem } from '@angular/material/list';
+import { AsyncPipe } from '@angular/common';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-formul',
   imports: [
-    DesignSystemModule,
     GridComponent,
     AutocompleteComponent,
     TodoComponent,
     MatCheckbox,
     MatSortModule,
-    MatSort,
     SingleSelectComponent,
     InputTextComponent,
+    MatChipSet,
+    MatChip,
+    MatList,
+    AsyncPipe,
+    MatListItem,
+    MatIconButton,
+    MatIcon,
+    ReactiveFormsModule,
+    MatButton,
   ],
   templateUrl: './formul.component.html',
   styleUrls: ['./formul.component.scss'],
@@ -244,11 +255,6 @@ export class FormulComponent implements OnInit, OnDestroy {
   }
 
   changeTodoText(todo: Todo) {
-    this.renderer.setStyle(
-      this.el.nativeElement.querySelector('#form-third'),
-      'background-color',
-      '#fff7ac',
-    );
     this.renderer
       .selectRootElement(this.el.nativeElement.querySelector('#inputMessage'))
       .focus();

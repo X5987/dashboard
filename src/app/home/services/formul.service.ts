@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AutoCompleteList, ListSelect, Product, User } from '@design-system';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../components/formul/components/todo/todo.component';
+import { AutoCompleteList, ListSelect, Product, User } from '@design-system';
 
 @Injectable({
   providedIn: 'root',
@@ -98,7 +98,13 @@ export class FormulService {
       { id: 1, message: 'Faire du sport', complete: true },
       { id: 2, message: 'Prendre les médicaments', complete: false },
       { id: 3, message: 'Taches ménagères', complete: true },
-      { id: 4, message: 'Accompagnée mamie à la gare', complete: false },
+      { id: 4, message: 'Accompagnée mamie à la cave', complete: false },
+      { id: 5, message: 'Accompagnée papi à la gare', complete: true },
+      { id: 6, message: 'Accompagnée julie à la cave', complete: false },
+      { id: 7, message: 'Accompagnée cacahouete', complete: true },
+      { id: 8, message: 'Accompagnée renauld à la gare', complete: false },
+      { id: 9, message: 'Accompagnée jéjé à la cave', complete: true },
+      { id: 10, message: 'Accompagnée jean à la gare', complete: false },
     ]);
   }
 

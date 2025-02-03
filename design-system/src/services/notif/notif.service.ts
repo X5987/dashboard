@@ -1,6 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { NotifComponent } from '../../utils/notif/notif.component';
+import {
+  NotifComponent,
+  SnackBarStats,
+} from '../../utils/notif/notif.component';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +17,9 @@ export class NotifService {
     data: {
       message: 'Lorem Ipsum',
       action: 'close',
-      classe: 'snackbar-success',
+      classe: SnackBarStats.success,
     },
-    panelClass: 'snackbar-success',
+    panelClass: SnackBarStats.success,
   };
 
   openNotif(

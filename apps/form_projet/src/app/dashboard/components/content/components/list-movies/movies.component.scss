@@ -2,49 +2,51 @@
   transition: 0.3s;
 }
 
-
 :host {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 90%;
+  margin: 20px;
+  padding: 20px;
+  gap: 10px;
+  flex-grow: 1;
 
-  .full-size-card {
-    display: flex;
-    justify-content: stretch;
-    width: 100%;
-    height: 100%;
+  mat-card {
     font-size: 12px;
-
-    > mat-card-header mat-card-title {
-      padding-bottom: 30px;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-radius: 10px;
+    color: white;
+    background-color: #2d5ab4;
 
     > mat-card-content {
-      overflow-y: scroll;
-      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
     }
 
-    mat-card {
-      background-color: #2d5ab4;
-      color: white;
-      margin-bottom: 14px;
-
-      .icon-right {
-        display: flex;
-        justify-content: flex-end;
-
-        mat-icon {
-          font-size: 20px;
-          color: #c4c4c4;
-        }
-
-        mat-icon:hover {
-          font-size: 22px;
-          color: white;
-        }
-      }
-    }
-
-    mat-card:hover {
-      background-color: #0d4ccd;
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    > mat-card-footer {
+      display: flex;
+      justify-content: right;
     }
   }
+
+  mat-card:hover {
+    background-color: #0041ca;
+  }
+
+  mat-icon {
+    background-color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    align-content: center;
+    color: #939eb1;
+  }
+
+  mat-icon:hover {
+    color: #0041ca;
+  }
 }
+

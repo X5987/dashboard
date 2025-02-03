@@ -27,6 +27,26 @@ export const initialMovieState: MoviesState = {
       title: 'New Movies',
       description: 'New Movies description',
     },
+    {
+      id: 1,
+      title: '2 Movies',
+      description: 'New Movies description',
+    },
+    {
+      id: 2,
+      title: '3 Movies',
+      description: 'New Movies description',
+    },
+    {
+      id: 3,
+      title: '4 Movies',
+      description: 'New Movies description',
+    },
+    {
+      id: 4,
+      title: '5 Movies',
+      description: 'New Movies description',
+    },
   ],
   loading: false,
   empty: false,

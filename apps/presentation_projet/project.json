@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "presentation_projet/src",
-  "tags": [],
+  "tags": ["type:application", "scope:presentation_projet"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -22,7 +22,7 @@
             "input": "presentation_projet/public"
           }
         ],
-        "styles": ["presentation_projet/src/styles.scss"],
+        "styles": ["presentation_projet/src/styles.scss", "design-system/src/styles/core-styles.scss"],
         "scripts": []
       },
       "configurations": {

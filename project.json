@@ -29,7 +29,7 @@
         ],
         "styles": [
           "@angular/material/prebuilt-themes/azure-blue.css",
-          "src/styles.scss"
+          "design-system/src/styles/core-style.scss"
         ],
         "scripts": []
       },
@@ -85,12 +85,42 @@
       ]
     }
   },
+  "tags": ["type:application", "scope:dashboard"],
   "projects": {
+    "design_system": {
+      "root": "design-system",
+      "sourceRoot": "design-system/src",
+      "projectType": "library",
+
+      "tags": ["type:library", "scope:ui"],
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "design-system/ng-package.json",
+            "styles": ["design-system/src/styles/core-styles.scss"]
+          }
+        }
+      }
+    },
     "form_projet": {
       "root": "apps/form_projet",
       "sourceRoot": "apps/form_projet/src",
       "projectType": "library",
+      "tags": ["type:application", "scope:form"],
       "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "outputPath": "dist/form_projet",
+            "index": "apps/form_projet/src/index.html",
+            "main": "apps/form_projet/src/main.ts",
+            "tsConfig": "apps/form_projet/tsconfig.app.json",
+            "scripts": [],
+            "project": "apps/form_projet/ng-package.json",
+            "styles": ["design-system/src/styles/core-styles.scss", "apps/form_projet/src/styles.scss"]
+          }
+        },
         "test": {
           "executor": "@nx/jest:jest",
           "options": {
@@ -105,6 +135,13 @@
       "sourceRoot": "apps/presentation_projet/src",
       "projectType": "library",
       "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "apps/presentation_projet/ng-package.json",
+            "styles": ["design-system/src/styles/core-styles.scss", "apps/presentation_projet/src/styles.scss"]
+          }
+        },
         "test": {
           "executor": "@nx/jest:jest",
           "options": {

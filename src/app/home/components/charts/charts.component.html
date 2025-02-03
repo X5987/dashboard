@@ -1,13 +1,14 @@
-<div class="container">
-<!--  <drag-scroll>-->
+<mat-card appearance="raised">
+  <mat-card-content>
+    <div class="container"><!--  <drag-scroll>-->
+      <ag-charts class="chart" drag-scroll-item [options]="chartOptionsPie"></ag-charts>
 
-<!--    <ag-charts class="chart" drag-scroll-item [options]="chartOptionsPie"></ag-charts>-->
+      <ag-charts class="chart" drag-scroll-item [options]="chartOptionsLine"></ag-charts>
 
-<!--    <ag-charts class="chart" drag-scroll-item [options]="chartOptionsLine"></ag-charts>-->
+      <ag-charts class="chart" drag-scroll-item [options]="chartOptionsBuble"></ag-charts>
 
-<!--    <ag-charts class="chart" drag-scroll-item [options]="chartOptionsBuble"></ag-charts>-->
-
-<!--    <ag-charts class="chart" drag-scroll-item [options]="chartOptionsDonnut"></ag-charts>-->
-
-<!--  </drag-scroll>-->
-</div>
+      <ag-charts class="chart" drag-scroll-item [options]="chartOptionsDonnut"></ag-charts>
+      <!--  </drag-scroll>-->
+    </div>
+  </mat-card-content>
+</mat-card>

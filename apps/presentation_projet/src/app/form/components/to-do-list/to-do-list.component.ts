@@ -6,29 +6,57 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import {
-  DesignSystemModule,
-  ToDoEnumform,
-  TodoForm,
-  ToDoList,
-} from '@design-system';
+import { ToDoEnumform, TodoForm, ToDoList } from '@design-system';
 import { Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { TodoService } from '../../services/todo.service';
 import { TodoListStore } from './todo-list-store/todo-list-store';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { DatePipe } from '@angular/common';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-to-do-list',
-    imports: [DesignSystemModule],
-    templateUrl: './to-do-list.component.html',
-    styleUrl: './to-do-list.component.scss',
-    providers: [TodoListStore]
+  selector: 'app-to-do-list',
+  templateUrl: './to-do-list.component.html',
+  styleUrl: './to-do-list.component.scss',
+  imports: [
+    MatIconModule,
+    MatButton,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatSortHeader,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatIconButton,
+    DatePipe,
+    MatHeaderRow,
+    MatRow,
+    MatRowDef,
+    MatHeaderRowDef,
+    MatPaginator,
+    MatIcon,
+  ],
 })
 export class ToDoListComponent implements AfterViewInit, OnDestroy {
   dataSource: MatTableDataSource<ToDoList> = new MatTableDataSource<ToDoList>();

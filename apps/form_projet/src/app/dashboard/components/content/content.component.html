@@ -1,19 +1,15 @@
 <mat-grid-list [cols]="3"
                [rowHeight]="'100px'"
-               [gutterSize]="'25'">
+               [gutterSize]="'20'">
   @for (tile of tiles; track tile) {
-    <mat-grid-tile class="mat-grid-tile"
-                   [colspan]="tile.cols"
-                   [rowspan]="tile.rows">
-      <div class="content">
-        @if (tile.context) {
-          <ng-container *ngTemplateOutlet="tile.context">
-          </ng-container>
-        } @else {
-          {{ tile.text }}
-        }
-      </div>
-
+    <mat-grid-tile
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows">
+      @if (tile.context) {
+        <ng-container *ngTemplateOutlet="tile.context"></ng-container>
+      } @else {
+        {{ tile.text }}
+      }
     </mat-grid-tile>
   }
 </mat-grid-list>

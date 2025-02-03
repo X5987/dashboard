@@ -1,18 +1,4 @@
-
 :host {
-
-  .container {
-    gap: 20px;
-    padding: 1rem;
-
-    .card-footer-button-gap {
-      display: flex;
-      justify-content: right;
-      gap: 20px;
-
-    }
-  }
-}
 
   .snackbar-success {
     background-color: #4caf50; /* Couleur de fond verte pour le succès */
@@ -29,27 +15,30 @@
     color: white; /* Couleur du texte blanche */
   }
 
+  mat-card-footer {
 
-.btn-alert {
-  color: #ff495f;
-}
+    .btn-alert {
+      color: #ff495f;
+    }
 
-.btn-modal {
-  color: #0015ff;
-}
+    .btn-modal {
+      color: #0015ff;
+    }
 
-.btn-notif {
-  color: #00b2ff;
-}
+    .btn-notif {
+      color: #00b2ff;
+    }
 
-.btn-succes {
-  color: #83d308;
-}
+    .btn-succes {
+      color: #83d308;
+    }
 
-.btn-error {
-  color: #c5002e;
-}
+    .btn-error {
+      color: #c5002e;
+    }
 
-.btn-info {
-  color: #00218a;
+    .btn-info {
+      color: #00218a;
+    }
+  }
 }

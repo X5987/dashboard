@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
-import { DesignSystemModule } from '@design-system';
-import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app.routes';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [
-    DesignSystemModule,
-    CommonModule,
-    AppRoutingModule,
-    DesignSystemModule,
-  ],
   selector: 'app-root',
-  templateUrl: './app.component.html',
   standalone: true,
+  imports: [CommonModule, RouterModule, AppRoutingModule],
+  template: ` <router-outlet></router-outlet>`,
 })
-export class AppComponent {
-  title = 'presentation_projet';
-}
+export class AppComponent {}

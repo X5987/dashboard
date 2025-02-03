@@ -1,16 +1,9 @@
-:host {
-
-  mat-form-field {
-    width: 100%;
-    padding-top: 5px;
-
-    > .mat-icon {
-      text-align: right;
-    }
-
-    > .mat-error {
-      margin-bottom: 15px;
-    }
-
+mat-form-field {
+  width: 100%;
+  .items {
+    display: flex;
+    flex-direction: row;
   }
 }
+
+

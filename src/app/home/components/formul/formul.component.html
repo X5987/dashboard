@@ -3,68 +3,52 @@
 <!-- form zone -->
 <ng-template #formTemplate let-tile="tile">
   <form id="form" [formGroup]="formGroupSource">
-
-    <div class="form-row">
-      <lib-input-text [type]="'text'" matInput
-                      [label]="'Prénom'"
-                      [formControl]="formGroupSource.controls['name']"
-                      [appearance]="'outline'"
-                      [placeholder]="'Ex. Julie'"/>
-      <lib-input-text [type]="'email'" matInput
-                      [formControl]="formGroupSource.controls['email']"
-                      [label]="'Email'"
-                      [appearance]="'outline'"
-                      [placeholder]="'Ex. allowed@example.com'"/>
-    </div>
-
-    <div class="form-row">
-      <lib-input-text [type]="'number'" matInput
-                      [label]="'Age'"
-                      [formControl]="formGroupSource.controls['age']"
-                      [appearance]="'outline'"
-                      [placeholder]="'Ex. Julie'"/>
-
-      <lib-single-select matInput
-                         [list$]="listCountry$"
-                         [label]="'Pays'"
-                         [formControl]="formGroupSource.controls['country']"
-                         [appearance]="'outline'"
-                         [placeholder]="'select'"/>
-    </div>
-
-    <div class="button-form">
-      <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentFirstForm()">Envoyer</button>
-    </div>
+    <lib-input-text [type]="'text'" matInput
+                    [label]="'Prénom'"
+                    [formControl]="formGroupSource.controls['name']"
+                    [appearance]="'outline'"
+                    [placeholder]="'Ex. Julie'"/>
+    <lib-input-text [type]="'email'" matInput
+                    [formControl]="formGroupSource.controls['email']"
+                    [label]="'Email'"
+                    [appearance]="'outline'"
+                    [placeholder]="'Ex. allowed@example.com'"/>
+    <lib-input-text [type]="'number'" matInput
+                    [label]="'Age'"
+                    [formControl]="formGroupSource.controls['age']"
+                    [appearance]="'outline'"
+                    [placeholder]="'Ex. Julie'"/>
+    <lib-single-select matInput
+                       [list$]="listCountry$"
+                       [label]="'Pays'"
+                       [formControl]="formGroupSource.controls['country']"
+                       [appearance]="'outline'"
+                       [placeholder]="'select'"/>
+    <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentFirstForm()">Envoyer</button>
   </form>
 </ng-template>
 <ng-template #formSecondTemplate let-tile="tile">
   <form id="form-second" [formGroup]="formSecondGroupSource">
 
-    <div class="form-row">
-      <lib-autocomplete
-        #autocompleteMarque
-        [label]="'Marque'"
-        [formControl]="formSecondGroupSource.controls['marques']"
-        [name]="'auto'"
-        [list]="list"
-        [appearance]="'outline'"
-        [placeholder]="'select'"/>
-    </div>
+    <lib-autocomplete
+      #autocompleteMarque
+      [label]="'Marque'"
+      [formControl]="formSecondGroupSource.controls['marques']"
+      [name]="'auto'"
+      [list]="list"
+      [appearance]="'outline'"
+      [placeholder]="'select'"/>
 
-    <div class="button-form">
-      <button [disabled]="formSecondGroupSource.invalid" mat-raised-button (click)="sentSecondForm()">Envoyer</button>
-    </div>
+    <button [disabled]="formSecondGroupSource.invalid" mat-raised-button (click)="sentSecondForm()">Envoyer</button>
   </form>
 </ng-template>
 <ng-template #formThirdTemplate let-tile="tile">
-  <div id="form-third">
-    <app-todo #appTodo
-              [placeholder]="todoPlaceholder"
-              [label]="todoLabel"
-              [buttonName]="todoButtonName"
-              [arrayListTodo]="arrayListTodo">
-    </app-todo>
-  </div>
+  <app-todo #appTodo
+            [placeholder]="todoPlaceholder"
+            [label]="todoLabel"
+            [buttonName]="todoButtonName"
+            [arrayListTodo]="arrayListTodo">
+  </app-todo>
 </ng-template>
 
 <!-- retsult zone -->
@@ -74,6 +58,8 @@
     <p><strong>Email:</strong> {{ data.email }}</p>
     <p><strong>country:</strong> {{ data.country.libelle }}</p></div>
 </ng-template>
+
+
 <ng-template #formSecondResultTemplate let-data="data">
   <mat-chip-set aria-label="Dog selection">
     @for (marque of data.marques; track marque) {
@@ -87,41 +73,29 @@
       </mat-chip>
     }</mat-chip-set>
 </ng-template>
+
+
 <ng-template #formThirdResultTemplate let-data="data">
-  <div class="list ">
-    <table matSort (matSortChange)="sortData($event)">
-      <tr>
-        <th mat-sort-header="complete"></th>
-        <th mat-sort-header="id">Id</th>
-        <th mat-sort-header="message">Message</th>
-        <th mat-sort-header="delete">Delete</th>
-      </tr>
 
-      @for (todo of arrayListTodo | async; track todo; let i = $index) {
-        <tr>
+  <mat-list role="list">
 
-          <td>
-            <div class="checkbox-todo ">
-              <mat-checkbox [disabled]="(loading | async)"
-                            [checked]="todo.complete"
-                            (change)="changeTodo(todo)">
-              </mat-checkbox>
-            </div>
-          </td>
-          <td>{{ todo.id }}</td>
-          <td (click)="changeTodoText(todo)">
-            <div class="message-todo">{{ todo.message }}</div>
-          </td>
-          <td>
-            <div class="remove-todo">
-              <button mat-icon-button (click)="removeTodo(i)" [disabled]="(loading | async)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-          </td>
+    @for (todo of (arrayListTodo | async); track todo; let i = $index) {
+      <mat-list-item role="listitem">
+        <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+        </button>
+        <button (click)="changeTodoText(todo)" mat-icon-button aria-label="Remove">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+        </button>
+        <mat-checkbox [disabled]="(loading | async)"
+                      [checked]="todo.complete"
+                      (change)="changeTodo(todo)"></mat-checkbox>
+        {{ todo.message }}
+      </mat-list-item>
+    } @empty {
+      <p>List vide ...</p>
+    }
 
-        </tr>
-      }
-    </table>
-  </div>
+  </mat-list>
+
 </ng-template>

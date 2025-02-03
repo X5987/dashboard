@@ -1,29 +1,23 @@
+@use "design-system/src/styles/variables.scss";
+
 :host * {
   transition: all 200ms ease-in-out;
 }
 
-:host {
-  display: flex;
-  flex-direction: column;
 
-  .menu-top {
-    box-shadow: var(--main-box-shadow-design);
-  }
-
-  mat-toolbar {
-    position: relative;
-    z-index: 5;
-  }
-
-  .content {
-    padding: 24px;
-    background-color: #f1f1f1;
-  }
-
-  mat-sidenav-container {
-    height: calc(100vh - 167px);
-  }
-
-
+mat-toolbar {
+  position: relative;
+  z-index: 5;
 }
+
+.content {
+  padding: 24px;
+  background-color: #f1f1f1;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 167px);
+}
+
+
 

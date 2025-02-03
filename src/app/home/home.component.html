@@ -1,21 +1,17 @@
-<div class="container">
-  <section class="item slide   mat-elevation-z1">
-    <app-slider></app-slider>
-  </section>
-  <section class="item charts   mat-elevation-z1">
-    <app-charts></app-charts>
-  </section>
-  <section class="item form   mat-elevation-z1">
-    <app-formul></app-formul>
-  </section>
-  <section class="item message   mat-elevation-z1">
-    <app-message></app-message>
-  </section>
-  <section class="item css   mat-elevation-z1">
-    <app-grid-css></app-grid-css>
-  </section>
-  <section class="item footer   mat-elevation-z1">
-    <app-footer></app-footer>
-  </section>
-</div>
+
+  @if (authService.isLoggedIn()) {
+    <lib-header></lib-header>
+  }
+
+  <app-slider></app-slider>
+
+  <app-charts></app-charts>
+
+  <app-formul></app-formul>
+
+  <app-message></app-message>
+
+  <app-grid-css></app-grid-css>
+
+  <app-footer></app-footer>
 

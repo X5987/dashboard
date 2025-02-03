@@ -1,11 +1,11 @@
-<mat-card appearance="raised" class="container">
+<mat-card >
   <mat-card-header>
     <mat-card-title>{{ title }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    {{ fauxText }}D
+    <p>{{ fauxText }}</p>
   </mat-card-content>
-  <mat-card-footer class="card-footer-button-gap">
+  <mat-card-footer>
     <button class="btn-alert" mat-button id="alert" (click)="showAlert()">ALERT</button>
     <button class="btn-modal" mat-button id="modal" (click)="openDialog()">MODAL</button>
     <button class="btn-notif" mat-button id="notif" (click)="showNotif()">NOTIF</button>

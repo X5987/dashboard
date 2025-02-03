@@ -4,7 +4,30 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+//    "paths": {
+//      "@design-system/utils/*": [
+//        "libs/design-system/src/utils/*"
+//      ],
+//      "@design-system/interfaces/*": [
+//        "libs/design-system/src/interfaces/*"
+//      ],
+//      "@design-system/style/*": [
+//        "libs/design-system/src/style/*"
+//      ],
+//      "@design-system/services/*": [
+//        "libs/design-system/src/services/*"
+//      ],
+//      "@design-system/components/*": [
+//        "libs/design-system/src/components/*"
+//      ],
+//      "@design-system/directives/*": [
+//        "libs/design-system/src/directives/*"
+//      ],
+//      "@design-system/images/*": [
+//        "libs/design-system/src/images/*"
+//      ]
+//    }
   },
   "files": [
     "src/main.ts",

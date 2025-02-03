@@ -1,30 +1,23 @@
-<mat-card class="full-size-card">
-  <mat-card-header>
-    <mat-card-title>List des films</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-list role="list">
-      @for (movie of (listMovies | async); track movie) {
-        <mat-card>
-          <mat-card-header>
-            Titre : {{ movie.title }}
-          </mat-card-header>
-          <mat-card-content class="bloc-edit">
-            Description : {{ movie.description }}
+  @for (movie of (listMovies | async); track movie) {
+      <mat-card >
+        <mat-card-content>
+          <span>{{ movie.title }}</span>
+          <span> Description :  {{ movie.description }}</span>
+        </mat-card-content>
+        <mat-card-footer>
+          <button (click)="edit(movie)" mat-icon-button aria-label="Edit">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+          </button>
+          <button (click)="delete(movie)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+          </button>
+        </mat-card-footer>
+      </mat-card>
+  } @empty {
+    <p>List vide ...</p>
+  }
 
-          </mat-card-content>
-          <mat-card-footer class="icon-right">
-            <button (click)="edit(movie)" mat-icon-button aria-label="Edit">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button (click)="delete(movie)" mat-icon-button aria-label="Remove">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-card-footer>
-        </mat-card>
-      } @empty {
-        <p>List vide ...</p>
-      }
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+
+
+
+

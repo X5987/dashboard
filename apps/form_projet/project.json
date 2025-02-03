@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "form_projet/src",
-  "tags": [],
+  "tags": ["type:application", "scope:form"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -22,7 +22,7 @@
             "input": "form_projet/public"
           }
         ],
-        "styles": ["form_projet/src/styles.scss"],
+        "styles": ["form_projet/src/styles.scss", "design-system/src/styles/core-styles.scss"],
         "scripts": []
       },
       "configurations": {

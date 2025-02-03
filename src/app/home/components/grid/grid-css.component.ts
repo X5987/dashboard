@@ -1,16 +1,11 @@
 import { Component, Signal, signal } from '@angular/core';
-import {
-  DesignSystemModule,
-  GridComponent,
-  GridStructur,
-  TileTypeEnum,
-} from '@design-system';
+import { GridComponent, GridStructur, TileTypeEnum } from '@design-system';
 
 @Component({
-    selector: 'app-grid-css',
-    templateUrl: './grid-css.component.html',
-    styleUrl: './grid-css.component.scss',
-    imports: [DesignSystemModule, GridComponent]
+  selector: 'app-grid-css',
+  templateUrl: './grid-css.component.html',
+  styleUrl: './grid-css.component.scss',
+  imports: [GridComponent],
 })
 export class GridCssComponent {
   protected readonly TileTypeEnum = TileTypeEnum;

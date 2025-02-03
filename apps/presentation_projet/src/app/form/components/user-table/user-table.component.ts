@@ -2,33 +2,58 @@ import {
   AfterViewInit,
   Component,
   inject,
-  Input,
+  input,
   OnChanges,
   OnDestroy,
+  signal,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable, Subject, Subscription } from 'rxjs';
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+  MatTableDataSource,
+} from '@angular/material/table';
+import { Subject, Subscription } from 'rxjs';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { DesignSystemModule, User, UserEnum } from '@design-system';
+import { User, UserEnum } from '@design-system';
 
 @Component({
-    selector: 'app-user-table',
-    imports: [DesignSystemModule],
-    templateUrl: './user-table.component.html',
-    styleUrl: './user-table.component.scss'
+  selector: 'app-user-table',
+  templateUrl: './user-table.component.html',
+  styleUrl: './user-table.component.scss',
+  imports: [
+    MatTable,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatRow,
+    MatPaginator,
+    MatColumnDef,
+    MatSort,
+    MatSortHeader,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatHeaderRowDef,
+    MatRowDef,
+  ],
 })
 export class UserTableComponent implements OnChanges, OnDestroy, AfterViewInit {
   protected readonly UserEnum = UserEnum;
 
-  @Input({ required: true }) list: Observable<User[]> = new Observable<
-    User[]
-  >();
-  @Input({ required: true }) displayedColumns: string[] = [];
-  dataSource = new MatTableDataSource<User>([]);
+  listUser = input.required<User[]>();
+  displayedColumns = input.required<string[]>();
+  dataSource = signal(new MatTableDataSource<User>([]));
   private _liveAnnouncer = inject(LiveAnnouncer);
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -38,15 +63,13 @@ export class UserTableComponent implements OnChanges, OnDestroy, AfterViewInit {
   protected pageSize: number[] = [5, 10, 25, 100];
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSource().paginator = this.paginator;
+    this.dataSource().sort = this.sort;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['list']) {
-      this.subscribe$ = this.list.subscribe(
-        (list) => (this.dataSource.data = list),
-      );
+    if (changes['listUser']) {
+      this.dataSource().data = this.listUser();
     }
   }
 

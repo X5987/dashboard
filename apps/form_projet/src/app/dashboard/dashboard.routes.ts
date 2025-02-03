@@ -10,7 +10,7 @@ export const routesDashboardPersonal: Routes = [
       ),
   },
   {
-    path: 'dashboard-personal',
+    path: 'board',
     loadComponent: () =>
       import('./components/content/content.component').then(
         (m) => m.ContentComponent,

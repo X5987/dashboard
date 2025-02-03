@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { PeriodicElement } from '../models/table.interface';
 import { User } from '@design-system';
@@ -7,7 +7,7 @@ import { catchError, combineLatest, map, Observable, of } from 'rxjs';
 
 export interface TableData {
   listPeriodic: Observable<PeriodicElement[]>;
-  listUsers: Observable<User[]>;
+  listUsers: WritableSignal<User[]>;
 }
 
 @Injectable({
@@ -32,7 +32,7 @@ export class TableDataResolver implements Resolve<TableData> {
     return combineLatest([listPeriodic$, listUsers$]).pipe(
       map(([listPeriodic, listUsers]) => ({
         listPeriodic: listPeriodic$,
-        listUsers: listUsers$,
+        listUsers: signal(listUsers),
       })),
     );
 

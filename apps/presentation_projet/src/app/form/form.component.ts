@@ -1,6 +1,7 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   FilterTableComponent,
+  HeaderComponent,
   User,
   UserElementHeadTab,
   UserEnum,
@@ -17,7 +18,6 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from './services/filter.service';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { AsyncPipe } from '@angular/common';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSuffix } from '@angular/material/form-field';
@@ -31,13 +31,12 @@ import { FormsModule } from '@angular/forms';
     PeriodicTableComponent,
     UserTableComponent,
     ToDoListComponent,
-    MatTab,
     FilterTableComponent,
     AsyncPipe,
     MatSlideToggle,
     MatSuffix,
     FormsModule,
-    MatTabGroup,
+    HeaderComponent,
   ],
 })
 export class FormComponent implements OnInit, OnDestroy {
@@ -55,12 +54,12 @@ export class FormComponent implements OnInit, OnDestroy {
   protected readonly serviceForm: FormService = inject(FormService);
   protected filterService: FilterService = inject(FilterService);
   protected listColumns: string[] = PeriodicElementHeadTab;
-  protected listUser: string[] = UserElementHeadTab;
+  protected listUserDisplayColumn: string[] = UserElementHeadTab;
 
   protected listTable$: Observable<PeriodicElement[]> = new Observable<
     PeriodicElement[]
   >();
-  protected listUser$: Observable<User[]> = new Observable<User[]>();
+  protected listUser = signal([] as User[]);
   private unsubscribe$ = new Subject<void>();
 
   protected checkbox: boolean = false;
@@ -73,7 +72,7 @@ export class FormComponent implements OnInit, OnDestroy {
     this.router.data.pipe(take(1)).subscribe((data) => {
       if (data) {
         this.listTable$ = data['data'].listPeriodic;
-        this.listUser$ = data['data'].listUsers;
+        this.listUser = data['data'].listUsers;
       }
     });
 
@@ -99,13 +98,18 @@ export class FormComponent implements OnInit, OnDestroy {
       this.toggleStatusSubject,
     );
 
-    this.listUser$ = this.filterService.filterList(
-      this.serviceForm.getAllUsers(),
-      this.filterTextUserSubject,
-      (item: User, text: string) =>
-        item[UserEnum.username].includes(text.toLowerCase()) ||
-        item[UserEnum.password].includes(text.toLowerCase()),
-    );
+    this.filterService
+      .filterList(
+        this.serviceForm.getAllUsers(),
+        this.filterTextUserSubject,
+        (item: User, text: string) =>
+          item[UserEnum.username].includes(text.toLowerCase()) ||
+          item[UserEnum.password].includes(text.toLowerCase()),
+      )
+      .subscribe((list) => {
+        this.listUser.set(list);
+        console.log(this.listUser());
+      });
   }
 
   filterText(filterText: string) {

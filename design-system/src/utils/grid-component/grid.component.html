@@ -1,29 +1,34 @@
 @if (tileTypes) {
+
+
+  <mat-card >
+    <mat-card-content>
+
+
   <ng-container *ngTemplateOutlet="tileTypes === TileTypeEnum.tileSimple ? tileSimple : tileForms"></ng-container>
   <ng-template #tileSimple>
-    <mat-grid-list class="mat-elevation-z1" [cols]="grid().grid.cols" [rowHeight]="grid().grid.rowHeight + 'px'"
+    <mat-grid-list [cols]="grid().grid.cols" [rowHeight]="grid().grid.rowHeight + 'px'"
                    [gutterSize]="grid().grid.gutterSize + 'px'">
       @for (tile of grid().tile; track tile) {
         <mat-grid-tile
           [colspan]="tile.cols"
-          [rowspan]="tile.rows"
-          [style.border-radius.px]="tile.border_radius"
-          [style.background]="tile.color">{{ tile.text }}
+          [rowspan]="tile.rows" [style.background]="tile.color">
+          {{ tile.text }}
         </mat-grid-tile>
       }
     </mat-grid-list>
   </ng-template>
+
+
+
+
   <ng-template #tileForms>
-    <!--    <div class="flex-container" >-->
     <mat-grid-list [cols]="grid().grid.cols" [rowHeight]="grid().grid.rowHeight + 'px'"
                    [gutterSize]="grid().grid.gutterSize + 'px'">
       @for (tile of grid().tile; track tile) {
         <mat-grid-tile
           [style.flex]="tile.cols + ' ' + tile.rows"
-          [style.border-radius.px]="tile.border_radius"
-          [style.border]="tile.border_color"
-          [style.background]="tile.color">
-
+          [style.border-radius.px]="tile.border_radius">
           @if (tile.context) {
             <ng-container *ngTemplateOutlet="tile.context; context: { data: tile.data }"></ng-container>
           }
@@ -31,17 +36,16 @@
       }
     </mat-grid-list>
   </ng-template>
+
+
+
   <ng-template #tileForms>
-    <!--    <div class="flex-container" >-->
     <mat-grid-list [cols]="grid().grid.cols" [rowHeight]="grid().grid.rowHeight + 'px'"
                    [gutterSize]="grid().grid.gutterSize + 'px'">
       @for (tile of grid().tile; track tile) {
         <mat-grid-tile
           [style.flex]="tile.cols + ' ' + tile.rows"
-          [style.border-radius.px]="tile.border_radius"
-          [style.border]="tile.border_color"
-          [style.background]="tile.color">
-
+          [style.border-radius.px]="tile.border_radius">
           @if (tile.context) {
             <ng-container *ngTemplateOutlet="tile.context; context: { data: tile.data }"></ng-container>
           }
@@ -49,5 +53,10 @@
       }
     </mat-grid-list>
   </ng-template>
+
+    </mat-card-content>
+  </mat-card>
+
 }
+
 

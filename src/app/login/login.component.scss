@@ -1,0 +1,59 @@
+:host {
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      > mat-card {
+        display: flex;
+        flex-shrink: 0;
+        width: 25vh;
+        /* background-color: $box-white-color; */
+        > mat-card-footer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .message-error {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          color: red;
+          font-size: 12px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      width: 40vh;
+
+      .item {
+
+        > mat-card {
+          display: flex;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}

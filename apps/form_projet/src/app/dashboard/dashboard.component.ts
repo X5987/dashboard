@@ -6,7 +6,6 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DesignSystemModule } from '@design-system';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,6 +13,7 @@ import { MenuSidebarComponent } from './components/menu/menu-sidebar.component';
 import { MatIconButton } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app.routes';
+import { HeaderComponent } from '@design-system';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,13 +21,13 @@ import { AppRoutingModule } from '../app.routes';
     CommonModule,
     RouterModule,
     AppRoutingModule,
-    DesignSystemModule,
     MatToolbarModule,
     MatToolbar,
     MatSidenavModule,
     MatIconModule,
     MenuSidebarComponent,
     MatIconButton,
+    HeaderComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

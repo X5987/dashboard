@@ -1,25 +1,15 @@
-:host {
 
-    .item {
-      width: 100%;
-      border-radius: 5px;
-      flex-shrink: 1;
-      margin: 20px;
+.container {
+  flex-direction: column;
+  gap: 40px;
 
-      .filter {
-        width: 100%;
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
+  .item {
+    flex-direction: column;
+    gap: 20px;
 
-      .table {
-        padding-top: 20px;
-        width: 100%;
-      }
-
-      .to-do {
-        padding-top: 20px;
-        width: 100%;
-      }
+    mat-card {
+      box-shadow: 0.3em 0.3em 0.3em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
     }
+
+  }
 }

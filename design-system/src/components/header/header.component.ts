@@ -5,18 +5,18 @@ import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SlideToggleComponent } from '../form-fields';
 
 @Component({
-    selector: 'lib-header',
-    imports: [MatAnchor, RouterLink, SlideToggleComponent, ReactiveFormsModule],
-    template: `
+  selector: 'lib-header',
+  imports: [MatAnchor, RouterLink, SlideToggleComponent, ReactiveFormsModule],
+  template: `
     <div id="navbar">
       <div class="navbar-logo">
         <img class="navbar-logo" [src]="avatar()" alt="logo" />
       </div>
 
       <div class="navbar-item">
-        <a mat-button routerLink="home">Accueil</a>
-        <a mat-button routerLink="presentation">Présentation</a>
-        <a mat-button routerLink="dashboard-personal">Formulaire</a>
+        <a mat-button routerLink="/dashboard">Accueil</a>
+        <a mat-button routerLink="/presentation">Présentation</a>
+        <a mat-button routerLink="/personal">Formulaire</a>
         <a mat-flat-button routerLink="contact">Contact</a>
 
         <div class="toggle-zone">
@@ -28,31 +28,29 @@ import { SlideToggleComponent } from '../form-fields';
       </div>
     </div>
   `,
-    styles: `
+  styles: `
     :host {
       #navbar {
+        z-index: 9999;
         display: flex;
         flex-direction: row;
-        background-color: #ffffff;
-        flex-wrap: wrap;
-        height: 100px;
+        height: 60px;
         justify-content: space-between;
         align-items: center;
       }
 
       .navbar-logo {
-        height: 50px;
-        width: 50px;
-        margin-left: 20px;
+        height: 40px;
+        width: 40px;
+        margin-left: 10px;
       }
 
       .navbar-item {
         display: flex;
         flex-direction: row;
-        padding-right: 40px;
+        padding-right: 10px;
         align-content: baseline;
-        gap: 10px;
-        align-items: center;
+        gap: 15px;
 
         > .toggle-zone {
           .mdc-switch__track::after {
@@ -60,7 +58,8 @@ import { SlideToggleComponent } from '../form-fields';
         }
       }
     }
-  `
+  `,
+  standalone: true,
 })
 export class HeaderComponent {
   disabled = false;
