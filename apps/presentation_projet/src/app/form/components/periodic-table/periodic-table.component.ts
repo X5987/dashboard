@@ -31,6 +31,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatCard, MatCardContent } from '@angular/material/card';
 
 @Component({
   selector: 'app-periodic-table',
@@ -52,6 +53,8 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     MatRowDef,
     MatPaginator,
     MatIcon,
+    MatCard,
+    MatCardContent,
   ],
 })
 export class PeriodicTableComponent

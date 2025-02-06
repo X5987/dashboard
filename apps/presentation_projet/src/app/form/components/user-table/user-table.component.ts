@@ -27,6 +27,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, MatSortHeader, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { User, UserEnum } from '@design-system';
+import { MatCard, MatCardContent } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-table',
@@ -46,6 +47,8 @@ import { User, UserEnum } from '@design-system';
     MatCellDef,
     MatHeaderRowDef,
     MatRowDef,
+    MatCard,
+    MatCardContent,
   ],
 })
 export class UserTableComponent implements OnChanges, OnDestroy, AfterViewInit {

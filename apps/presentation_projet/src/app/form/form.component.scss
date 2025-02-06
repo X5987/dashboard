@@ -1,15 +1,16 @@
 
 .container {
   flex-direction: column;
-  gap: 40px;
+  justify-content: stretch;
+  flex-grow: 1;
+  flex-shrink: 1;
 
   .item {
+    display: flex;
     flex-direction: column;
-    gap: 20px;
-
-    mat-card {
-      box-shadow: 0.3em 0.3em 0.3em #d8dae0b1, -0.75em -0.75em 1em #ffffff;
-    }
-
+    gap: 10px;
+    border-radius: 10px;
+    justify-content: stretch;
   }
+
 }

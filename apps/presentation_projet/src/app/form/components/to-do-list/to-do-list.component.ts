@@ -32,6 +32,7 @@ import { TodoListStore } from './todo-list-store/todo-list-store';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 
 @Component({
   selector: 'app-to-do-list',
@@ -56,6 +57,9 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     MatHeaderRowDef,
     MatPaginator,
     MatIcon,
+    MatCard,
+    MatCardContent,
+    MatCardHeader,
   ],
 })
 export class ToDoListComponent implements AfterViewInit, OnDestroy {

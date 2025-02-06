@@ -10,10 +10,12 @@ export class AuthService {
   readonly #isLoggedIn = signal(false);
   readonly isLoggedIn = this.#isLoggedIn.asReadonly();
 
-  login(name: string, password: string): Observable<boolean> {
+  login(username: string, password: string): Observable<boolean> {
     const isLoggednIn: boolean =
-      name.trim() === 'admin' && password.trim() === 'admin';
+      username.trim() === 'admin' && password.trim() === 'admin';
     this.#isLoggedIn.set(isLoggednIn);
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
     return of(isLoggednIn).pipe(delay(1000));
   }
 }
