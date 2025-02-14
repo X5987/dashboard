@@ -1,10 +1,6 @@
-<mat-grid-list [cols]="3"
-               [rowHeight]="'100px'"
-               [gutterSize]="'20'">
+<mat-grid-list [cols]="3" [rowHeight]="'100px'" [gutterSize]="'20'">
   @for (tile of tiles; track tile) {
-    <mat-grid-tile
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows">
+    <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows" class="background-grid">
       @if (tile.context) {
         <ng-container *ngTemplateOutlet="tile.context"></ng-container>
       } @else {
@@ -18,13 +14,25 @@
 <ng-template #slideFootballImg let-tile="tile">
   <app-slide-football-img></app-slide-football-img>
 </ng-template>
+
 <ng-template #weather let-tile="tile">
   <app-weather></app-weather>
 </ng-template>
+
 <ng-template #movies let-tile="tile">
   <app-movies (editMovie)="editMovie($event)"
               (deleteMovie)="deleteMovie($event)"></app-movies>
 </ng-template>
+
+<ng-template #movieChat let-tile="tile">
+  <app-movies (editMovie)="editMovie($event)"
+              (deleteMovie)="deleteMovie($event)"></app-movies>
+</ng-template>
+
 <ng-template #formulaire let-tile="tile">
   <app-formulaire-lambda></app-formulaire-lambda>
+</ng-template>
+
+<ng-template #listPokemon let-tile="tile">
+  <app-list-pokemon></app-list-pokemon>
 </ng-template>

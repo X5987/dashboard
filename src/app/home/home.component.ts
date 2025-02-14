@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2 } from '@angular/core';
 import { SliderComponent } from './components/slider/slider.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { FormulComponent } from './components/formul/formul.component';
@@ -6,7 +6,6 @@ import { MessageComponent } from './components/message/message.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GridCssComponent } from './components/grid/grid-css.component';
 import { HeaderComponent } from '@design-system';
-import { AuthService } from '../core/auth/auth.service';
 import { ChatDescription } from './class-test/chats-factory';
 import { EmployeeFactory } from './class-test/employee.factory';
 
@@ -24,10 +23,8 @@ import { EmployeeFactory } from './class-test/employee.factory';
     HeaderComponent,
   ],
 })
-export class HomeComponent {
-  protected readonly authService = inject(AuthService);
-
-  constructor() {
+export class HomeComponent implements AfterViewInit {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
     const listChats: ChatDescription[] = [
       {
         nom: 'claudia',
@@ -109,9 +106,10 @@ export class HomeComponent {
         chat.anniversaire!,
         chat,
       );
-      console.log(employee.getAllSociete());
+      // console.log(employee.getAllSociete());
       formatChat.push(employee);
     });
-    console.log(formatChat);
   }
+
+  ngAfterViewInit(): void {}
 }

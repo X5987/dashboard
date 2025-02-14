@@ -39,21 +39,24 @@
 mat-nav-list {
   padding: 5px;
 
-  .icon-color-activ {
-    color: #0080ff;
-  }
-  .icon-color-inactiv {
-    color: rgba(0, 92, 187, 0.45);
+  .text-activ {
+    font-weight: bolder;
+    color: #2d5ab4;
   }
 
-  .text-activ {
-    font-weight: normal;
-    color: #0080ff;
+  .icon-color-activ {
+    color: #2d5ab4;
   }
+
   .text-inactiv {
     font-weight: lighter;
-    color: rgba(0, 92, 187, 0.45);
+    color: rgba(0, 92, 187, 0.52);
   }
+
+  .icon-color-inactiv {
+    color: rgba(0, 126, 255, 0.5);
+  }
+
 }
 
 

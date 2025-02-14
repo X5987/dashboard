@@ -1,8 +1,8 @@
-<p>weather works!</p>
-
-
-@for (item of resultLinkedSignal(); track item) {
-  <h3>{{ item.name }}</h3>
+@if (isLoading()) {
+  Loading...
+} @else {
+  <div class="weather">
+    {{ weatherSpecificCity().request?.query ?? "Api not working..." }}
+    {{ weatherSpecificCity().location?.country }}
+  </div>
 }
-<button (click)="updateSignal()">updatesignal</button>
-<button (click)="updateDependentSignal()">updateDependentSignal</button>

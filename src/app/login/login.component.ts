@@ -30,6 +30,7 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   router = inject(Router);
   authService = inject(AuthService);
+
   typeInput = linkedSignal(() => {
     return this.showPassword() ? 'text' : 'password';
   });

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
-import { CdkDrag } from '@angular/cdk/drag-drop';
 
 export interface Weather {
   jour: string;
@@ -14,10 +12,9 @@ export interface Weather {
   standalone: true,
   templateUrl: './slide-football-img.component.html',
   styleUrl: './slide-football-img.component.scss',
-  imports: [MatIconModule, MatCard, MatCardContent, MatCardFooter, CdkDrag],
+  imports: [MatIconModule],
 })
 export class SlideFootballImgComponent {
-  currentSlide = 0;
   weatherData: Weather[] = [
     {
       jour: 'Lundi',
@@ -104,18 +101,4 @@ export class SlideFootballImgComponent {
       icon: 'https://openweathermap.org/img/wn/10d@2x.png',
     },
   ];
-
-  prevSlide() {
-    this.currentSlide =
-      this.currentSlide > 0
-        ? this.currentSlide - 1
-        : this.weatherData.length - 1;
-  }
-
-  nextSlide() {
-    this.currentSlide =
-      this.currentSlide < this.weatherData.length - 1
-        ? this.currentSlide + 1
-        : 0;
-  }
 }

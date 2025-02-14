@@ -38,22 +38,4 @@
     }
   }
 
-  @media (max-width: 426px) {
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 70vh;
-      width: 40vh;
-
-      .item {
-
-        > mat-card {
-          display: flex;
-          flex-shrink: 0;
-        }
-      }
-    }
-  }
 }

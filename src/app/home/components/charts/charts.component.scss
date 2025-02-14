@@ -1,9 +1,9 @@
 :host {
 
   .container {
-    height: calc(25% - 0);
+    height: calc(25% - 0px);
     gap: 30;
-    width: calc(100% - 0);
+    width: calc(100% - 0px);
     justify-content: space-evenly;
     cursor: grab;
     overflow-x: scroll;
