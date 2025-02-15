@@ -25,11 +25,11 @@ import { ListPokemonComponent } from './components/list-pokemon/list-pokemon.com
     WeatherComponent,
     MoviesComponent,
     FormulaireLambdaComponent,
+    ListPokemonComponent,
     MatGridList,
     MatGridTile,
     NgTemplateOutlet,
     MatCardModule,
-    ListPokemonComponent,
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
@@ -42,6 +42,7 @@ export class ContentComponent implements OnInit {
   @ViewChild('formulaire', { static: true }) formulaire!: TemplateRef<never>;
   @ViewChild('movieChat', { static: true }) movieChat!: TemplateRef<never>;
   @ViewChild('listPokemon', { static: true }) listPokemon!: TemplateRef<never>;
+  pokemonDatails!: TemplateRef<never>;
 
   @ViewChild(FormulaireLambdaComponent)
   formulaireLambda!: FormulaireLambdaComponent | undefined;
