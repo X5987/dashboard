@@ -1,9 +1,16 @@
-import { Component, inject, linkedSignal, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
 import { InputTextComponent, LoaderDirective } from '@design-system';
 import {
   FormBuilder,
   FormControl,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -22,6 +29,7 @@ import { AuthService } from '../core/auth/auth.service';
     RouterModule,
     LoaderDirective,
     MatCardFooter,
+    FormsModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -30,6 +38,7 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   router = inject(Router);
   authService = inject(AuthService);
+
   typeInput = linkedSignal(() => {
     return this.showPassword() ? 'text' : 'password';
   });
@@ -37,6 +46,12 @@ export class LoginComponent {
   message = signal('');
   loading = signal(false);
   // Vous êtes déconnecté. todo a implementer pour le logout
+
+  email = signal('');
+  password = signal('');
+  isFormValid = computed(
+    () => this.email().includes('@') && this.password().length >= 8,
+  );
 
   loginForm = this.fb.group({
     username: new FormControl('admin', [

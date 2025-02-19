@@ -21,6 +21,7 @@ import {
   GridStructur,
   InputTextComponent,
   ListSelect,
+  LoaderSimpleDirective,
   NotifService,
   SingleSelectComponent,
   TileTypeEnum,
@@ -61,6 +62,7 @@ import { MatIcon } from '@angular/material/icon';
     MatIcon,
     ReactiveFormsModule,
     MatButton,
+    LoaderSimpleDirective,
   ],
   templateUrl: './formul.component.html',
   styleUrls: ['./formul.component.scss'],
@@ -70,24 +72,19 @@ export class FormulComponent implements OnInit, OnDestroy {
     grid: {
       cols: 3,
       rowHeight: 400,
-      gutterSize: 10,
+      gutterSize: 40,
     },
     tile: [
       {
         text: 'form1',
         cols: 4,
         rows: 1,
-        color: '#ff8383',
-        border_radius: 10,
         context: null,
       },
       {
         text: 'form2Result',
         cols: 4,
         rows: 1,
-        color: '#ffffff',
-        border_radius: 10,
-        border_color: '2px solid #ff8383',
         context: null,
       },
 
@@ -95,34 +92,23 @@ export class FormulComponent implements OnInit, OnDestroy {
         text: 'form3',
         cols: 4,
         rows: 1,
-        color: '#ff8383',
-        border_radius: 10,
         context: null,
       },
       {
         text: 'form1Result',
         cols: 4,
         rows: 2,
-        color: '#ffffff',
-        border_radius: 10,
-        border_color: '2px solid #ff8383',
         context: null,
       },
-
       {
         text: 'form2',
         cols: 4,
         rows: 2,
-        color: 'var(--primary-color)',
-        border_radius: 10,
       },
       {
         text: 'form3Result',
         cols: 4,
         rows: 2,
-        color: '#ffffff',
-        border_radius: 10,
-        border_color: '2px solid #ff8383',
         context: null,
       },
     ],
@@ -183,12 +169,6 @@ export class FormulComponent implements OnInit, OnDestroy {
   protected readonly destroySubs: DestroySubscribes = inject(DestroySubscribes);
 
   ngOnInit(): void {
-    this.router.data
-      .pipe(this.destroySubs.untilDestroyed())
-      .subscribe((data) => {
-        console.log("data['data']", data['data']);
-      });
-
     if (this.formTemplate) {
       this.tilesForms().tile[0].context = this.formTemplate;
       this.tilesForms().tile[4].context = this.formSecondTemplate;

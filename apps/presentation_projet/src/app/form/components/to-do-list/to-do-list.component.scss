@@ -1,8 +1,7 @@
 :host {
-  .container {
+  mat-card-header{
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: end;
+    padding-bottom: 1rem;
   }
-
 }

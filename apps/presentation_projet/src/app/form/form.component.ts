@@ -6,7 +6,14 @@ import {
   UserElementHeadTab,
   UserEnum,
 } from '@design-system';
-import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  takeUntil,
+  tap,
+  timer,
+} from 'rxjs';
 import { FormService } from './services/form.service';
 import {
   PeriodicElement,
@@ -18,7 +25,6 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from './services/filter.service';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
-import { AsyncPipe } from '@angular/common';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSuffix } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +38,6 @@ import { FormsModule } from '@angular/forms';
     UserTableComponent,
     ToDoListComponent,
     FilterTableComponent,
-    AsyncPipe,
     MatSlideToggle,
     MatSuffix,
     FormsModule,
@@ -69,47 +74,52 @@ export class FormComponent implements OnInit, OnDestroy {
   private toggleStatusSubject = new BehaviorSubject<boolean>(false);
 
   async ngOnInit() {
-    this.router.data.pipe(take(1)).subscribe((data) => {
-      if (data) {
-        this.listTable$ = data['data'].listPeriodic;
-        this.listUser = data['data'].listUsers;
-      }
-    });
+    this.router.data
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        tap((data) => {
+          console.log('Executing after 3 seconds...');
+          if (data) {
+            this.listTable$ = data['data'].listPeriodic;
+            this.listUser = data['data'].listUsers;
 
-    this.listTable$ = this.filterService.filterList(
-      this.serviceForm.getElementPeriodic(),
-      this.filterTextSubject,
-      (item: PeriodicElement, text: string, toggle?: boolean) =>
-        (item[PeriodicElementEnum.name]
-          .toLowerCase()
-          .includes(text.toLowerCase()) ||
-          item[PeriodicElementEnum.position]
-            .toString()
-            .includes(text.toLowerCase()) ||
-          item[PeriodicElementEnum.weight]
-            .toString()
-            .includes(text.toLowerCase()) ||
-          item[PeriodicElementEnum.symbol]
-            .toLowerCase()
-            .includes(text.toLowerCase())) &&
-        (!item[PeriodicElementEnum.active]
-          ? item.active === toggle
-          : item.active),
-      this.toggleStatusSubject,
-    );
+            this.listTable$ = this.filterService.filterList(
+              this.serviceForm.getElementPeriodic(),
+              this.filterTextSubject,
+              (item: PeriodicElement, text: string, toggle?: boolean) =>
+                (item[PeriodicElementEnum.name]
+                  .toLowerCase()
+                  .includes(text.toLowerCase()) ||
+                  item[PeriodicElementEnum.position]
+                    .toString()
+                    .includes(text.toLowerCase()) ||
+                  item[PeriodicElementEnum.weight]
+                    .toString()
+                    .includes(text.toLowerCase()) ||
+                  item[PeriodicElementEnum.symbol]
+                    .toLowerCase()
+                    .includes(text.toLowerCase())) &&
+                (!item[PeriodicElementEnum.active]
+                  ? item.active === toggle
+                  : item.active),
+              this.toggleStatusSubject,
+            );
 
-    this.filterService
-      .filterList(
-        this.serviceForm.getAllUsers(),
-        this.filterTextUserSubject,
-        (item: User, text: string) =>
-          item[UserEnum.username].includes(text.toLowerCase()) ||
-          item[UserEnum.password].includes(text.toLowerCase()),
+            this.filterService
+              .filterList(
+                this.serviceForm.getAllUsers(),
+                this.filterTextUserSubject,
+                (item: User, text: string) =>
+                  item[UserEnum.username].includes(text.toLowerCase()) ||
+                  item[UserEnum.password].includes(text.toLowerCase()),
+              )
+              .subscribe((list) => {
+                this.listUser.set(list);
+              });
+          }
+        }),
       )
-      .subscribe((list) => {
-        this.listUser.set(list);
-        console.log(this.listUser());
-      });
+      .subscribe();
   }
 
   filterText(filterText: string) {
@@ -128,4 +138,6 @@ export class FormComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
+
+  protected readonly timer = timer;
 }

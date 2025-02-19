@@ -17,10 +17,10 @@ export class GridCssComponent {
       gutterSize: 20,
     },
     tile: [
-      { text: 'One', cols: 3, rows: 2, color: '#FFB6C1', border_radius: 10 }, // Light Pink
-      { text: 'Two', cols: 1, rows: 4, color: '#ADD8E6', border_radius: 10 }, // Light Blue
-      { text: 'Three', cols: 1, rows: 2, color: '#90EE90', border_radius: 10 }, // Light Green
-      { text: 'Four', cols: 2, rows: 2, color: '#FFD700', border_radius: 10 }, // Gold
+      { text: '', cols: 3, rows: 2, color: '#ffdbe0', border_radius: 10 },
+      { text: '', cols: 1, rows: 4, color: '#d7f4ff', border_radius: 10 },
+      { text: '', cols: 1, rows: 2, color: '#ceffce', border_radius: 10 },
+      { text: '', cols: 2, rows: 2, color: '#fff9d5', border_radius: 10 },
     ],
   });
 }

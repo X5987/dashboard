@@ -13,9 +13,8 @@ import { MoviesComponent } from './components/list-movies/movies.component';
 import { Movie } from './components/models';
 import { MoviesStore } from './components/stores/movies.store';
 import { FormulaireLambdaServices } from './components/services/formulaire-lambda.services';
-import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { NgTemplateOutlet } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { ListPokemonComponent } from './components/list-pokemon/list-pokemon.component';
 
 @Component({
   selector: 'app-content',
@@ -24,9 +23,7 @@ import { MatCardModule } from '@angular/material/card';
     WeatherComponent,
     MoviesComponent,
     FormulaireLambdaComponent,
-    MatGridList,
-    MatGridTile,
-    NgTemplateOutlet,
+    ListPokemonComponent,
     MatCardModule,
   ],
   templateUrl: './content.component.html',
@@ -38,37 +35,26 @@ export class ContentComponent implements OnInit {
   @ViewChild('weather', { static: true }) weather!: TemplateRef<never>;
   @ViewChild('movies', { static: true }) movies!: TemplateRef<never>;
   @ViewChild('formulaire', { static: true }) formulaire!: TemplateRef<never>;
+  @ViewChild('movieChat', { static: true }) movieChat!: TemplateRef<never>;
+  @ViewChild('listPokemon', { static: true }) listPokemon!: TemplateRef<never>;
+  pokemonDatails!: TemplateRef<never>;
 
   @ViewChild(FormulaireLambdaComponent)
   formulaireLambda!: FormulaireLambdaComponent | undefined;
 
   tiles: Tile[] = [
-    {
-      text: 'slideFootballImg',
-      cols: 2,
-      rows: 2,
-    },
-    {
-      text: 'weather',
-      cols: 1,
-      rows: 2,
-    },
-    {
-      text: 'movies',
-      cols: 1,
-      rows: 3,
-    },
-    {
-      text: 'formulaire',
-      cols: 1,
-      rows: 3,
-    },
-    { text: 'Four', cols: 1, rows: 3 },
-    { text: 'Four', cols: 3, rows: 3 },
+    { text: 'slideFootballImg', cols: 2, rows: 2 },
+    { text: 'weather', cols: 1, rows: 2 },
+    { text: 'movies', cols: 1, rows: 3 },
+    { text: 'formulaire', cols: 1, rows: 3 },
+    { text: 'movie chat', cols: 1, rows: 3 },
+    { text: 'list Pokemon', cols: 3, rows: 3 },
   ];
 
   store = inject(MoviesStore);
   formService = inject(FormulaireLambdaServices);
+
+  constructor() {}
 
   ngOnInit(): void {
     const componentTab = [
@@ -76,6 +62,8 @@ export class ContentComponent implements OnInit {
       this.weather,
       this.formulaire,
       this.movies,
+      this.movieChat,
+      this.listPokemon,
     ];
     for (let i = 0; i < this.tiles.length; i++) {
       this.tiles[i].context = componentTab[i];

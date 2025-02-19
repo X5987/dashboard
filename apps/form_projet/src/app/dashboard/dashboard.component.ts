@@ -1,10 +1,4 @@
-import {
-  Component,
-  computed,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, computed, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -34,7 +28,5 @@ import { HeaderComponent } from '@design-system';
 })
 export class DashboardComponent {
   collapse: WritableSignal<boolean> = signal(false);
-  sidenavWidth: Signal<string> = computed(() =>
-    this.collapse() ? '65px' : '250px',
-  );
+  sidenavWidth = computed(() => (this.collapse() ? '65px' : '240px'));
 }

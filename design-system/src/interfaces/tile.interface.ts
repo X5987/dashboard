@@ -1,5 +1,3 @@
-import { Component, ComponentRef, TemplateRef, Type } from '@angular/core';
-
 export interface GridStructur {
   grid: {
     cols: number;

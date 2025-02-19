@@ -1,4 +1,7 @@
-import { Component, computed, linkedSignal, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { WeatherService } from '../../services/weather-service';
+import { WeatherCity } from '../../models/weather.interface';
+import { finalize, Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-weather',
@@ -6,46 +9,31 @@ import { Component, computed, linkedSignal, signal } from '@angular/core';
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss',
 })
-export class WeatherComponent {
-  sourceSignal = signal([
-    {
-      id: 0,
-      name: 'Weather',
-    },
-    {
-      id: 1,
-      name: 'Joe',
-    },
-  ]);
+export class WeatherComponent implements OnInit, OnDestroy {
+  weatherService: WeatherService = inject(WeatherService);
+  weatherSpecificCity = signal<WeatherCity>({
+    request: null,
+    current: null,
+    location: null,
+  });
+  isLoading = signal(false);
+  private unsubscribe$ = new Subject<void>();
+  protected currentCityWeather = this.weatherService.getCityWeather('Eragny');
 
-  resultLinkedSignal = linkedSignal(() => this.sourceSignal());
-  // resultLinkedSignal = computed(() => this.sourceSignal());
-
-  updateSignal(): void {
-    this.sourceSignal.set([
-      ...this.sourceSignal(),
-      {
-        id: 2,
-        name: 'PEDALE',
-      },
-      {
-        id: 3,
-        name: 'CACA',
-      },
-    ]);
+  ngOnInit(): void {
+    this.isLoading.set(true);
+    this.currentCityWeather
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        tap((data) => {
+          this.weatherSpecificCity.set(data);
+        }),
+        finalize(() => this.isLoading.set(false)), // Fin du chargement
+      )
+      .subscribe();
   }
 
-  updateDependentSignal() {
-    this.sourceSignal.set([
-      ...this.sourceSignal(),
-      {
-        id: 2,
-        name: 'PEDALE',
-      },
-      {
-        id: 3,
-        name: 'CACA',
-      },
-    ]);
+  ngOnDestroy() {
+    this.unsubscribe$.unsubscribe();
   }
 }

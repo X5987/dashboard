@@ -1,5 +1,6 @@
 <lib-grid [grid]="tilesForms" [tileTypes]="TileTypeEnum.tileForms"></lib-grid>
 
+
 <!-- form zone -->
 <ng-template #formTemplate let-tile="tile">
   <form id="form" [formGroup]="formGroupSource">
@@ -43,13 +44,14 @@
   </form>
 </ng-template>
 <ng-template #formThirdTemplate let-tile="tile">
-  <app-todo #appTodo
+  <app-todo #appTodo id="form3"
             [placeholder]="todoPlaceholder"
             [label]="todoLabel"
             [buttonName]="todoButtonName"
             [arrayListTodo]="arrayListTodo">
   </app-todo>
 </ng-template>
+
 
 <!-- retsult zone -->
 <ng-template #formFirstResultTemplate let-data="data">
@@ -58,8 +60,6 @@
     <p><strong>Email:</strong> {{ data.email }}</p>
     <p><strong>country:</strong> {{ data.country.libelle }}</p></div>
 </ng-template>
-
-
 <ng-template #formSecondResultTemplate let-data="data">
   <mat-chip-set aria-label="Dog selection">
     @for (marque of data.marques; track marque) {
@@ -73,29 +73,31 @@
       </mat-chip>
     }</mat-chip-set>
 </ng-template>
-
-
 <ng-template #formThirdResultTemplate let-data="data">
 
-  <mat-list role="list">
+  @defer (on timer(2000)) {
+    <mat-list role="list">
 
-    @for (todo of (arrayListTodo | async); track todo; let i = $index) {
-      <mat-list-item role="listitem">
-        <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
-        </button>
-        <button (click)="changeTodoText(todo)" mat-icon-button aria-label="Remove">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
-        </button>
-        <mat-checkbox [disabled]="(loading | async)"
-                      [checked]="todo.complete"
-                      (change)="changeTodo(todo)"></mat-checkbox>
-        {{ todo.message }}
-      </mat-list-item>
-    } @empty {
-      <p>List vide ...</p>
-    }
+      @for (todo of (arrayListTodo | async); track todo; let i = $index) {
+        <mat-list-item role="listitem">
+          <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+          </button>
+          <button (click)="changeTodoText(todo)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+          </button>
+          <mat-checkbox [disabled]="(loading | async)"
+                        [checked]="todo.complete"
+                        (change)="changeTodo(todo)"></mat-checkbox>
+          {{ todo.message }}
+        </mat-list-item>
+      } @empty {
+        <p>List vide ...</p>
+      }
 
-  </mat-list>
+    </mat-list>
+  } @placeholder {
+    <div libLoaderSimpleDirective></div>
+  }
 
 </ng-template>

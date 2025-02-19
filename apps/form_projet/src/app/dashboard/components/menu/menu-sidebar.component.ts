@@ -72,11 +72,6 @@ export class MenuSidebarComponent {
   surnameSession = signal('Lorem Ipsum');
   menuItems = signal<MenuItem[]>([
     {
-      icon: 'board',
-      label: 'board',
-      route: 'board',
-    },
-    {
       icon: 'toc',
       label: 'Contenu',
       route: 'content',
@@ -98,6 +93,8 @@ export class MenuSidebarComponent {
     },
   ]);
   profilePictureSize = signal(100);
+
+  constructor() {}
 
   @Input() set collapsed(value: boolean) {
     this.sideNavCollapsed.set(value);

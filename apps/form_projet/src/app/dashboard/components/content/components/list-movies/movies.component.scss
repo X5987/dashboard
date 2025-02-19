@@ -1,13 +1,14 @@
 :host * {
   transition: 0.3s;
+  scroll-behavior: smooth;
 }
 
-:host {
+:host{
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   height: 90%;
-  margin: 20px;
+  margin: 10px;
   padding: 20px;
   gap: 10px;
   flex-grow: 1;
@@ -19,7 +20,8 @@
     justify-content: left;
     border-radius: 10px;
     color: white;
-    background-color: #2d5ab4;
+    background: linear-gradient(to right bottom,  #0037c1, #6300cf);
+    transition: 0.7s;
 
     > mat-card-content {
       display: flex;
@@ -34,7 +36,8 @@
   }
 
   mat-card:hover {
-    background-color: #0041ca;
+    transition: 0.7s;
+    background: linear-gradient(to left,  #0037c1, #6300cf);
   }
 
   mat-icon {
@@ -46,7 +49,7 @@
   }
 
   mat-icon:hover {
-    color: #0041ca;
+    color: #0037c1;
   }
 }
 
