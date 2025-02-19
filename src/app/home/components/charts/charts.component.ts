@@ -4,12 +4,13 @@ import {
   maleHeightWeight,
 } from './data/height-weight-data';
 import { AgCharts } from 'ag-charts-angular';
+import { LoaderSimpleDirective } from '@design-system';
 
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss',
-  imports: [AgCharts],
+  imports: [AgCharts, LoaderSimpleDirective],
 })
 export class ChartsComponent implements OnInit {
   public chartOptionsPie = {};

@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { DetailsDataResolver } from './components/content/components/list-pokemon/services/details.resolver';
+// import { DetailsDataResolver } from './components/content/components/list-pokemon/services/details.resolver';
 
 export const routesDashboardPersonal: Routes = [
   {
@@ -30,9 +30,9 @@ export const routesDashboardPersonal: Routes = [
       import(
         './components/content/components/list-pokemon/pokemon-details/pokemon-details.component'
       ).then((m) => m.PokemonDetailsComponent),
-    resolve: {
-      pokemon: DetailsDataResolver,
-    },
+    // resolve: {
+    //   pokemon: DetailsDataResolver,
+    // },
   },
   {
     path: 'analyse',

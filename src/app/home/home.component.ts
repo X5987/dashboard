@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { SliderComponent } from './components/slider/slider.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { FormulComponent } from './components/formul/formul.component';
@@ -8,6 +8,7 @@ import { GridCssComponent } from './components/grid/grid-css.component';
 import { HeaderComponent } from '@design-system';
 import { ChatDescription } from './class-test/chats-factory';
 import { EmployeeFactory } from './class-test/employee.factory';
+import { GridByCssComponent } from './components/grid-by-css/grid-by-css.component';
 
 @Component({
   selector: 'app-home',
@@ -21,10 +22,11 @@ import { EmployeeFactory } from './class-test/employee.factory';
     FooterComponent,
     GridCssComponent,
     HeaderComponent,
+    GridByCssComponent,
   ],
 })
-export class HomeComponent implements AfterViewInit {
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+export class HomeComponent {
+  constructor() {
     const listChats: ChatDescription[] = [
       {
         nom: 'claudia',
@@ -93,11 +95,7 @@ export class HomeComponent implements AfterViewInit {
         phone: '0506070809',
       },
     ];
-    const formatChat: {
-      surname: string;
-      name: string;
-      age: number | null;
-    }[] = [];
+    const formatChat = [];
     listChats.map((chat: ChatDescription) => {
       const employee = new EmployeeFactory(
         chat.nom!,
@@ -110,6 +108,4 @@ export class HomeComponent implements AfterViewInit {
       formatChat.push(employee);
     });
   }
-
-  ngAfterViewInit(): void {}
 }

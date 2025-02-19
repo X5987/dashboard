@@ -1,17 +1,17 @@
 export interface Pokemon {
-  id: number;
-  pokedexId: number;
-  name: string;
-  image: string;
-  sprite: string;
-  slug: string;
-  stats: Stats;
+  id: number | null;
+  pokedexId: number | null;
+  name: string | null;
+  image?: string | null;
+  sprite?: string | null;
+  slug?: string | null;
+  stats?: Stats | null;
   apiTypes?: ApiTypes[] | null;
-  apiGeneration: number;
+  apiGeneration?: number;
   apiResistances?: ApiResistances[] | null;
   resistanceModifyingAbilitiesForApi?: null[] | null;
   apiEvolutions?: ApiEvolutions[] | null;
-  apiPreEvolution: string;
+  apiPreEvolution?: string;
   apiResistancesWithAbilities?: null[] | null;
 }
 

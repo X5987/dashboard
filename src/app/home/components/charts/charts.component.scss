@@ -2,13 +2,15 @@
 
   .container {
     height: calc(25% - 0px);
-    gap: 30;
+    gap: 30px;
     width: calc(100% - 0px);
     justify-content: space-evenly;
     cursor: grab;
     overflow-x: scroll;
+    align-items: center;
 
     .item {
+      padding: 10px;
       width: 19rem;
       height: 19rem;
       box-shadow: rgba(14, 63, 126, 0.04) 0 0 0 1px,
@@ -17,6 +19,10 @@
       rgba(42, 51, 70, 0.04) 0 6px 6px -3px,
       rgba(14, 63, 126, 0.04) 0 12px 12px -6px,
       rgba(14, 63, 126, 0.04) 0 24px 24px -12px;
-    }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
   }
 }

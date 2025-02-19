@@ -95,7 +95,9 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
 
   constructor() {
     effect(() => {
-      this.dataSource.data = [...this.store.list()];
+      setTimeout(() => {
+        this.dataSource.data = [...this.store.list()];
+      }, 4000);
     });
   }
 

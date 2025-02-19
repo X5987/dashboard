@@ -13,8 +13,6 @@ import { MoviesComponent } from './components/list-movies/movies.component';
 import { Movie } from './components/models';
 import { MoviesStore } from './components/stores/movies.store';
 import { FormulaireLambdaServices } from './components/services/formulaire-lambda.services';
-import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { NgTemplateOutlet } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ListPokemonComponent } from './components/list-pokemon/list-pokemon.component';
 
@@ -26,9 +24,6 @@ import { ListPokemonComponent } from './components/list-pokemon/list-pokemon.com
     MoviesComponent,
     FormulaireLambdaComponent,
     ListPokemonComponent,
-    MatGridList,
-    MatGridTile,
-    NgTemplateOutlet,
     MatCardModule,
   ],
   templateUrl: './content.component.html',

@@ -6,6 +6,8 @@
     <app-to-do-list/>
   </div>
 
+  <hr>
+
   <div class="item">
     <lib-filter-table
       [appearance]="filterUser_appearance"
@@ -14,12 +16,21 @@
       [label]="filterUser_label"
       (textfilter)="filterTextUser($event)"
     />
-    @if (listUser()) {
+    @defer (on timer(3s)) {
       <app-user-table [listUser]="listUser()" [displayedColumns]="listUserDisplayColumn"/>
-    } @else {
-      <p>Loading...</p>
+    } @placeholder (minimum 500ms) {
+      <div>Something until the loading starts</div>
+    } @loading (after 500ms; minimum 500ms) {
+      <div>Loading...</div>
+    } @error {
+      <div>Something went wrong</div>
     }
   </div>
+
+  <hr>
+
+  <span #trigger>Hover me</span>
+
 
   <div class="item">
     <lib-filter-table
@@ -34,13 +45,22 @@
         (click)="toggleStatus(checkbox)"
         matSuffix/>
     </lib-filter-table>
-    @defer (when (listTable$ | async)) {
-      <app-periodic-table [list]="listTable$" [displayedColumns]="listColumns"/>
-    } @loading {
-      <p>Loading...</p>
-    }
+
+    @defer (on hover(trigger)) {
+
+      @defer (on timer(3s)) {
+        <app-periodic-table [list]="listTable$" [displayedColumns]="listColumns"/>
+      } @placeholder (minimum 500ms) {
+        <div>Something until the loading starts</div>
+      } @loading (after 500ms; minimum 500ms) {
+        <div>Loading...</div>
+      } @error {
+        <div>Something went wrong</div>
+      }
+
+    } <!-- fin du hover -->
+
   </div>
 
 
-</div>
-
+</div> <!-- fin du container -->

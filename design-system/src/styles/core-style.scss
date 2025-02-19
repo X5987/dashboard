@@ -17,7 +17,7 @@ html {
 
   body {
     background-color: #f6f6f6;
-    font-family: Roboto Light Sans, sans-serif;
+     font-family: Roboto Light Sans, sans-serif;
 
     .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
       font-family: "Arial Black", sans-serif !important;
@@ -53,6 +53,14 @@ html {
         background: $button-color-blue-purple;
         color: white;
       }
+    }
+
+    hr {
+      border: 0;
+      border-bottom: 1px dashed #ccc;
+      background: #999;
+      height: 0.01rem;
+      width: 100%;
     }
   }
 

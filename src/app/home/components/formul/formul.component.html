@@ -75,25 +75,29 @@
 </ng-template>
 <ng-template #formThirdResultTemplate let-data="data">
 
-  <mat-list role="list">
+  @defer (on timer(2000)) {
+    <mat-list role="list">
 
-    @for (todo of (arrayListTodo | async); track todo; let i = $index) {
-      <mat-list-item role="listitem">
-        <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
-        </button>
-        <button (click)="changeTodoText(todo)" mat-icon-button aria-label="Remove">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
-        </button>
-        <mat-checkbox [disabled]="(loading | async)"
-                      [checked]="todo.complete"
-                      (change)="changeTodo(todo)"></mat-checkbox>
-        {{ todo.message }}
-      </mat-list-item>
-    } @empty {
-      <p>List vide ...</p>
-    }
+      @for (todo of (arrayListTodo | async); track todo; let i = $index) {
+        <mat-list-item role="listitem">
+          <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+          </button>
+          <button (click)="changeTodoText(todo)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+          </button>
+          <mat-checkbox [disabled]="(loading | async)"
+                        [checked]="todo.complete"
+                        (change)="changeTodo(todo)"></mat-checkbox>
+          {{ todo.message }}
+        </mat-list-item>
+      } @empty {
+        <p>List vide ...</p>
+      }
 
-  </mat-list>
+    </mat-list>
+  } @placeholder {
+    <div libLoaderSimpleDirective></div>
+  }
 
 </ng-template>

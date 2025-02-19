@@ -1,4 +1,5 @@
 :host {
+  animation-duration: 1s;
 
   .container {
     display: flex;
@@ -33,6 +34,36 @@
           color: red;
           font-size: 12px;
           margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 74.93em) {
+    .container {
+      .item {
+        width: 50%;
+        height: 50%;
+        > mat-card {
+          width: 100%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 47.93em) {
+    .container {
+      .item {
+        width: 100%;
+        height: 100%;
+        > mat-card {
+          width: 100%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
