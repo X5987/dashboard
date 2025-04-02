@@ -7,14 +7,18 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noImplicitAny": true
   },
   "angularCompilerOptions": {
     "extendedTemplateDiagnostics": true, // implémenté par la suite
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "disableReferencedProjectLoad": true
   },
   "extends": "./tsconfig.base.json"
 }

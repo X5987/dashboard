@@ -73,7 +73,7 @@ export class FormComponent implements OnInit, OnDestroy {
   private filterTextUserSubject = new BehaviorSubject<string>('');
   private toggleStatusSubject = new BehaviorSubject<boolean>(false);
 
-  async ngOnInit() {
+  ngOnInit() {
     this.router.data
       .pipe(
         takeUntil(this.unsubscribe$),
@@ -104,7 +104,6 @@ export class FormComponent implements OnInit, OnDestroy {
                   : item.active),
               this.toggleStatusSubject,
             );
-
             this.filterService
               .filterList(
                 this.serviceForm.getAllUsers(),
