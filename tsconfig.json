@@ -11,7 +11,7 @@
     "noImplicitAny": true
   },
   "angularCompilerOptions": {
-    "extendedTemplateDiagnostics": true, // implémenté par la suite
+    "extendedTemplateDiagnostics": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

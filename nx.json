@@ -61,6 +61,17 @@
         "production",
         "^production"
       ]
+    },
+    "tasksRunnerOptions": {
+      "default": {
+        "runner": "nx/tasks-runners/default",
+        "options": {
+          "cacheableOperations": [
+            "test"
+          ],
+          "parallel": 4
+        }
+      }
     }
   },
   "defaultBase": "master",

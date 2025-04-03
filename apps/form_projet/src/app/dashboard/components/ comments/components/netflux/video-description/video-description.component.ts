@@ -1,7 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
-import { MovieList } from '../../../comments.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
+import { MovieList } from '../../../models/movie.interface';
 
 @Component({
   selector: 'app-video-description',

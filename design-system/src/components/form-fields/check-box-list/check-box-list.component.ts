@@ -8,7 +8,6 @@ import {
   startWith,
   takeUntil,
 } from 'rxjs/operators';
-import { IProductRoutingPlanDTO } from '../../../../models/plans-acheminements/extraction-pa/pa';
 
 @Component({
   selector: 'lib-check-box-list',

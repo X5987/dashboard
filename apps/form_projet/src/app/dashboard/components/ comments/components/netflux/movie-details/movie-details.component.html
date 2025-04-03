@@ -8,7 +8,7 @@
     class="video"
     width="100%"
     height="80%"
-    [src]="movie().trailerUrl"
+    [src]="sanitizer.bypassSecurityTrustResourceUrl(movie().trailerUrl)"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
@@ -52,9 +52,17 @@
   <div class="list-similary-title">
     @for (movie of listMovie(); track movie.id) {
       <div class="bloc">
-      <div class="zone-img">
-        <img mat-card-image [src]="movie.imageUrl" alt=""/>
-      </div>
+        <div class="zone-img">
+          <iframe
+            class="video"
+            width="100%"
+            height="80%"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
         <div class="description-trailer">
           <div class="video-format">
             <div class="movie-info">
@@ -66,12 +74,12 @@
           <div class="movie-tags">
             <div class="tags">
               @for (tag of movie.tags; track tag) {
-                <span>{{ tag }}</span>
+                <span class="tags">{{ tag }}</span>
               }
             </div>
           </div>
           <div class="description">
-            <p>{{movie.description}}</p>
+            <p>{{ movie.description }}</p>
           </div>
         </div>
 

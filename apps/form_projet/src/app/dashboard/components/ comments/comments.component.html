@@ -9,7 +9,7 @@
   </div>
 
   <div class="movie-container">
-    <a href="" class="btn-scroll-left" (click)="leftScroll()">
+    <a href="" class="btn-scroll-left" >
       <mat-icon class="mat-icon">arrow_back_ios</mat-icon>
     </a>
 
@@ -24,9 +24,9 @@
             <div class="card-expanded">
               <iframe
                 class="video"
-                width="200"
-                height="200"
-                [src]="movie.trailerUrl"
+                width="100%"
+                height="80%"
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
@@ -42,7 +42,7 @@
       }
     </div>
 
-    <a href="" class="btn-scroll-right" (click)="rightScroll()">
+    <a href="" class="btn-scroll-right" >
       <mat-icon class="mat-icon">arrow_back_ios_new</mat-icon>
     </a>
   </div>

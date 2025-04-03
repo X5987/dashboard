@@ -1,14 +1,95 @@
 {
-  "$schema": "node_modules/nx/schemas/project-schema.json",
   "name": "dashboard_cv",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+  "sourceRoot": "src",
+  "prefix": "app",
+  "projects": {
+    "design_system": {
+      "root": "design-system",
+      "sourceRoot": "design-system/src",
+      "projectType": "library",
+      "tags": ["type:library", "scope:ui"],
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "polyfills": [
+              "node_modules/@angular/localize/init"
+            ],
+            "project": "design-system/ng-package.json",
+            "styles": ["design-system/src/styles/core-styles.scss"]
+          }
+        }
+      }
+    },
+    "form_projet": {
+      "root": "apps/form_projet",
+      "sourceRoot": "apps/form_projet/src",
+      "projectType": "library",
+      "tags": ["type:application", "scope:form"],
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "polyfills": [
+              "node_modules/@angular/localize/init"
+            ],
+            "outputPath": "dist/form_projet",
+            "index": "apps/form_projet/src/index.html",
+            "main": "apps/form_projet/src/main.ts",
+            "tsConfig": "apps/form_projet/tsconfig.app.json",
+            "scripts": [],
+            "project": "apps/form_projet/ng-package.json",
+            "styles": [
+              "design-system/src/styles/core-styles.scss",
+              "apps/form_projet/src/styles.scss"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nx/jest:jest",
+          "options": {
+            "jestConfig": "apps/form_projet/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "presentation_projet": {
+      "root": "apps/presentation_projet",
+      "sourceRoot": "apps/presentation_projet/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "polyfills": [
+              "node_modules/@angular/localize/init"
+            ],
+            "project": "apps/presentation_projet/ng-package.json",
+            "styles": [
+              "design-system/src/styles/core-styles.scss",
+              "apps/presentation_projet/src/styles.scss"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nx/jest:jest",
+          "options": {
+            "jestConfig": "apps/presentation_projet/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "tags": ["type:application", "scope:dashboard"],
   "generators": {
     "@schematics/angular:component": {
       "style": "scss"
     }
   },
-  "sourceRoot": "src",
-  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
@@ -16,8 +97,7 @@
         "outputPath": "dist/dashboard_cv",
         "index": "src/index.html",
         "browser": "src/main.ts",
-        "polyfills": [
-          "zone.js"
+        "polyfills": ["zone.js"
         ],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -75,80 +155,15 @@
     "lint": {
       "executor": "@angular-eslint/builder:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/**/*.ts",
-          "src/**/*.html"
-        ]
+        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
       },
-      "outputs": [
-        "{options.outputFile}"
-      ]
-    }
-  },
-  "tags": ["type:application", "scope:dashboard"],
-  "projects": {
-    "design_system": {
-      "root": "design-system",
-      "sourceRoot": "design-system/src",
-      "projectType": "library",
-
-      "tags": ["type:library", "scope:ui"],
-      "targets": {
-        "build": {
-          "executor": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "design-system/ng-package.json",
-            "styles": ["design-system/src/styles/core-styles.scss"]
-          }
-        }
-      }
+      "outputs": ["{options.outputFile}"]
     },
-    "form_projet": {
-      "root": "apps/form_projet",
-      "sourceRoot": "apps/form_projet/src",
-      "projectType": "library",
-      "tags": ["type:application", "scope:form"],
-      "targets": {
-        "build": {
-          "executor": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "outputPath": "dist/form_projet",
-            "index": "apps/form_projet/src/index.html",
-            "main": "apps/form_projet/src/main.ts",
-            "tsConfig": "apps/form_projet/tsconfig.app.json",
-            "scripts": [],
-            "project": "apps/form_projet/ng-package.json",
-            "styles": ["design-system/src/styles/core-styles.scss", "apps/form_projet/src/styles.scss"]
-          }
-        },
-        "test": {
-          "executor": "@nx/jest:jest",
-          "options": {
-            "jestConfig": "apps/form_projet/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "presentation_projet": {
-      "root": "apps/presentation_projet",
-      "sourceRoot": "apps/presentation_projet/src",
-      "projectType": "library",
-      "targets": {
-        "build": {
-          "executor": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "apps/presentation_projet/ng-package.json",
-            "styles": ["design-system/src/styles/core-styles.scss", "apps/presentation_projet/src/styles.scss"]
-          }
-        },
-        "test": {
-          "executor": "@nx/jest:jest",
-          "options": {
-            "jestConfig": "apps/presentation_projet/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
+      "options": {
+        "jestConfig": "jest.config.ts"
       }
     }
   }
